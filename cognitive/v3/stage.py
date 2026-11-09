@@ -53,6 +53,17 @@ class StageV3Runner(StageRunner):
         (folder/'exit-reconciliation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
         (self.root/'evaluations/v3/last-stage-trial.json').write_text(json.dumps({'folder':str(folder),**report},ensure_ascii=False,indent=2),encoding='utf-8')
         return report
+    def final_corridor_segment(self,s,state,alignment,position,map_features,target_y):
+        """Share the verified room/gate route between encounter and exit."""
+        if 670<=position[1]<748:
+            from .room_navigation import navigate_room
+            return navigate_room(s,[405,755],tolerance=7,max_actions=12)
+        if 748<=position[1]<813:
+            from .lantern_gate import traverse_open_gate
+            return traverse_open_gate(s)
+        target=[425.5,680] if position[1]<670 else [425.5,target_y]
+        checkpoint=(state,alignment,position,map_features,len(s.controls.actions));s.transition('jogo')
+        return s.navigate_to(target,tolerance=7,allow_npc_bypass=True,_checkpoint=checkpoint)
     def execute_step(self,s,step,remaining):
         kind=step['kind']
         if kind=='navigate':
@@ -74,10 +85,33 @@ class StageV3Runner(StageRunner):
                 verified=self.memory.retrieve(s.scope,kind='v3_final_encounter_verified',include_global=False,limit=2)
                 if active and any(r['validation']=='verified' and r['content'].get('entry_token')==active[0]['content'].get('entry_token') for r in verified):
                     return True,{'verified':True,'resumed_verified_encounter':verified[0]['id'],'source':verified[0]['content']}
+                if getattr(s,'last_frame',None) is not None and getattr(s,'held_object_kind',None)!='brazier':
+                    from .carry_combat import arrow_visible
+                    if arrow_visible(s,s.last_frame):
+                        from ..lantern_control import LanternController
+                        LanternController(s).restore_held();features=s.last_features
             if self.enemy_present(s,features):
-                result=s.fight_continuously(min(60,remaining));self.metrics['combats']+=1
+                result=s.fight_continuously(min(60,remaining),prior_enemy_evidence=features);self.metrics['combats']+=1
                 if not result['visible_combat_ended']:raise RuntimeError('Combat not verified: '+result['outcome'])
                 s.reconsider_frontiers('new_visible_combat');return True,result
+            if step.get('id')=='final_encounter':
+                state,alignment,position,map_features=s.map_state('v3-final-encounter-route-map')
+                if position[1]<893 or abs(position[0]-425.5)>9:
+                    result=self.final_corridor_segment(s,state,alignment,position,map_features,900);self.metrics['segments']+=1
+                    if result.get('reason')=='enemy_detected':
+                        combat=s.fight_continuously(min(60,remaining));self.metrics['combats']+=1
+                        if not combat['visible_combat_ended']:raise RuntimeError('Combat not verified: '+combat['outcome'])
+                        return True,combat
+                    if not result.get('verified') and not result.get('progress_verified'):raise RuntimeError('Final encounter approach did not progress')
+                    return False,{'kind':'final_encounter_approach','result':result,'metrics':{'verified':True}}
+                s.transition('jogo')
+                for _ in range(4):
+                    _,features=s.capture('v3-final-encounter-trigger')
+                    if self.enemy_present(s,features):
+                        result=s.fight_continuously(min(60,remaining),prior_enemy_evidence=features);self.metrics['combats']+=1
+                        if not result['visible_combat_ended']:raise RuntimeError('Combat not verified: '+result['outcome'])
+                        return True,result
+                raise RuntimeError('Final encounter absent at the observed southern chamber; no unrelated frontier explored')
             if step.get('trigger_reference'):
                 result=s.navigate_to(step['trigger_reference'],tolerance=5,allow_npc_bypass=True)
                 if not result.get('verified') and result.get('reason')!='enemy_detected' and not result.get('progress_verified'):raise RuntimeError('Encounter trigger route diverged')
@@ -147,16 +181,7 @@ class StageV3Runner(StageRunner):
             if position[1]<930 or abs(position[0]-425.5)>9:
                 # Use the live floor in the compact object room: the pause
                 # marker can occlude its narrow map nodes near a pedestal.
-                if 670<=position[1]<748:
-                    from .room_navigation import navigate_room
-                    result=navigate_room(s,[405,755],tolerance=7,max_actions=12)
-                elif 748<=position[1]<813:
-                    from .lantern_gate import traverse_open_gate
-                    result=traverse_open_gate(s)
-                else:
-                    target=[425.5,680] if position[1]<670 else [425.5,938]
-                    checkpoint=(map_state,alignment,position,map_features,len(s.controls.actions));s.transition('jogo')
-                    result=s.navigate_to(target,tolerance=7,allow_npc_bypass=True,_checkpoint=checkpoint)
+                result=self.final_corridor_segment(s,map_state,alignment,position,map_features,938)
                 if result.get('reason')=='enemy_detected':
                     combat=s.fight_continuously(min(60,remaining));self.metrics['combats']+=1
                     if not combat['visible_combat_ended']:raise RuntimeError('Combat not verified: '+combat['outcome'])

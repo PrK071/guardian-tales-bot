@@ -209,7 +209,7 @@ class GameplaySession(FastSession):
         self.transition('jogo')
         from .carry_combat import arrow_visible,fight_with_carried_item
         if self.held_object_kind=='brazier' and arrow_visible(self,self.last_frame):
-            return fight_with_carried_item(self,seconds,getattr(self,'recover_item_after_combat',True))
+            return fight_with_carried_item(self,seconds,getattr(self,'recover_item_after_combat',True),prior_enemy_evidence=prior_enemy_evidence)
         if time.time()-self.last_features['at']>.3:self.capture('v3-before-combat-journal')
         self.prepare_continuous('continuous_combat',{'seconds':seconds})
         result=CombatController(self,self.controls,skill_ready,prior_enemy_evidence).run(seconds);self.transition('pausa');self.capture('v3-combat-checkpoint')

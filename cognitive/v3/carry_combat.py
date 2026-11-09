@@ -10,12 +10,14 @@ def arrow_visible(s,frame):
     mask=cv2.inRange(template,(205,205,205),(255,255,255))
     return float(cv2.matchTemplate(InteractionVision.mask(frame),mask,cv2.TM_CCOEFF_NORMED)[0,0])>.92
 
-def fight_with_carried_item(s,seconds=45,recover_item=True):
+def fight_with_carried_item(s,seconds=45,recover_item=True,prior_enemy_evidence=None):
     s.transition('jogo');frame,f=s.capture('v3-carry-combat-preflight');released=False
     if arrow_visible(s,frame) and s.held_object_kind!='brazier':
         frame,f=LanternController(s).restore_held()
-    if not f.get('combat_present',f['enemy_count']) or not s.preflight_enemy(f):raise RuntimeError('No confirmed current encounter to handle')
-    prior_enemy_evidence=dict(f)
+    current_confirmed=bool(f.get('combat_present',f['enemy_count']) and s.preflight_enemy(f))
+    prior_valid=bool(prior_enemy_evidence and prior_enemy_evidence.get('scene')=='jogo' and prior_enemy_evidence.get('combat_present',prior_enemy_evidence.get('enemy_count')) and 0<=time.time()-prior_enemy_evidence.get('at',0)<10)
+    if current_confirmed:prior_enemy_evidence=dict(s.last_features)
+    elif not prior_valid:raise RuntimeError('No confirmed current encounter to handle')
     if arrow_visible(s,frame):
         known=s.memory.retrieve(s.scope,kind='v2_held_brazier',include_global=False,limit=1)
         held=s.lantern_vision.held_match(frame,f.get('player'))
@@ -28,7 +30,7 @@ def fight_with_carried_item(s,seconds=45,recover_item=True):
             time.sleep(.08)
         if not released:raise RuntimeError('Item release not observed; no repeated throw')
         if row['metrics'].get('operation_id'):s.memory.operation(row['metrics']['operation_id'],'observed',s.observation(f).id,{'item_release_verified':True,'frame':f['frame']})
-    result=s.fight_continuously(seconds,prior_enemy_evidence=prior_enemy_evidence if released else None);result['carried_item_released']=released
+    result=s.fight_continuously(seconds,prior_enemy_evidence=prior_enemy_evidence);result['carried_item_released']=released;result['prior_encounter_frame']=prior_enemy_evidence['frame']
     if result['visible_combat_ended'] and released and recover_item:
         s.transition('jogo');frame,f=s.capture('v3-recover-released-item')
         if any(o['kind']=='portable_brazier' for o in f.get('puzzle_objects',[])):

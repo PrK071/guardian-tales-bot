@@ -1,10 +1,10 @@
 {
-  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_a35aef4ee70f47c6",
-  "outcome": "interrupted",
-  "reason": "",
+  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_997f3524ca464399",
+  "outcome": "blocked",
+  "reason": "RuntimeError: Final encounter absent at the observed southern chamber; no unrelated frontier explored",
   "metrics": {
-    "cycles": 3,
-    "replans": 1,
+    "cycles": 2,
+    "replans": 2,
     "recoveries": 0,
     "frontier_deferrals": 0,
     "no_progress": 0,
@@ -16,15 +16,12 @@
     "input_tokens": 0,
     "output_tokens": 0,
     "decision_ms": [],
-    "cycle_ms": [
-      72473.01700000389,
-      15215.533499998855
-    ],
+    "cycle_ms": [],
     "timing_scope": "isolated_local_planning_ms",
     "puzzle_attempts": 0,
     "puzzle_verified": 0,
     "completed": false,
-    "high_level_completed": 1,
+    "high_level_completed": 0,
     "segments": 0,
     "combats": 0,
     "guide_cache_hits": 1
@@ -35,9 +32,27 @@
     "mode": "normal",
     "plan_id": "a000d25a6d0af23adb5c",
     "resumed": true,
-    "run_id": "v3_trial_a35aef4ee70f47c6",
+    "run_id": "v3_trial_997f3524ca464399",
     "scope": "world:1:passage:1",
     "states": {
+      "final_encounter": {
+        "state": "replan_needed",
+        "frame": "data\\v3\\v3_trial_997f3524ca464399\\0023-v3-final-encounter-trigger.jpg",
+        "result": {
+          "plan_id": "a000d25a6d0af23adb5c",
+          "step_id": "final_encounter",
+          "source_memory_ids": [
+            "memory_b8b83229088d44f6",
+            "memory_2a35ada996cb4e6d",
+            "memory_7ebff3419ae9448c"
+          ],
+          "reason": "Final encounter absent at the observed southern chamber; no unrelated frontier explored",
+          "frame": "data\\v3\\v3_trial_997f3524ca464399\\0023-v3-final-encounter-trigger.jpg",
+          "details": null,
+          "scope": "current observation differs from this plan assumption; source is not globally contradicted"
+        },
+        "at": 1794198651.5629203
+      },
       "first_encounter": {
         "at": 1794178833.522337,
         "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0127-v3-combat-checkpoint.jpg",
@@ -850,173 +865,173 @@
         "state": "completed"
       },
       "lantern_puzzle": {
-        "state": "completed",
+        "at": 1794196867.0784266,
         "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0141-v3-lantern-gate-crossing-map.jpg",
         "result": {
-          "verified": true,
-          "lowered_stone_observations": [
-            {
-              "verified": true,
-              "closed_panel_correlation": 0.13636450469493866,
-              "exposed_floor_fraction": 1.0,
-              "current_panel": [
-                772,
-                461,
-                210,
-                100
-              ],
-              "motion": {
-                "background_dx": 363.8999087386611,
-                "background_dy": -136.68502405765324,
-                "confidence": 0.9,
-                "method": "independent_aligned_map_checkpoints_and_measured_scale"
-              },
-              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
-              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0120-v3-lantern-gate-lowered-check.jpg"
-            },
-            {
-              "verified": true,
-              "closed_panel_correlation": 0.13636450469493866,
-              "exposed_floor_fraction": 1.0,
-              "current_panel": [
-                772,
-                461,
-                210,
-                100
-              ],
-              "motion": {
-                "background_dx": 363.8999087386611,
-                "background_dy": -136.68502405765324,
-                "confidence": 0.9,
-                "method": "independent_aligned_map_checkpoints_and_measured_scale"
-              },
-              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
-              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0121-v3-lantern-gate-lowered-check.jpg"
-            }
-          ],
-          "formerly_blocked_edge_reference": [
-            439.88715244409747,
-            802.1031122432369
-          ],
-          "target_reference": [
-            439.88715244409747,
-            812.1031122432369
-          ],
           "after_reference": [
             439.40845070422546,
             813.7887323943661
           ],
           "crossing_map_frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0141-v3-lantern-gate-crossing-map.jpg",
           "enemy_interrupted": false,
-          "stage_complete": false,
           "entry_token": "1794178740.800703",
+          "formerly_blocked_edge_reference": [
+            439.88715244409747,
+            802.1031122432369
+          ],
+          "lowered_stone_observations": [
+            {
+              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
+              "closed_panel_correlation": 0.13636450469493866,
+              "current_panel": [
+                772,
+                461,
+                210,
+                100
+              ],
+              "exposed_floor_fraction": 1.0,
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0120-v3-lantern-gate-lowered-check.jpg",
+              "motion": {
+                "background_dx": 363.8999087386611,
+                "background_dy": -136.68502405765324,
+                "confidence": 0.9,
+                "method": "independent_aligned_map_checkpoints_and_measured_scale"
+              },
+              "verified": true
+            },
+            {
+              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
+              "closed_panel_correlation": 0.13636450469493866,
+              "current_panel": [
+                772,
+                461,
+                210,
+                100
+              ],
+              "exposed_floor_fraction": 1.0,
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0121-v3-lantern-gate-lowered-check.jpg",
+              "motion": {
+                "background_dx": 363.8999087386611,
+                "background_dy": -136.68502405765324,
+                "confidence": 0.9,
+                "method": "independent_aligned_map_checkpoints_and_measured_scale"
+              },
+              "verified": true
+            }
+          ],
           "room_views": [
             {
-              "viewpoint_reference": [
-                426,
-                713
-              ],
               "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0098-v3-lantern-room-view.jpg",
               "lit": [
                 {
-                  "kind": "standing_lantern_lit",
                   "bbox": [
                     354,
                     144,
                     69,
                     175
                   ],
+                  "confidence": 0.9864237904548645,
                   "fire_center": [
                     390.09132260321906,
                     227.90115465360392
                   ],
+                  "kind": "standing_lantern_lit",
+                  "method": "floor_lantern_pedestal_with_current_fire",
                   "pedestal_bbox": [
                     354,
                     264,
                     69,
                     55
-                  ],
-                  "confidence": 0.9864237904548645,
-                  "method": "floor_lantern_pedestal_with_current_fire"
+                  ]
                 },
                 {
-                  "kind": "standing_lantern_lit",
                   "bbox": [
                     1142,
                     145,
                     69,
                     175
                   ],
+                  "confidence": 0.9773439168930054,
                   "fire_center": [
                     1180.2668352408837,
                     212.99041788661165
                   ],
+                  "kind": "standing_lantern_lit",
+                  "method": "floor_lantern_pedestal_with_current_fire",
                   "pedestal_bbox": [
                     1142,
                     265,
                     69,
                     55
-                  ],
-                  "confidence": 0.9773439168930054,
-                  "method": "floor_lantern_pedestal_with_current_fire"
+                  ]
                 }
+              ],
+              "viewpoint_reference": [
+                426,
+                713
               ]
             },
             {
-              "viewpoint_reference": [
-                426,
-                775
-              ],
               "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0113-v3-lantern-room-view.jpg",
               "lit": [
                 {
-                  "kind": "standing_lantern_lit",
                   "bbox": [
                     370,
                     278,
                     69,
                     175
                   ],
+                  "confidence": 0.9711965322494507,
                   "fire_center": [
                     410.94915938130464,
                     355.6244788164089
                   ],
+                  "kind": "standing_lantern_lit",
+                  "method": "floor_lantern_pedestal_with_current_fire",
                   "pedestal_bbox": [
                     370,
                     398,
                     69,
                     55
-                  ],
-                  "confidence": 0.9711965322494507,
-                  "method": "floor_lantern_pedestal_with_current_fire"
+                  ]
                 },
                 {
-                  "kind": "standing_lantern_lit",
                   "bbox": [
                     1157,
                     278,
                     69,
                     175
                   ],
+                  "confidence": 0.9570205211639404,
                   "fire_center": [
                     1185.677143917832,
                     356.932557851751
                   ],
+                  "kind": "standing_lantern_lit",
+                  "method": "floor_lantern_pedestal_with_current_fire",
                   "pedestal_bbox": [
                     1157,
                     398,
                     69,
                     55
-                  ],
-                  "confidence": 0.9570205211639404,
-                  "method": "floor_lantern_pedestal_with_current_fire"
+                  ]
                 }
+              ],
+              "viewpoint_reference": [
+                426,
+                775
               ]
             }
           ],
-          "substeps": []
+          "stage_complete": false,
+          "substeps": [],
+          "target_reference": [
+            439.88715244409747,
+            812.1031122432369
+          ],
+          "verified": true
         },
-        "at": 1794196867.0784266
+        "state": "completed"
       },
       "north_corridor": {
         "at": 1794178807.1638815,

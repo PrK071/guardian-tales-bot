@@ -1,3 +1,37 @@
+## Checkpoint atual para push — 2026-11-09
+
+Usuário reforçou explicitamente: fazer push em https://github.com/PrK071/guardian-tales-bot antes de acabar tokens. Manter publicação incremental. Snapshot base821e2c9 e2ZIPs nareleaseprivada jáconcluídos; não recriarrepo/nãorepetiruploads.
+
+ÚltimoJOB57115 jáTERMINOU, handleinválido. Último trial `v3_trial_997f3524ca464399`: BLOCKED, cursor7, razão Final encounter absent at the observed southern chamber; no unrelated frontier explored. Gamepaused. NÃOrepetirpuzzle: completed naMESMAentrytoken1794178740.800703, aftergate[439.408,813.789], prova a35aef4ee70f47c6/0141-v3-lantern-gate-crossing-map.jpg.
+
+Alterações atuais: final_corridor_segment compartilha rota segura ao sul entre encontro900 e saída938; heldarrowreconcilia objeto/pose emnova sessão. Critério de chegadaencontro usa893(tolerância7) paraevitarloopzeroação em899.7. Captura cd2e605096d84348/0094-v3-carry-combat-preflight.jpg mostra ORC VIVO comHPbranco durantehit, portanto helper falhavaNoConfirmedCurrentEncounter noflash. Stageagorapassa prior_enemy_evidence ao fight_continuously;sessionrepassa a carry_combat;helperaceitasópresençarecentedejogo<10s,se atualpreflightnãoenxerga, e mantémsoltaritemcomprova+3ausências+rawindependente. Nãoháconfirmaçãoautomáticapelaausência inicial. Último997 jásem inimigovisível e sempriorfresh continua parado corretamente.
+
+Próximaetapa: verificar APENAS testemunho atual doOrc emcd2/0093/0094 e capturasbrutas deausênciado997+mapa, mesmaentry/local. PodeprecisarreconciliarmorteNPC ocorridaentrepreflight e retomada, como casoreal7be9anterior, com3observaçõesindependentesincluindoraw eprovaenum/posição. NÃOinventarclearou duração; se nãohouverprova suficiente, adaptar verificação de HPbranco/presençafocada. Depois finalizar saída com2observaçõesreais, FULLFRESHfinal, regressões e relatório. GoalV3 ATIVO/incompleto.
+
+Verificação dirigida agora:18/18 testes StageTests+CombatTests passaram. Última suíte completaantesdasalterações18:102/102V3,59/59V2,45/45legado. Ainda requer consolidadoapóscódigofinal. Orientação80ms experimentalfoiREVERTIDA, lantern_controligualsnapshot821; nãotestar pickupjáconcluído. Semagentes/modelos/frameworksnovos. TudoemE:, usuáriosemperguntas/permissões.
+
+## ÚLTIMO — puzzle JÁ concluído, encontro final ao sul
+
+IMPORTANTEcorreçãodeestado: retomada9(4be82c84996d4411) mostrouCURSOR7, nãocursor6! Puzzle completouANTESdapausaparapublicação, em `v3_trial_a35aef4ee70f47c6/0141-v3-lantern-gate-crossing-map.jpg`, after[439.40845070422546,813.7887323943661], verifiedTrue, entry_token1794178740.800703. O ZIPevidencepublicadojácontémessa prova. NÃOrepetirpuzzle/lamparinas/glove/pickup. NPC/tochaestãonoestadoatual.
+
+A falharestanteerahierarquiafinal_encounter: com inimigofora da câmera, códigochamavanavigate_once eexplorouFRONTEIRAAONORTE[306318], carregandobraseiro massemreconciliarheldpose emnovasessão. Actorlostem392.93,556.04 comtorchacesoheldarrow claro em4be/0073. Nãorepetirteste/rotanorte.
+
+CORREÇÃOcarregada: Stage.execute_step final_encounter reconcilia arrow+objeto viaLanternController.restore_held antesdeenxergarenemy/nav. `final_corridor_segment` extraiurotaexistentesegura doexit ecompartilhacomencontrofinal: Y<670→425.5,680;670..748→local405755;748..813→cachedsameentrygate;>=813→425.5,900 paraencontro(938parasaída). Seminimigo,executasórota aoSUL atéchamber900, então4observaçõesatuais. Nãoconfirmaencontrosem inimigovisto e3ausências+raw, nãovoltaafronteiras. DoisnovosStageTestsarestaredirectsouth/absentnotcomplete, aindanãorodados.
+
+A orientação80ms pósGiteraHIPÓTESE eNÃOfoiusada (estavanokindencontrefinal), entãofoiREVERTIDAparaLanternControllerpublicadocommit821. Nãotestarnovamentepickuppoisjáestásegurando/fasepuzzleconcluída. AlteraçõesfunctionaisatuaispósGitestãoemstage.py, testesstage,docscontinuation.
+
+SERVERPID47056, logs v3-final-encounter-resume.stdout/stderr.log; JOBATUALhandle15434 client.py stage_v3 1001200. Retomadoacurs7doMESMOentry, saindode392556norteerrado, devevoltaraosulcomheldposeconfirmado. Aguardar. GitHubtaskjáCOMPLETA, URLs/SHAsnoblocoseguinte. GoalV3ativo/incompleto: precisaconcluirúltimoencontro/saída, fullFRESHfinal,regressões/relatórioatualizado+commitpushatualizações. Não repetirbenchroute/corridor80px/2parescombate.
+
+## GitHub CONCLUÍDO; objetivo V3 retomado
+
+Requisição nova do usuário commit/push/criarrepo foi CONCLUÍDA: repo PRIVADO https://github.com/PrK071/guardian-tales-bot, branchmain, commit821e2c91ed9485fb7d1da2f3d4a0d2f45c2d61e9,204arquivos, local/remotoHEADconferidos,workingtreecleanantesderetomar. Releasehttps://github.com/PrK071/guardian-tales-bot/releases/tag/snapshot-2026-11-09 recebeu2assets, bytes eSHA256conferidos peloGitHub: runtime1115521067bytes SHA08991ca87144fc8398a439c61c3521d87c9ad4b125966c5cce7e795c0c8146cf; evidence1741304016bytes SHAec24e37f0d50a3b74dc3ed99edade4f08d898c2f536ed28cccc0475d40e1921d. Resultadoformal publish/2026-11-09/publication-result.json. Não recriarrepo/nãorepetiruploads. GCMcontaPrK071 existente; nenhumuploadergravoutokenemdisco. ArtifactsforaGitporlimites de tamanho;source+assets+rotas+guias+docs+tests+summariesemGit. TudoatualE:. READMEexplicarestauraros2ZIPsna raizE. GitHubsnapshotéWIP, NÃOmissãoV3completa.
+
+Apósconfirmarbackupemcommentary, retomeimissãooriginal(usuárionãocancelou). SERVERATUALPID36468, logs v3-puzzle-resume9.stdout/stderr.log;JOBATUALhandle78008 client.py stage_v3 1001200. Mesmaentryb09cursor6,lastinferiordireitaapagada,upperright+lowerleftacesas,torchacesonochão. Aguardarjobantesdeoutroexecutor.
+
+ÚNICAalteraçãofunctionalPÓScommit821: LanternController.approach definepickup_facing_attempted=False; quandoportablevisible distance<reach110 eglyphneutral, UMAorientação80ms nadireçãodoobjeto(padrãojácalibradoV2face), depoisexigehand/bubbleantespickup. Continuação sourceúltimabug0093fixturetorcha80pxdogamefootmasbootneutral;groundobjfacepoderiafaltar. Secontinuanotready,planovisualnormalrige e podeparar(NoDirectLocalSegment), semblindtap. Esse80msnovo AINDAsemmediçãoreal/consolidado. Semnovomodelo/agente/framework. docscontinuation+lantern_controlagoraDIRTYapósbackup, futurocommit/pushquandoestávelmantémrepoatualizado.
+
+PróximosrequisitosV3: finalizarpuzzle/saída; fullFRESHcomcódigofinal (b09só6/9em202.624s,9284clearfoicalib/retomadas); regressõesV3/V2/legacyapóscódigofinal;gerarrelatóriocomcohortf7859...eIDFRESH;commit/pushatualizaçãovalidada. Não repetirmediçõesroute80px2.56xnemcombate2paressemganhogeraldetempo. Últimaschecksantesbackup102/102V3,59/59V2,45/45legado. Usuáriosemperguntas/permissões,dormindo. Goalativo/incompleto.
+
 ## Snapshot GitHub solicitado pelo usuário — 2026-11-09
 
 Usuário pediu commit/push de tudoatéagora e criarrepo emgithub.com/prk071. Repo PRIVADO criado https://github.com/PrK071/guardian-tales-bot pelaautenticaçãoGitCredentialManagerjáexistente (mesmoowner confirmado), semnovaspermissões/perguntas. Código/assets/rotas/guias/docs/avaliações versionados; dados/capturas/SQLite/logs/backups e runtime/modelosserãoanexadosna prerelease snapshot-2026-11-09. Não escrevertokensnocódigo/logs. Scripts tools/package_snapshot.py e publish_snapshot.py usam credencialsomenteemmemória. models/licenças/manifests preservados. Repo aindaemprocessodecommit/upload.

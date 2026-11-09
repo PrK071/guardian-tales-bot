@@ -48,6 +48,19 @@ class StageTests(unittest.TestCase):
         s=SimpleNamespace(navigate_to=lambda *a:(calls.append(a) or {'verified':True,'reason':'duration_elapsed'}))
         complete,result=runner.execute_step(s,{'kind':'navigate','target_reference':[100,200],'title':'corridor'},30)
         self.assertTrue(complete);self.assertEqual(len(calls),1);self.assertEqual(runner.metrics['segments'],1)
+    def test_final_encounter_without_visible_enemy_follows_south_route_not_frontier(self):
+        import time
+        runner=self.runner();runner.memory=SimpleNamespace(retrieve=lambda *a,**kw:[]);calls=[];f={'scene':'jogo','at':time.time(),'frame':'synthetic:game','enemy_count':0}
+        def frontier(*a,**kw):raise AssertionError('No unrelated frontier may be explored before final encounter')
+        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,transition=lambda *a:None,map_state=lambda *a:({}, {},[439,819],{'frame':'synthetic:map','at':time.time()}),controls=SimpleNamespace(actions=[]),navigate_once=frontier,navigate_to=lambda target,**kw:(calls.append(target) or {'verified':True}))
+        completed,result=runner.execute_step(s,{'id':'final_encounter','kind':'encounter'},30)
+        self.assertFalse(completed);self.assertEqual(calls,[[425.5,900]]);self.assertEqual(result['kind'],'final_encounter_approach');self.assertFalse(s.recover_item_after_combat)
+    def test_final_chamber_absence_cannot_complete_or_send_unrelated_navigation(self):
+        import time
+        runner=self.runner();runner.memory=SimpleNamespace(retrieve=lambda *a,**kw:[]);f={'scene':'jogo','at':time.time(),'frame':'synthetic:game','enemy_count':0};seen=[]
+        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,transition=lambda *a:None,map_state=lambda *a:({}, {},[425.5,899.7],{'frame':'synthetic:map'}),capture=lambda label:(seen.append(label) or None,f))
+        with self.assertRaisesRegex(RuntimeError,'Final encounter absent'):runner.execute_step(s,{'id':'final_encounter','kind':'encounter'},30)
+        self.assertEqual(len(seen),4)
     def test_revealed_map_uses_brazier_before_gate_instead_of_later_exit_torch(self):
         import time
         runner=self.runner();runner.landmark_targets={};calls=[]
