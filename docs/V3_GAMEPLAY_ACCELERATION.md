@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 115/115. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 116/116. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -99,7 +99,7 @@ Preparações sem inimigo confirmado e leituras OCR sem identidade suficiente n�
 | Trial integrado | Cursor | Ciclos | Chamadas Qwen | Resultado |
 | --- | --- | --- | --- | --- |
 | v3_trial_042e8212b28a46f5 | 6 | 18 | 0 | blocked: RuntimeError: Lantern approach stalled twice; no repeated blind movement |
-| v3_trial_ebd17a2d61694c04 | 6 | 14 | 0 | blocked: RuntimeError: No visible approach to the object within player clearance |
+| v3_trial_19f75214f5fe4c78 | 6 | 12 | 0 | blocked: RuntimeError: Mole Glove input did not produce verified tile removal |
 
 
 ## Latência, decisões e limites da medição
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T07:12:10. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T07:25:10. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -161,11 +161,13 @@ Na retomada `1b64afbd353d4625`, pickup, permanência do item após deslocamento,
 
 A reconciliação dessa entrada confirmou duas imagens independentes do mapa em12,313s e enviou zero comandos. Cursor9/9, com o report bloqueado original preservado em `v3_trial_1b64afbd353d4625/exit-reconciliation.json`. Isso é uma execução concluída por retomadas e correções; não demonstra uma partida integral autônoma com a versão final, nem um ganho de tempo integral.
 
+O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
 
-Ensaio integrado final `data\v3\v3_trial_ebd17a2d61694c04\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 373.531s, 0.964 objetivos/min; 14 ciclos. Motivo: RuntimeError: No visible approach to the object within player clearance.
+Ensaio integrado final `data\v3\v3_trial_19f75214f5fe4c78\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 428.417s, 0.840 objetivos/min; 12 ciclos. Motivo: RuntimeError: Mole Glove input did not produce verified tile removal.
 
 Comparação de combate selecionada: `v3_combat_benchmark_f7859decec7c4428`. Não misturar séries antigas com código diferente. Tempos de falha não contam como conclusão. Os JSONs preservam entradas iniciais, raw final, ações e erros.
 
@@ -175,6 +177,6 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 115/115; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 116/116; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.

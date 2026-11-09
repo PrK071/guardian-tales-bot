@@ -102,9 +102,18 @@ def drill_visible(s,max_actions=3):
         if not rocks or not f.get('player'):raise RuntimeError('No current rock target for glove')
         target=min(rocks,key=lambda e:math.dist(f['player'],[min(max(f['player'][0],e['bbox'][0]),e['bbox'][0]+e['bbox'][2]),min(max(f['player'][1],e['bbox'][1]),e['bbox'][1]+e['bbox'][3])]));x,y,w,h=target['bbox']
         height=min(130,h);y=y if f['player'][1]<y+h/2 else y+h-height;h=height
-        # Select the visible cracked tile nearest the player within a group.
-        width=min(110,w);left=round(min(max(f['player'][0]-width/2,x),x+w-width));box=[left,y,width,h]
-        old=rock_mask(frame);mask=np.zeros_like(old);mask[y:y+h,left:left+width]=old[y:y+h,left:left+width]
+        # Connected L-shaped groups contain several tiles. Snap to their
+        # observed columns instead of centring a crop across two neighbours.
+        old=rock_mask(frame);columns=max(1,round(w/110));candidates=[]
+        for column in range(columns):
+            left=x+round(column*w/columns);right=x+round((column+1)*w/columns);width=right-left
+            count=int(np.count_nonzero(old[y:y+h,left:right]))
+            if count>=4000:
+                nearest=[min(max(f['player'][0],left),right),min(max(f['player'][1],y),y+h)]
+                candidates.append((math.dist(f['player'],nearest),left,width))
+        if not candidates:raise RuntimeError('No sufficiently visible cracked tile in the adjacent stone row')
+        _,left,width=min(candidates);box=[left,y,width,h]
+        mask=np.zeros_like(old);mask[y:y+h,left:left+width]=old[y:y+h,left:left+width]
         count=int(np.count_nonzero(mask));before=frame.copy();bp=f['player'];source=f['frame']
         if count<4000:raise RuntimeError('Selected cracked tile has insufficient observed rock pixels')
         row=s.pulse(Action('interact',{'ms':900},'Use the observed Mole Glove on the adjacent cracked stone'))

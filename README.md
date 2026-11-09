@@ -8,7 +8,7 @@ Bot local experimental para Windows, com painel, controles contínuos, planejame
 - Movimento/ataque mantidos pelo protocolo scrcpy, com cancelamento e liberação dos controles.
 - Ganho medido de **2,56×** em uma rota conhecida de 80 pixels de referência, três repetições por modo. Não representa aceleração de toda a história.
 - Dois pares de combates comparáveis não demonstraram ganho consistente de tempo. Falhas de preparação e de percepção estão registradas.
-- Uma conclusão real da Passagem 1 foi observada após calibrações e retomadas, com duas capturas independentes. O ensaio integral com todas as alterações mais recentes ainda está pendente.
+- Duas entradas da Passagem 1 tiveram conclusão confirmada após calibrações e retomadas, com duas capturas independentes. O ensaio integral com todas as alterações mais recentes ainda está pendente.
 - Compilador de walkthrough executável específico da Passagem 1 normal; outros mundos não têm conclusão automática validada.
 
 Detalhes e limitações: [relatório V3](docs/V3_GAMEPLAY_ACCELERATION.md). O documento [LEIA-ME.md](LEIA-ME.md) descreve a base original; o relatório V3 tem o estado mais recente.
@@ -21,6 +21,8 @@ O Git contém código, testes, documentação, guias, assets de visão, rotas, m
 - `guardian-tales-runtime-2026-11-09.zip`: Python portátil, dependências, ferramentas e pesos locais já instalados, com seus manifestos/licenças.
 
 Extraia ambos na raiz do checkout, preferencialmente `E:\GuardianTalesBot`, preservando as pastas. Os testes de replay e os controladores usam evidências históricas desse conjunto. A instalação do MSI Player e os dados Android existentes não estão incluídos.
+
+Quando houver um anexo `guardian-tales-evidence-delta-*.zip`, extraia-o depois do arquivo de evidências base, sobrepondo os arquivos. Ele inclui uma cópia consistente do SQLite e os dados novos ou modificados; não propaga exclusões. O corpo da release informa o commit e o SHA256 de cada atualização.
 
 1. Abra Guardian Tales no MSI Player e habilite ADB.
 2. Ajuste `config.json` se o serial ou os controles forem diferentes.

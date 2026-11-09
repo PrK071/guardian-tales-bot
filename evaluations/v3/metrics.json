@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T07:12:08.782549",
+  "generated_at": "2026-11-09T07:25:09.471824",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -7308,6 +7308,49 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_19f75214f5fe4c78\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Mole Glove input did not produce verified tile removal",
+      "seconds": 428.4165986000007,
+      "metrics": {
+        "cycles": 12,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          9141.604399992502,
+          9286.595300000045,
+          12132.930700012366,
+          30012.187700005597,
+          15869.710999992094,
+          16829.156900013913,
+          4726.0554000095,
+          4419.332700010273,
+          20250.506399999722
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 6,
+        "segments": 5,
+        "combats": 2,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": true,
+      "objectives_per_minute": 0.8403035764170306
+    },
+    {
       "source": "data\\v3\\v3_trial_1b64afbd353d4625\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Cannot transition from unrecognized screen: unknown",
@@ -9105,12 +9148,12 @@
     }
   },
   "final_fresh_trial": {
-    "source": "data\\v3\\v3_trial_ebd17a2d61694c04\\report.json",
+    "source": "data\\v3\\v3_trial_19f75214f5fe4c78\\report.json",
     "outcome": "blocked",
-    "reason": "RuntimeError: No visible approach to the object within player clearance",
-    "seconds": 373.5310664999997,
+    "reason": "RuntimeError: Mole Glove input did not produce verified tile removal",
+    "seconds": 428.4165986000007,
     "metrics": {
-      "cycles": 14,
+      "cycles": 12,
       "replans": 3,
       "recoveries": 0,
       "frontier_deferrals": 0,
@@ -9124,30 +9167,28 @@
       "output_tokens": 0,
       "decision_ms": [],
       "cycle_ms": [
-        8895.464699991862,
-        8536.247300013201,
-        11446.549200001755,
-        26298.60939999344,
-        14946.673899990856,
-        13251.87600000936,
-        12205.839200003538,
-        14947.515200008638,
-        4971.239600010449,
-        4325.469199990039,
-        19056.94899999071
+        9141.604399992502,
+        9286.595300000045,
+        12132.930700012366,
+        30012.187700005597,
+        15869.710999992094,
+        16829.156900013913,
+        4726.0554000095,
+        4419.332700010273,
+        20250.506399999722
       ],
       "timing_scope": "isolated_local_planning_ms",
       "puzzle_attempts": 0,
       "puzzle_verified": 0,
       "completed": false,
       "high_level_completed": 6,
-      "segments": 7,
+      "segments": 5,
       "combats": 2,
       "guide_cache_hits": 1
     },
     "cursor": 6,
     "initial_spawn_verified": true,
-    "objectives_per_minute": 0.9637752580346627
+    "objectives_per_minute": 0.8403035764170306
   },
   "tests": {
     "groups": {
@@ -9155,73 +9196,73 @@
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2212.421300006099
+        "duration_ms": 2210.0086999998894
       },
       "simulated_combat_states": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 13.819599989801645
+        "duration_ms": 13.645300001371652
       },
       "geometry_and_historical_map": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 3299.725100005162
+        "duration_ms": 3785.2317999931984
       },
       "persistent_walkthroughs": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 192.54229999205563
+        "duration_ms": 166.8814000004204
       },
       "historical_enemy_detection": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 836.486900007003
+        "duration_ms": 556.3591999962227
       },
       "stream_protocol_and_decoder": {
         "tests": 2,
         "passed": 2,
         "failures": [],
-        "duration_ms": 161.6403999942122
+        "duration_ms": 126.6924000083236
       },
       "high_level_execution": {
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 54.661500005749986
+        "duration_ms": 51.45579999953043
       },
       "visible_frontier_horizons": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 36.317000005510636
+        "duration_ms": 45.774800004437566
       },
       "distant_threat_confirmation": {
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 236.55850000795908
+        "duration_ms": 269.1806000075303
       },
       "real_held_object_tracking": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 6051.470699996571
+        "duration_ms": 6208.943799996632
       },
       "real_lantern_tool_and_gate_evidence": {
-        "tests": 20,
-        "passed": 20,
+        "tests": 21,
+        "passed": 21,
         "failures": [],
-        "duration_ms": 7559.946900000796
+        "duration_ms": 7968.189599996549
       },
       "current_entry_exit_completion_guards": {
         "tests": 9,
         "passed": 9,
         "failures": [],
-        "duration_ms": 5327.042099990649
+        "duration_ms": 5053.371700007119
       }
     },
     "all_passed": true,

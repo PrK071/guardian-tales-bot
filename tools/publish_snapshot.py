@@ -4,11 +4,12 @@ The credential is held only in memory and is never printed or written to disk.
 Requires an existing commit pushed to main and locally packaged bundles.
 """
 from pathlib import Path
-import hashlib,http.client,json,os,subprocess,time,urllib.error,urllib.parse,urllib.request
+import argparse,hashlib,http.client,json,os,subprocess,time,urllib.error,urllib.parse,urllib.request
 
 ROOT=Path(__file__).resolve().parents[1];OWNER='PrK071';REPO='guardian-tales-bot';DATE='2026-11-09';TAG='snapshot-'+DATE
 
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--manifest',action='append',type=Path);args=parser.parse_args()
     output=subprocess.run(['git','credential','fill'],input='protocol=https\nhost=github.com\nusername='+OWNER+'\n\n',text=True,capture_output=True,check=True,cwd=ROOT,env={**os.environ,'GIT_TERMINAL_PROMPT':'0','GCM_INTERACTIVE':'never'},creationflags=0x08000000)
     credential=dict(line.split('=',1) for line in output.stdout.splitlines() if '=' in line);token=credential['password']
     def api(method,path,data=None):
@@ -18,13 +19,16 @@ def main():
     repository=api('GET',f'/repos/{OWNER}/{REPO}')
     if not repository['private']:raise RuntimeError('Workspace snapshot requires the private repository created for this task')
     sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    manifests=[json.loads((ROOT/'publish'/DATE/(kind+'-manifest.json')).read_text()) for kind in ('runtime','evidence')]
+    manifest_paths=args.manifest or [ROOT/'publish'/DATE/(kind+'-manifest.json') for kind in ('runtime','evidence')]
+    if any(not path.resolve().is_relative_to((ROOT/'publish').resolve()) for path in manifest_paths):raise RuntimeError('Manifest outside publish directory')
+    manifests=[json.loads(path.read_text()) for path in manifest_paths]
     for manifest in manifests:
         path=ROOT/manifest['path']
         if not path.resolve().is_relative_to((ROOT/'publish').resolve()) or path.stat().st_size!=manifest['bytes']:raise RuntimeError('Snapshot bundle path/size mismatch')
     try:release=api('GET',f'/repos/{OWNER}/{REPO}/releases/tags/{TAG}')
     except urllib.error.HTTPError as error:
         if error.code!=404:raise
+        if args.manifest:raise RuntimeError('Incremental upload requires the existing base snapshot release') from error
         body='Snapshot privado do trabalho até este commit. V3 em desenvolvimento; validação integral final pendente.\n\nExtraia os dois arquivos na raiz do projeto. Dados/capturas/SQLite e runtime/modelos ficam nos anexos para manter o Git leve.\n\nCommit: '+sha+'\n\n'+ '\n'.join(f"- `{m['name']}` — SHA256 `{m['sha256']}`" for m in manifests)
         release=api('POST',f'/repos/{OWNER}/{REPO}/releases',{'tag_name':TAG,'target_commitish':sha,'name':'Snapshot V3 em desenvolvimento — '+DATE,'body':body,'draft':False,'prerelease':True})
     assets=api('GET',f'/repos/{OWNER}/{REPO}/releases/{release["id"]}/assets');uploaded=[]
@@ -49,6 +53,12 @@ def main():
         if result.get('digest') and result['digest']!='sha256:'+manifest['sha256']:raise RuntimeError('GitHub asset digest differs from manifest')
         uploaded.append(result);print(json.dumps({'asset':name,'uploaded':True,'bytes':result['size']}),flush=True)
     result={'repository':repository['html_url'],'private':repository['private'],'release':release['html_url'],'commit':sha,'assets':[{'name':a['name'],'bytes':a['size'],'url':a['browser_download_url'],'digest':a.get('digest')} for a in uploaded]}
-    (ROOT/'publish'/DATE/'publication-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(result,ensure_ascii=False),flush=True)
+    if args.manifest:
+        additions=[m for m in manifests if m['name'] not in release.get('body','')]
+        if additions:
+            body=release.get('body','')+'\n\nAtualização incremental do commit '+sha+'. Extraia depois do snapshot base, sobrepondo os arquivos.\n\n'+'\n'.join(f"- `{m['name']}` — SHA256 `{m['sha256']}`" for m in additions)
+            api('PATCH',f'/repos/{OWNER}/{REPO}/releases/{release["id"]}',{'body':body})
+    result_name='publication-delta-result.json' if args.manifest else 'publication-result.json'
+    (ROOT/'publish'/DATE/result_name).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(result,ensure_ascii=False),flush=True)
 
 if __name__=='__main__':main()

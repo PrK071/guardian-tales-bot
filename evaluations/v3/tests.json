@@ -4,73 +4,73 @@
       "tests": 11,
       "passed": 11,
       "failures": [],
-      "duration_ms": 2212.421300006099
+      "duration_ms": 2210.0086999998894
     },
     "simulated_combat_states": {
       "tests": 8,
       "passed": 8,
       "failures": [],
-      "duration_ms": 13.819599989801645
+      "duration_ms": 13.645300001371652
     },
     "geometry_and_historical_map": {
       "tests": 13,
       "passed": 13,
       "failures": [],
-      "duration_ms": 3299.725100005162
+      "duration_ms": 3785.2317999931984
     },
     "persistent_walkthroughs": {
       "tests": 8,
       "passed": 8,
       "failures": [],
-      "duration_ms": 192.54229999205563
+      "duration_ms": 166.8814000004204
     },
     "historical_enemy_detection": {
       "tests": 6,
       "passed": 6,
       "failures": [],
-      "duration_ms": 836.486900007003
+      "duration_ms": 556.3591999962227
     },
     "stream_protocol_and_decoder": {
       "tests": 2,
       "passed": 2,
       "failures": [],
-      "duration_ms": 161.6403999942122
+      "duration_ms": 126.6924000083236
     },
     "high_level_execution": {
       "tests": 11,
       "passed": 11,
       "failures": [],
-      "duration_ms": 54.661500005749986
+      "duration_ms": 51.45579999953043
     },
     "visible_frontier_horizons": {
       "tests": 4,
       "passed": 4,
       "failures": [],
-      "duration_ms": 36.317000005510636
+      "duration_ms": 45.774800004437566
     },
     "distant_threat_confirmation": {
       "tests": 10,
       "passed": 10,
       "failures": [],
-      "duration_ms": 236.55850000795908
+      "duration_ms": 269.1806000075303
     },
     "real_held_object_tracking": {
       "tests": 13,
       "passed": 13,
       "failures": [],
-      "duration_ms": 6051.470699996571
+      "duration_ms": 6208.943799996632
     },
     "real_lantern_tool_and_gate_evidence": {
-      "tests": 20,
-      "passed": 20,
+      "tests": 21,
+      "passed": 21,
       "failures": [],
-      "duration_ms": 7559.946900000796
+      "duration_ms": 7968.189599996549
     },
     "current_entry_exit_completion_guards": {
       "tests": 9,
       "passed": 9,
       "failures": [],
-      "duration_ms": 5327.042099990649
+      "duration_ms": 5053.371700007119
     }
   },
   "all_passed": true,

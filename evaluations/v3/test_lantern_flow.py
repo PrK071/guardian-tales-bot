@@ -11,6 +11,13 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_glove_mask_tracks_the_removed_right_column_without_the_intact_left_neighbour(self):
+        before=cv2.imread(str(ROOT/'evaluations/v3/fixtures/stone-column-before.jpg'));after=cv2.imread(str(ROOT/'evaluations/v3/fixtures/stone-column-after.jpg'));index=[0]
+        def capture(label):
+            frame=before if index[0]==0 else after;index[0]+=1;f=SpatialVision().entities(frame);f['frame']='fixture:stone-column-'+str(index[0]);return frame,f
+        session=SimpleNamespace(root=ROOT,scope='world:1:passage:1',run_id='fixture:stone-column',transition=lambda *a:None,capture=capture,check_cancel=lambda:None,preflight_enemy=lambda f:False,memory=SimpleNamespace(remember=lambda *a,**kw:None),pulse=lambda a:{'metrics':{}})
+        with patch('cognitive.v3.rock_glove.time.sleep',lambda *a:None):result=drill_visible(session,max_actions=1)
+        row=result['tiles'][0];self.assertTrue(row['verified']);self.assertGreaterEqual(row['tile_bbox'][0],765);self.assertLess(row['rock_pixels_remaining']/row['rock_pixels_before'],.25);self.assertGreater(row['exposed_floor_fraction'],.55)
     def test_adjacent_wall_torch_gets_one_facing_pulse_and_still_needs_pickup_glyph(self):
         frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/adjacent-torch-wall-facing.jpg'));vision=LanternVision(ROOT);features=SpatialVision().entities(frame);features.update(frame='fixture:wall-torch',puzzle_objects=vision.detect(frame,features['player'],False));actions=[]
         motion={'confidence':1,'background_dx':0,'background_dy':0,'effective_dx':0,'effective_dy':0}

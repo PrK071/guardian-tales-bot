@@ -241,6 +241,8 @@ Na retomada `1b64afbd353d4625`, pickup, permanência do item após deslocamento,
 
 A reconciliação dessa entrada confirmou duas imagens independentes do mapa em12,313s e enviou zero comandos. Cursor9/9, com o report bloqueado original preservado em `v3_trial_1b64afbd353d4625/exit-reconciliation.json`. Isso é uma execução concluída por retomadas e correções; não demonstra uma partida integral autônoma com a versão final, nem um ganho de tempo integral.
 
+O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
