@@ -13,6 +13,57 @@ def glove_visible(s,frame):
     mask=cv2.inRange(template,(205,205,205),(255,255,255))
     return float(cv2.matchTemplate(InteractionVision.mask(frame),mask,cv2.TM_CCOEFF_NORMED)[0,0])>.92
 
+def registered_column_goal(actor_reference,objects,known,rock,ratio,raw_player):
+    """Locate a stone's side using a currently seen, previously mapped lamp."""
+    from ..lantern_control import LanternController
+    matches=[]
+    for row in known:
+        reference=row['content'].get('fixed_base_reference')
+        if row['validation']!='verified' or not reference or len(reference)!=2 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in reference):continue
+        for obj in objects:
+            if obj['kind'] not in ('standing_lantern_unlit','standing_lantern_lit'):continue
+            if obj['kind']=='standing_lantern_lit' and obj.get('method')!='floor_lantern_pedestal_with_current_fire':continue
+            point=LanternController.foot(obj)
+            actor_pixel=[point[i]-(reference[i]-actor_reference[i])*ratio for i in range(2)]
+            if math.dist(actor_pixel,[800,445])>50 or raw_player and math.dist(actor_pixel,raw_player)>80:continue
+            matches.append((obj['confidence'],row,reference,point,actor_pixel))
+    if not matches:raise RuntimeError('No unambiguous registered fixed lamp for a stone-side approach')
+    if any(math.dist(a[4],b[4])>35 for a in matches for b in matches):raise RuntimeError('Registered lamp observations disagree on room geometry')
+    _,row,reference,point,actor_pixel=max(matches,key=lambda value:value[0]);x,y,w,h=rock['bbox']
+    low=[reference[0]+(x-point[0])/ratio,reference[1]+(y-point[1])/ratio];high=[low[0]+w/ratio,low[1]+h/ratio]
+    cy=min(max(actor_reference[1],low[1]+6),high[1]-6) if high[1]-low[1]>=12 else (low[1]+high[1])/2
+    candidates=[{'target':[low[0]-6,cy],'face':'right'},{'target':[high[0]+6,cy],'face':'left'}]
+    candidates.sort(key=lambda candidate:math.dist(candidate['target'],actor_reference))
+    return {'candidates':candidates,'landmark_memory':row['id'],'landmark_reference':reference,'observed_landmark_foot':point,'associated_actor_pixel':actor_pixel,'rock_reference_bounds':[low,high]}
+
+def approach_registered_column(s,c,frame,features,rock):
+    """Fallback when the local mask cannot approach a wall-adjacent stone."""
+    if not hasattr(s,'map_state') or s.backend.held:raise RuntimeError('Registered tool approach requires released controls and a verified map')
+    source=features['frame'];objects=features.get('puzzle_objects',[])
+    state,alignment,position,map_features=s.map_state('v3-registered-stone-map')
+    known=s.memory.retrieve(s.scope,kind='v3_fixed_lantern',include_global=False,limit=30)
+    geometry=registered_column_goal(position,objects,known,rock,.44/s.speeds['move'],features.get('player'))
+    clearance=cv2.distanceTransform(state['floor'],cv2.DIST_L2,5);chosen=None
+    for candidate in geometry['candidates']:
+        raw=s.raw_target(candidate['target'],alignment);x,y=map(round,raw)
+        if 0<=x<1600 and 0<=y<900 and clearance[y,x]>12*alignment['scale'] and math.dist(position,candidate['target'])<140:chosen=candidate;break
+    if not chosen:raise RuntimeError('No registered stone side has observed static floor clearance')
+    checkpoint=(state,alignment,position,map_features,len(s.controls.actions));s.transition('jogo');results=[]
+    for attempt in range(3):
+        result=s.navigate_to(chosen['target'],tolerance=4,allow_npc_bypass=True,_checkpoint=checkpoint if attempt==0 else None);results.append(result)
+        if result.get('reason')=='enemy_detected':s.transition('jogo');raise RuntimeError('Encounter interrupts registered stone approach')
+        if result.get('verified'):break
+        if not result.get('progress_verified'):raise RuntimeError('Registered stone-side route did not progress')
+    else:raise RuntimeError('Registered stone-side approach budget exhausted')
+    s.transition('jogo');frame,features=c.observe('v3-registered-stone-side')
+    if not glove_visible(s,frame):
+        s.pulse(Action('move',{'direction':chosen['face'],'ms':80},'Face the observed cracked stone from its verified side checkpoint'))
+        frame,features=c.observe('v3-registered-stone-facing')
+    if not glove_visible(s,frame):raise RuntimeError('Mole Glove affordance absent at the registered stone side')
+    evidence={'verified':True,'source_frame':source,'frame':features['frame'],'map_frame':map_features['frame'],'geometry':geometry,'chosen':chosen,'routes':results}
+    s.memory.remember('episodic','v3_registered_stone_approach',s.scope,{'run_id':s.run_id,**evidence},Provenance(features['frame'],method='observed_fixed_lamp_and_independent_map_then_verified_stone_side_and_tool_glyph'),.9,'verified')
+    result=drill_visible(s);result['registered_approach']=evidence;return result
+
 def escape_cleared_tile(s):
     """Step into the just-removed tile when sprites occlude a narrow pocket."""
     from ..puzzle_control import direction
@@ -100,7 +151,9 @@ def ensure_lantern_access(s,c,obj,max_steps=12):
         rock=min(rocks,key=lambda e:abs(e['bbox'][1]+e['bbox'][3]/2-f['player'][1]));x,y,w,h=rock['bbox']
         approach=[lamp[0],y-40 if f['player'][1]<y+h/2 else y+h+40]
         if math.dist(f['player'],approach)<70:heading=direction(lamp[0]-f['player'][0],y+h/2-f['player'][1]);ms=100
-        else:heading,ms=BombRockController.local_approach(frame,f,approach)
+        else:
+            try:heading,ms=BombRockController.local_approach(frame,f,approach)
+            except RuntimeError:return approach_registered_column(s,c,frame,f,rock)
         s.pulse(Action('move',{'direction':heading,'ms':ms},'Approach cracked stone until the observed Mole Glove affordance appears'))
         after,af=c.observe('v3-glove-access-progress');motion=SpatialVision.motion(frame,after,f['player'],af['player'])
         if motion['confidence']<.25:raise RuntimeError('Lost observed rock/lantern alignment')

@@ -11,6 +11,38 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def registered_stone_fixture(self):
+        frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/registered-stone-occluded-actor.jpg'))
+        features=SpatialVision().entities(frame);features['frame']='fixture:ebd17a2d61694c04/0487';features['puzzle_objects']=LanternVision(ROOT).detect(frame,features['player'],False)
+        known=[{'id':'memory_87f427f86aeb47de','validation':'verified','content':{'fixed_base_reference':[478.3957432496181,766.6900030493115]}}]
+        rock=min((e for e in features['entities'] if e['kind']=='rock_obstacle_candidate'),key=lambda e:abs(e['bbox'][0]-1039))
+        return frame,features,known,rock
+    def test_registered_stone_side_uses_observed_lamp_and_independent_map_with_occluded_actor(self):
+        from cognitive.v3.rock_glove import registered_column_goal
+        frame,features,known,rock=self.registered_stone_fixture()
+        proof=registered_column_goal([426.7323943661973,770.1267605633802],features['puzzle_objects'],known,rock,.44/.059537465550086245,features['player'])
+        self.assertEqual(proof['candidates'][0]['face'],'right');self.assertAlmostEqual(proof['candidates'][0]['target'][0],449.8662,places=3);self.assertAlmostEqual(proof['candidates'][0]['target'][1],765.5613,places=3)
+        self.assertGreater(abs(features['player'][1]-proof['associated_actor_pixel'][1]),30)
+    def test_registered_stone_side_rejects_unknown_uncertain_or_conflicting_landmarks(self):
+        from cognitive.v3.rock_glove import registered_column_goal
+        _,features,known,rock=self.registered_stone_fixture()
+        conflict={'id':'different-registration','validation':'verified','content':{'fixed_base_reference':[484,766.6900030493115]}}
+        for rows in ([],[{**known[0],'validation':'uncertain'}],known+[conflict]):
+            with self.subTest(rows=rows),self.assertRaisesRegex(RuntimeError,'unambiguous|disagree'):
+                registered_column_goal([426.7323943661973,770.1267605633802],features['puzzle_objects'],rows,rock,.44/.059537465550086245,features['player'])
+    def test_registered_side_still_requires_current_glove_and_verified_route(self):
+        from cognitive.v3.rock_glove import approach_registered_column
+        import numpy as np
+        frame,features,known,rock=self.registered_stone_fixture();actions=[];proofs=[]
+        session=SimpleNamespace(scope='world:1:passage:1',run_id='fixture',backend=SimpleNamespace(held={}),speeds={'move':.059537465550086245},controls=SimpleNamespace(actions=[]),memory=SimpleNamespace(retrieve=lambda *a,**kw:known,remember=lambda *a,**kw:proofs.append(a)),map_state=lambda *a:({'floor':np.ones((900,1600),np.uint8)*255},{'scale':1},[426.7323943661973,770.1267605633802],{'frame':'fixture:map'}),raw_target=lambda point,alignment:point,transition=lambda *a:None,navigate_to=lambda *a,**kw:{'verified':True},pulse=actions.append)
+        controller=SimpleNamespace(observe=lambda *a:(frame,features))
+        with patch('cognitive.v3.rock_glove.glove_visible',return_value=False),patch('cognitive.v3.rock_glove.drill_visible') as drill:
+            with self.assertRaisesRegex(RuntimeError,'affordance absent'):approach_registered_column(session,controller,frame,features,rock)
+            drill.assert_not_called();self.assertEqual(len(actions),1);self.assertEqual(actions[0].args['ms'],80);self.assertFalse(proofs)
+        session.navigate_to=lambda *a,**kw:{'verified':False,'progress_verified':False};actions.clear()
+        with patch('cognitive.v3.rock_glove.drill_visible') as drill:
+            with self.assertRaisesRegex(RuntimeError,'did not progress'):approach_registered_column(session,controller,frame,features,rock)
+            drill.assert_not_called();self.assertFalse(actions)
     def test_nearby_brazier_with_neutral_boot_is_not_returned_as_pickup_ready(self):
         frame=cv2.imread(str(ROOT/'data/v3/v3_trial_1503120023e54414/0093-lantern-find-object.jpg'));vision=LanternVision(ROOT);features=SpatialVision().entities(frame);features['frame']='synthetic:neutral-near-brazier';features['puzzle_objects']=vision.detect(frame,features['player'],False)
         def pulse(action):raise RuntimeError('synthetic control withheld after planning approach')

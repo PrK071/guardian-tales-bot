@@ -1,0 +1,14 @@
+{
+  "source_run": "v3_trial_ebd17a2d61694c04",
+  "source_frame": "0487-v3-glove-access-progress.jpg",
+  "fixture": "evaluations/v3/fixtures/registered-stone-occluded-actor.jpg",
+  "failure": "Occluded actor foot prevented local approach to wall-adjacent stone",
+  "change": "Use independently measured map actor and current registered fixed lamp to navigate to a clear side; require current tool glyph and existing tile-removal verification",
+  "regression_tests": {
+    "module": "evaluations.v3.test_lantern_flow",
+    "passed": 15,
+    "failed": 0
+  },
+  "live_validation": "pending",
+  "stage_completion_claim": false
+}
