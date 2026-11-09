@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 127/127. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 130/130. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -99,7 +99,7 @@ Preparações sem inimigo confirmado e leituras OCR sem identidade suficiente n�
 | Trial integrado | Cursor | Ciclos | Chamadas Qwen | Resultado |
 | --- | --- | --- | --- | --- |
 | v3_trial_042e8212b28a46f5 | 6 | 18 | 0 | blocked: RuntimeError: Lantern approach stalled twice; no repeated blind movement |
-| v3_trial_ee5dd3bad6204536 | 6 | 12 | 0 | blocked: RuntimeError: Room checkpoint did not improve across the bounded visual sequence |
+| v3_trial_6a4365c39ff4431c | 6 | 12 | 0 | blocked: RuntimeError: Fixed-lantern target tracking lost camera alignment |
 
 
 ## Latência, decisões e limites da medição
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T11:21:17. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T11:51:45. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -177,7 +177,7 @@ A passagem lateral também exige reconstruir somente as linhas do próprio sprit
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
 
-Ensaio integrado final `data\v3\v3_trial_ee5dd3bad6204536\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 543.027s, 0.663 objetivos/min; 12 ciclos. Motivo: RuntimeError: Room checkpoint did not improve across the bounded visual sequence.
+Ensaio integrado final `data\v3\v3_trial_6a4365c39ff4431c\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 506.693s, 0.710 objetivos/min; 12 ciclos. Motivo: RuntimeError: Fixed-lantern target tracking lost camera alignment.
 
 Comparação de combate selecionada: `v3_combat_benchmark_f7859decec7c4428`. Não misturar séries antigas com código diferente. Tempos de falha não contam como conclusão. Os JSONs preservam entradas iniciais, raw final, ações e erros.
 
@@ -187,6 +187,26 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 127/127; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 130/130; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.
+
+## Frequência de planejamento e qualidade da rota medida
+
+| Métrica | V2 | Contínuo |
+| --- | --- | --- |
+| Planejamentos locais/min | 9.63/9.96 | 12.31/12.55 |
+| Planejamento média/p95(ms) | 193.24/202.69 | 19.60/22.95 |
+| Erro de chegada média/p95(px ref) | 2.34/5.53 | 1.99/2.34 |
+| Planejamentos por trajeto | 2 | 1 |
+| Intervalo entre comandos média/p95(ms) | 5048.24/5421.61 | N/A: um comando por trajeto |
+| Falhas de chegada, tolerância6px | 0/3 | 0/3 |
+
+São planejamentos locais, não chamadas ao modelo. O número por minuto pode crescer porque mais trajetos terminam; por trajeto caiu de2 para1. A taxa de falhas de chegada é um indicador definido, separado de colisões físicas, que não tiveram rotulagem contínua equivalente entre os dois controladores.
+
+Nos combates V3 concluídos da série selecionada, 4 períodos com ataque mantido duraram em média1045.91ms, p951502.77ms. Entre períodos, descontando a união dos intervalos de outras entradas, restaram 2 amostras de tempo sem controle ativo: média37.35ms, p9538.99ms. Os intervalos totais entre ataques também contêm aproximação/reposicionamento e não são integralmente ociosos. São timestamps do host, sem ACK do Android; não se calcula redução contra os intervalos observacionais antigos da V2. Dados e método reproduzível: `evaluations/v3/attack-period-metrics.json`.
+
+
+## Alinhamento por bases fixas atuais
+
+O ensaio fresco `6a4365c39ff4431c` chegou a6/9 em506,693s, mas parou no alinhamento da última lanterna. Dois pares reais mostram o rastreador global com confiança0 após movimentos longos: RIGHT670ms deslocou o cenário cerca de−300px no eixo X; UP_RIGHT814ms deslocou−249px/+249px. Isso é falha de correspondência visual, não ausência de movimento nem restrição do jogo. A alternativa usa somente bases fixas de lanternas reconhecidas nos dois quadros com confiança>=0,84; exige deslocamento compatível com direção e duração e recusa hipóteses conflitantes. Aplica-se ao contato da lanterna e à aproximação da pedra. As margens de piso, a confirmação da luva e as duas provas afastadas de fogo permanecem obrigatórias. Os pares reais e casos negativos estão em `evaluations/v3/fixtures/fixed-base-motion/`. Replays não são ganho temporal nem prova de execução integral ao vivo. Falhas agora recebem sufixos distintos para preservar os dois PNGs do par.

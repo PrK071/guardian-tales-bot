@@ -43,7 +43,7 @@ class GameplaySession(FastSession):
         if features is None:features=self.last_features
         if frame is None or not features:return None
         if self.failure_checkpoints and self.failure_checkpoints[-1]['source_frame']==features['frame']:return self.failure_checkpoints[-1]
-        path=self.folder/f'failure-{self.frames:04d}.png'
+        path=self.folder/f'failure-{self.frames:04d}-{len(self.failure_checkpoints):02d}.png'
         if not cv2.imwrite(str(path),frame,[cv2.IMWRITE_PNG_COMPRESSION,1]):raise OSError('Cannot preserve lossless failure pixels')
         record={'reason':reason,'source_frame':features['frame'],'lossless_frame':str(path.relative_to(self.root)),'pixels_bgr_sha256':hashlib.sha256(frame.tobytes()).hexdigest(),'features':features}
         path.with_suffix('.json').write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8');self.failure_checkpoints.append(record)

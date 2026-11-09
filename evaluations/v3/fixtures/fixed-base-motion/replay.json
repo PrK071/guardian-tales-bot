@@ -1,0 +1,174 @@
+{
+  "source_run": "v3_trial_6a4365c39ff4431c",
+  "before_features": {
+    "entities": [
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          1169,
+          366,
+          110,
+          117
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          606,
+          254,
+          111,
+          130
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      800.5,
+      445.0
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.737,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.3054222222222222,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "actor_pose_source": "calibrated_carried_brazier_offset",
+    "held_object_bbox": [
+      746,
+      277,
+      110,
+      106
+    ],
+    "puzzle_objects": [
+      {
+        "kind": "standing_lantern_unlit",
+        "bbox": [
+          1302,
+          363,
+          67,
+          91
+        ],
+        "confidence": 0.9372590780258179,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          515,
+          292,
+          69,
+          175
+        ],
+        "fire_center": [
+          556.1754754260311,
+          371.6343541615214
+        ],
+        "pedestal_bbox": [
+          515,
+          412,
+          69,
+          55
+        ],
+        "confidence": 0.962740421295166,
+        "method": "floor_lantern_pedestal_with_current_fire"
+      }
+    ],
+    "perception_timing": {
+      "spatial_ms": 84.74679999926593,
+      "puzzle_ms": 968.141100005596,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "data\\v3\\v3_trial_6a4365c39ff4431c\\0575-v3-fixed-lantern-start.jpg",
+    "capture_ms": 653.5,
+    "at": 1794234687.915114
+  },
+  "after_features": {
+    "entities": [
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          869,
+          366,
+          110,
+          117
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          306,
+          254,
+          111,
+          130
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      800.5,
+      445.0
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.737,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.31296111111111113,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "actor_pose_source": "calibrated_carried_brazier_offset",
+    "held_object_bbox": [
+      746,
+      277,
+      110,
+      106
+    ],
+    "puzzle_objects": [
+      {
+        "kind": "standing_lantern_unlit",
+        "bbox": [
+          1002,
+          363,
+          67,
+          91
+        ],
+        "confidence": 0.937274694442749,
+        "method": "recorded_gameplay_template"
+      }
+    ],
+    "perception_timing": {
+      "spatial_ms": 75.2578999963589,
+      "puzzle_ms": 909.6219999919413,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "data\\v3\\v3_trial_6a4365c39ff4431c\\0577-v3-fixed-contact-progress.jpg",
+    "capture_ms": 507.27,
+    "at": 1794234692.5711322
+  },
+  "action": {
+    "direction": "right",
+    "ms": 670
+  },
+  "scope": "Recorded raw-detection coordinates; before image is diagnostic JPEG, after PNG preserves controller pixels",
+  "old_global_motion": {
+    "background_dx": 0.0,
+    "background_dy": 0.0,
+    "inliers": 0,
+    "confidence": 0.0,
+    "player_dx": 0.0,
+    "player_dy": 0.0,
+    "effective_dx": 0.0,
+    "effective_dy": 0.0,
+    "moved": false
+  }
+}

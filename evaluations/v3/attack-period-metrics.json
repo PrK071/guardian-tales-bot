@@ -1,0 +1,33 @@
+{
+  "cohort": "v3_combat_benchmark_f7859decec7c4428",
+  "scope": "Successful selected V3 encounters only; host timestamps, no Android ACK or V2 physical-gap comparison",
+  "attack_hold_ms": {
+    "n": 4,
+    "mean": 1045.9144500000548,
+    "p95": 1502.7703000014299
+  },
+  "host_idle_between_attack_periods_ms": {
+    "n": 2,
+    "mean": 37.351950002630474,
+    "p95": 38.99439999804599
+  },
+  "samples": [
+    {
+      "run_id": "v3_matched_combat_980fba224b114497",
+      "from_end": 46534.7814133,
+      "to_start": 46536.0733831,
+      "inter_attack_gap_ms": 1291.9698000041535,
+      "other_input_ms": 1252.9754000061075,
+      "idle_ms": 38.99439999804599
+    },
+    {
+      "run_id": "v3_matched_combat_eed7ed2d30d74f11",
+      "from_end": 46740.7544498,
+      "to_start": 46741.8285782,
+      "inter_attack_gap_ms": 1074.1284000032465,
+      "other_input_ms": 1038.4188999960315,
+      "idle_ms": 35.709500007214956
+    }
+  ],
+  "method": "Subtract the union of other control intervals between consecutive attack periods within each encounter"
+}

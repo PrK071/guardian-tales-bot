@@ -6,6 +6,24 @@ from ..contracts import Action,Provenance
 from ..puzzle_control import BombRockController,rock_mask
 from ..spatial import SpatialVision
 
+def fixed_base_motion(before,after,heading,duration_ms):
+    """Recover camera translation from unambiguous currently seen fixed bases."""
+    from ..puzzle_control import DIRECTIONS
+    from ..lantern_control import LanternController
+    if before.get('scene')!='jogo' or after.get('scene')!='jogo':return None
+    def bases(features):
+        return [o for o in features.get('puzzle_objects',[]) if o.get('confidence',0)>=.84 and (o['kind']=='standing_lantern_unlit' or o['kind']=='standing_lantern_lit' and o.get('method')=='floor_lantern_pedestal_with_current_fire')]
+    vx,vy=DIRECTIONS[heading];hypotheses=[]
+    for first in bases(before):
+        for second in bases(after):
+            a=LanternController.foot(first);b=LanternController.foot(second);shift=[b[i]-a[i] for i in (0,1)]
+            if math.hypot(*shift)>duration_ms*.44+40:continue
+            if any(shift[i]*(-1 if value>0 else 1)<-12 if value else abs(shift[i])>16 for i,value in enumerate((vx,vy))):continue
+            hypotheses.append({'before_bbox':first['bbox'],'after_bbox':second['bbox'],'shift':shift,'confidence':min(first['confidence'],second['confidence'])})
+    if not hypotheses or any(math.dist(a['shift'],b['shift'])>12 for a in hypotheses for b in hypotheses):return None
+    shift=[float(sum(h['shift'][i] for h in hypotheses)/len(hypotheses)) for i in (0,1)];bp=before.get('player');ap=after.get('player');player=[float(ap[i]-bp[i]) for i in (0,1)] if bp and ap else [0.,0.]
+    return {'background_dx':shift[0],'background_dy':shift[1],'confidence':float(min(h['confidence'] for h in hypotheses)),'method':'unambiguous_current_fixed_base_translation','matches':hypotheses,'source_frames':[before['frame'],after['frame']],'player_dx':player[0],'player_dy':player[1],'effective_dx':player[0]-shift[0],'effective_dy':player[1]-shift[1],'moved':bool(math.hypot(player[0]-shift[0],player[1]-shift[1])>8)}
+
 def fire_offset(s,frame,f):
     held=s.lantern_vision.held_match(frame,f['player'])
     if not held:raise RuntimeError('No verified carried brazier for fixed-lantern contact')
@@ -36,7 +54,13 @@ def light_nearest(s,c,max_actions=16):
             before,f=after,af;continue
         row=s.pulse(Action('move',{'direction':heading,'ms':ms},'Align verified carried flame with the tracked fixed lantern'))
         after,af=c.observe('v3-fixed-contact-progress');motion=SpatialVision.motion(before,after,f['player'],af['player'])
-        if motion['confidence']<.25:raise RuntimeError('Fixed-lantern target tracking lost camera alignment')
+        if motion['confidence']<.25:
+            recovered=fixed_base_motion(f,af,heading,ms)
+            if recovered:motion=recovered
+            else:
+                if hasattr(s,'failure_checkpoint'):
+                    s.failure_checkpoint('Fixed-lantern alignment: before pair',before,f);s.failure_checkpoint('Fixed-lantern alignment: after pair',after,af)
+                raise RuntimeError('Fixed-lantern target tracking lost camera alignment')
         bowl=[bowl[0]+motion['background_dx'],bowl[1]+motion['background_dy']];base=[base[0]+motion['background_dx'],base[1]+motion['background_dy']]
         contacts.append({'frame':af['frame'],'motion':motion,'control':row['metrics']['continuous_control']})
         stalled=stalled+1 if math.hypot(motion['effective_dx'],motion['effective_dy'])<8 else 0

@@ -167,7 +167,14 @@ def ensure_lantern_access(s,c,obj,max_steps=12):
             except RuntimeError:return approach_registered_column(s,c,frame,f,rock)
         s.pulse(Action('move',{'direction':heading,'ms':ms},'Approach cracked stone until the observed Mole Glove affordance appears'))
         after,af=c.observe('v3-glove-access-progress');motion=SpatialVision.motion(frame,after,f['player'],af['player'])
-        if motion['confidence']<.25:raise RuntimeError('Lost observed rock/lantern alignment')
+        if motion['confidence']<.25:
+            from .fixed_lanterns import fixed_base_motion
+            recovered=fixed_base_motion(f,af,heading,ms)
+            if recovered:motion=recovered
+            else:
+                if hasattr(s,'failure_checkpoint'):
+                    s.failure_checkpoint('Rock/lantern alignment: before pair',frame,f);s.failure_checkpoint('Rock/lantern alignment: after pair',after,af)
+                raise RuntimeError('Lost observed rock/lantern alignment')
         lamp=[lamp[0]+motion['background_dx'],lamp[1]+motion['background_dy']];frame,f=after,af
         stalled=0 if motion['moved'] else stalled+1
         if stalled>=2 and not glove_visible(s,frame):raise RuntimeError('Cracked tile approach stalled without tool affordance')

@@ -5,6 +5,18 @@ ROOT=Path(__file__).resolve().parents[2]
 parser=argparse.ArgumentParser();parser.add_argument('--combat-cohort');parser.add_argument('--stage-trial');args=parser.parse_args()
 def stats(v):
     v=sorted(v);return {'n':len(v),'mean':statistics.mean(v) if v else None,'p95':v[math.ceil(.95*len(v))-1] if v else None}
+def attack_period_metrics(cases,cohort):
+    periods=[];samples=[]
+    for case in cases:
+        if case.get('mode')!='v3_video' or case.get('error') or not case.get('visible_combat_ended'):continue
+        rows=case['result'].get('continuous_actions',[]);attacks=[r for r in rows if r['kind'] in ('attack_hold','move_attack_hold')]
+        periods.extend(r['actual_ms'] for r in attacks)
+        for previous,current in zip(attacks,attacks[1:]):
+            start=previous['end_monotonic'];end=current['start_monotonic'];busy=sorted((max(start,r['start_monotonic']),min(end,r['end_monotonic'])) for r in rows if r['start_monotonic']<end and r['end_monotonic']>start);covered=0;cursor=start
+            for left,right in busy:
+                if right>cursor:covered+=right-max(cursor,left);cursor=right
+            samples.append({'run_id':case['run_id'],'from_end':start,'to_start':end,'inter_attack_gap_ms':(end-start)*1000,'other_input_ms':covered*1000,'idle_ms':max(0,end-start-covered)*1000})
+    return {'cohort':cohort,'scope':'Successful selected V3 encounters only; host timestamps, no Android ACK or V2 physical-gap comparison','attack_hold_ms':stats(periods),'host_idle_between_attack_periods_ms':stats([s['idle_ms'] for s in samples]),'samples':samples,'method':'Subtract the union of other control intervals between consecutive attack periods within each encounter'}
 baseline=json.loads((ROOT/'evaluations/v3/baseline.json').read_text(encoding='utf-8'))
 probes=[]
 for path in (ROOT/'data/v3').glob('v3_input_probe_*/report.json'):
@@ -42,6 +54,8 @@ for path in sorted((ROOT/'data/v3').glob('v3_combat_benchmark_*/cases.json')):
     for case in json.loads(path.read_text(encoding='utf-8')):
         if case.get('seconds') is not None or case.get('combat_started'):combat_cases.append({'source':str(path.relative_to(ROOT)),**case})
 combat_stats={}
+measured['attack_period_metrics']=attack_period_metrics(combat_cases,args.combat_cohort) if args.combat_cohort else None
+if measured['attack_period_metrics']:(ROOT/'evaluations/v3/attack-period-metrics.json').write_text(json.dumps(measured['attack_period_metrics'],indent=2)+'\n',encoding='utf-8')
 for mode in sorted({c['mode'] for c in combat_cases}):
     selected=[c for c in combat_cases if c['mode']==mode]
     verified=[c for c in selected if c.get('visible_combat_ended') and not c.get('error')]
@@ -271,5 +285,23 @@ text+='\nTaxa integral de conclusão não é extrapolada de uma fase. Habilidade
 v2groups=measured['v2_tests']['groups'];legacy=measured['legacy_tests']
 text+=f"\nVerificação final: V3 {test_passed}/{test_count}; legado {legacy['passed']}/{legacy['tests_run']}; V2 {sum(g['passed'] for g in v2groups.values())}/{sum(g['tests'] for g in v2groups.values())}. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.\n"
 text+=f"\nDuração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {measured['route_hold_duration_ms']} (ms). Preparações da série final sem tempo de combate medido: {len(measured['comparison_preparation_failures'])}; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.\n"
+if 'v2' in route and 'continuous' in route:
+    old=route['v2'];new=route['continuous']
+    text+='\n## Frequência de planejamento e qualidade da rota medida\n\n'
+    text+='| Métrica | V2 | Contínuo |\n| --- | --- | --- |\n'
+    for label,key in [('Planejamentos locais/min','local_route_plans_per_minute'),('Planejamento média/p95(ms)','planning_ms'),('Erro de chegada média/p95(px ref)','endpoint_error_reference_pixels')]:
+        text+=f"| {label} | {old[key]['mean']:.2f}/{old[key]['p95']:.2f} | {new[key]['mean']:.2f}/{new[key]['p95']:.2f} |\n"
+    text+=f"| Planejamentos por trajeto | {old['move_commands']['mean']:.0f} | {new['move_commands']['mean']:.0f} |\n| Intervalo entre comandos média/p95(ms) | {old['idle_gaps_ms']['mean']:.2f}/{old['idle_gaps_ms']['p95']:.2f} | N/A: um comando por trajeto |\n| Falhas de chegada, tolerância6px | {old['attempts']-old['goal_successes']}/{old['attempts']} | {new['attempts']-new['goal_successes']}/{new['attempts']} |\n"
+    text+='\nSão planejamentos locais, não chamadas ao modelo. O número por minuto pode crescer porque mais trajetos terminam; por trajeto caiu de2 para1. A taxa de falhas de chegada é um indicador definido, separado de colisões físicas, que não tiveram rotulagem contínua equivalente entre os dois controladores.\n'
+periods=measured['attack_period_metrics']
+if periods and periods['host_idle_between_attack_periods_ms']['n']:
+    holds=periods['attack_hold_ms'];idle=periods['host_idle_between_attack_periods_ms']
+    text+=f"\nNos combates V3 concluídos da série selecionada, {holds['n']} períodos com ataque mantido duraram em média{holds['mean']:.2f}ms, p95{holds['p95']:.2f}ms. Entre períodos, descontando a união dos intervalos de outras entradas, restaram {idle['n']} amostras de tempo sem controle ativo: média{idle['mean']:.2f}ms, p95{idle['p95']:.2f}ms. Os intervalos totais entre ataques também contêm aproximação/reposicionamento e não são integralmente ociosos. São timestamps do host, sem ACK do Android; não se calcula redução contra os intervalos observacionais antigos da V2. Dados e método reproduzível: `evaluations/v3/attack-period-metrics.json`.\n"
+text+='''
+
+## Alinhamento por bases fixas atuais
+
+O ensaio fresco `6a4365c39ff4431c` chegou a6/9 em506,693s, mas parou no alinhamento da última lanterna. Dois pares reais mostram o rastreador global com confiança0 após movimentos longos: RIGHT670ms deslocou o cenário cerca de−300px no eixo X; UP_RIGHT814ms deslocou−249px/+249px. Isso é falha de correspondência visual, não ausência de movimento nem restrição do jogo. A alternativa usa somente bases fixas de lanternas reconhecidas nos dois quadros com confiança>=0,84; exige deslocamento compatível com direção e duração e recusa hipóteses conflitantes. Aplica-se ao contato da lanterna e à aproximação da pedra. As margens de piso, a confirmação da luva e as duas provas afastadas de fogo permanecem obrigatórias. Os pares reais e casos negativos estão em `evaluations/v3/fixtures/fixed-base-motion/`. Replays não são ganho temporal nem prova de execução integral ao vivo. Falhas agora recebem sufixos distintos para preservar os dois PNGs do par.
+'''
 (ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md').write_text(text,encoding='utf-8')
 print(json.dumps({'report':str(ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md'),'probes':len(probes),'send_ms':measured['input_send_ms']},ensure_ascii=False))

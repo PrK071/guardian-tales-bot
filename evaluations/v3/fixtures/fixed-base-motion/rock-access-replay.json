@@ -1,0 +1,204 @@
+{
+  "source_run": "v3_trial_6a4365c39ff4431c",
+  "before_features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          763,
+          350,
+          62,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          1065,
+          252,
+          222,
+          229
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          502,
+          252,
+          111,
+          129
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      794.0,
+      445
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.737,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.3094631944444444,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [
+      {
+        "kind": "standing_lantern_unlit",
+        "bbox": [
+          1198,
+          361,
+          67,
+          91
+        ],
+        "confidence": 0.8738058805465698,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          512,
+          364,
+          110,
+          106
+        ],
+        "confidence": 0.9444829225540161,
+        "method": "verified_burning_brazier_side_rim"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          412,
+          291,
+          69,
+          175
+        ],
+        "fire_center": [
+          450.3974073589106,
+          361.84902448605476
+        ],
+        "pedestal_bbox": [
+          412,
+          411,
+          69,
+          55
+        ],
+        "confidence": 0.9765456318855286,
+        "method": "floor_lantern_pedestal_with_current_fire"
+      }
+    ],
+    "perception_timing": {
+      "spatial_ms": 150.5005000071833,
+      "puzzle_ms": 939.0117000002647,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "data\\v3\\v3_trial_6a4365c39ff4431c\\0492-v3-glove-released.jpg",
+    "capture_ms": 434.51,
+    "at": 1794234565.378862
+  },
+  "after_features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          775,
+          350,
+          62,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          816,
+          501,
+          221,
+          230
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      806.0,
+      445
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.737,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.38626458333333336,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [
+      {
+        "kind": "standing_lantern_unlit",
+        "bbox": [
+          949,
+          610,
+          67,
+          91
+        ],
+        "confidence": 0.8569768667221069,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          950,
+          50,
+          69,
+          103
+        ],
+        "fire_center": [
+          980.6111715632934,
+          92.2455567645992
+        ],
+        "pedestal_bbox": [
+          950,
+          98,
+          69,
+          55
+        ],
+        "confidence": 0.9804320335388184,
+        "method": "floor_lantern_pedestal_with_current_fire"
+      }
+    ],
+    "perception_timing": {
+      "spatial_ms": 113.29480000131298,
+      "puzzle_ms": 868.7801000050968,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "data\\v3\\v3_trial_6a4365c39ff4431c\\0494-v3-glove-access-progress.jpg",
+    "capture_ms": 463.24,
+    "at": 1794234569.6013148
+  },
+  "action": {
+    "direction": "up_right",
+    "ms": 814
+  },
+  "old_global_motion": {
+    "background_dx": 0.0,
+    "background_dy": 0.0,
+    "inliers": 0,
+    "confidence": 0.0,
+    "player_dx": 12.0,
+    "player_dy": 1,
+    "effective_dx": 12.0,
+    "effective_dy": 1.0,
+    "moved": true
+  },
+  "raw_after_pixels_bgr_sha256": "1d41db0eb32655a763867482dd93e812b09346d67b7165304bede0fd0597b21f",
+  "before_image_is_lossy": true
+}

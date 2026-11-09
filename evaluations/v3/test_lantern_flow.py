@@ -11,6 +11,25 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_current_fixed_base_recovers_real_diagonal_rock_access_translation(self):
+        import json
+        from cognitive.v3.fixed_lanterns import fixed_base_motion
+        r=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/rock-access-replay.json').read_text());self.assertEqual(r['old_global_motion']['confidence'],0)
+        m=fixed_base_motion(r['before_features'],r['after_features'],r['action']['direction'],r['action']['ms'])
+        self.assertIsNotNone(m);self.assertAlmostEqual(m['background_dx'],-249,delta=2);self.assertAlmostEqual(m['background_dy'],249,delta=2);self.assertGreaterEqual(m['confidence'],.84)
+    def test_current_fixed_lamp_recovers_the_large_translation_missed_by_global_motion(self):
+        import json
+        from cognitive.v3.fixed_lanterns import fixed_base_motion
+        r=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/replay.json').read_text());self.assertEqual(r['old_global_motion']['confidence'],0)
+        motion=fixed_base_motion(r['before_features'],r['after_features'],r['action']['direction'],r['action']['ms'])
+        self.assertIsNotNone(motion);self.assertAlmostEqual(motion['background_dx'],-300,delta=3);self.assertAlmostEqual(motion['background_dy'],0,delta=3);self.assertGreaterEqual(motion['confidence'],.84);self.assertTrue(motion['moved'])
+    def test_fixed_base_motion_rejects_wrong_direction_impossible_distance_and_ambiguity(self):
+        import json,copy
+        from cognitive.v3.fixed_lanterns import fixed_base_motion
+        r=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/replay.json').read_text());before=r['before_features'];after=r['after_features']
+        self.assertIsNone(fixed_base_motion(before,after,'left',670));self.assertIsNone(fixed_base_motion(before,after,'right',80));self.assertIsNone(fixed_base_motion(before,{**after,'puzzle_objects':[]},'right',670))
+        ambiguous=copy.deepcopy(after);obj=copy.deepcopy(next(o for o in after['puzzle_objects'] if o['kind']=='standing_lantern_unlit'));obj['bbox'][0]+=80;ambiguous['puzzle_objects'].append(obj)
+        self.assertIsNone(fixed_base_motion(before,ambiguous,'right',670))
     def test_exact_raw_pickup_frame_gets_safe_fine_grid_connector_without_relaxing_clearance(self):
         import json,hashlib,math
         from cognitive.puzzle_control import BombRockController,DIRECTIONS
