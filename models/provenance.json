@@ -1,0 +1,15 @@
+{
+  "model": {
+    "source": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF",
+    "revision": "23749fefcc72300e3a2ad315e1317431b06b590a",
+    "file": "Qwen3-0.6B-Q8_0.gguf",
+    "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+    "size": 639446688
+  },
+  "runtime": {
+    "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b12192",
+    "asset": "llama-b12192-bin-win-cpu-x64.zip",
+    "sha256": "b465952e4df16e77dc74a45224c4bbbed4bb20c05ecadc311c65d9f3ca84eb22"
+  },
+  "validation": "Both downloaded hashes matched official metadata. Text-only small model; initial hallucinated route is documented."
+}

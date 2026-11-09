@@ -1,0 +1,41 @@
+[
+  {
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\pause-stability-0.png",
+    "player": [
+      684.0,
+      327
+    ],
+    "bbox": [
+      561,
+      254,
+      463,
+      392
+    ]
+  },
+  {
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\pause-stability-1.png",
+    "player": [
+      684.0,
+      327
+    ],
+    "bbox": [
+      561,
+      254,
+      463,
+      392
+    ]
+  },
+  {
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\pause-stability-2.png",
+    "player": [
+      684.0,
+      327
+    ],
+    "bbox": [
+      561,
+      254,
+      463,
+      392
+    ]
+  }
+]

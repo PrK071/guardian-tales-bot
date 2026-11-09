@@ -1,0 +1,50 @@
+{
+  "real_model": true,
+  "live_game_input": false,
+  "context": {
+    "observation": {
+      "id": "real_model_eval_1",
+      "scene": "jogo",
+      "stage": "world:1:passage:1",
+      "confidence": 0.95,
+      "text": "Current stage identified; no known safe continuation.",
+      "features": {
+        "enemy_count": 0,
+        "health": 1.0
+      }
+    },
+    "memories": [],
+    "tasks": [],
+    "budget": {
+      "remaining_model_calls": 1
+    }
+  },
+  "answer": {
+    "strategy": "inspect",
+    "reason": "The current stage has no known safe continuation, so inspecting the passage is necessary to gather information about potential safe routes.",
+    "evidence_ids": [
+      "real_model_eval_1"
+    ]
+  },
+  "usage": [
+    {
+      "backend": "llama.cpp",
+      "model": "Qwen3-0.6B-Q8_0.gguf",
+      "latency_ms": 11568.57,
+      "input_tokens": 252,
+      "output_tokens": 51,
+      "cost_usd": 0,
+      "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+      "prompt_sha256": "fff8adf1c612ff2ec42ddde0e3a1527e8cf6b5692ec0d807f6a9cc65b4eef7c7",
+      "response": {
+        "strategy": "inspect",
+        "reason": "The current stage has no known safe continuation, so inspecting the passage is necessary to gather information about potential safe routes.",
+        "evidence_ids": [
+          "real_model_eval_1"
+        ]
+      }
+    }
+  ],
+  "passed": true,
+  "limits": "One strategic text case. No VLM, puzzle-solving, or general model quality claim."
+}

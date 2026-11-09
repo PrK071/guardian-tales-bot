@@ -1,0 +1,21 @@
+const { chromium } = require('C:/Users/luiz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs = require('fs');
+(async()=>{
+ const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe'});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:8765');
+ await page.waitForFunction(()=>document.getElementById('guides').children.length>0);
+ await page.waitForFunction(()=>document.getElementById('mode').textContent!=='Inicializando',{},{timeout:30000});
+ await page.waitForTimeout(3000);
+ const report={title:await page.title(),worlds:await page.locator('#world option').count(),routes:await page.locator('#routes option').count(),guideCards:await page.locator('.guide').count(),errors};
+ await page.screenshot({path:'E:/GuardianTalesBot/logs/panel-desktop.png',fullPage:true});
+ await page.setViewportSize({width:390,height:844});
+ report.mobileOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+ await page.screenshot({path:'E:/GuardianTalesBot/logs/panel-mobile.png',fullPage:true});
+ await page.getByRole('button',{name:'■ Parar',exact:true}).click();
+ report.stopStatus=await page.locator('#mode').textContent();
+ fs.writeFileSync('E:/GuardianTalesBot/logs/panel-test.json',JSON.stringify(report,null,2));
+ console.log(JSON.stringify(report));await browser.close();
+ if(errors.length||report.worlds!==23||report.mobileOverflow)process.exitCode=1;
+})().catch(e=>{console.error(e.message);process.exitCode=1});

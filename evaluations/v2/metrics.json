@@ -1,0 +1,416 @@
+{
+  "generated_at": 1794123246.873629,
+  "calibration_runs": 9,
+  "calibration_seconds": 294.389,
+  "calibration_actions": 118,
+  "move_actions": 40,
+  "lantern_calibrations": [
+    {
+      "report": "data\\v2\\v2_lantern_calibration_52b8b4ecd2df48c9\\report.json",
+      "phase": "approach",
+      "seconds": 1.985,
+      "actions": 0,
+      "result": null,
+      "error": "RuntimeError: Cannot transition from unrecognized screen: unknown; pause: Cannot transition from unrecognized screen: unknown",
+      "stage_complete": false
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_57d3f511303f48c8\\report.json",
+      "phase": "approach",
+      "seconds": 0.28,
+      "actions": 0,
+      "result": null,
+      "error": "RuntimeError: error: device '127.0.0.1:5555' not found; pause: error: device '127.0.0.1:5555' not found",
+      "stage_complete": false
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_64f19690f25f4c65\\report.json",
+      "phase": "arrive",
+      "seconds": 376.387,
+      "actions": 135,
+      "result": null,
+      "error": "InterruptedError: V2 manually stopped",
+      "stage_complete": false
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_8617713a0ec24422\\report.json",
+      "phase": "arrive",
+      "seconds": 134.035,
+      "actions": 41,
+      "result": null,
+      "error": "RuntimeError: Low player health; navigation interrupted for recovery",
+      "stage_complete": false
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_bcd0a8a339db4292\\report.json",
+      "phase": "arrive",
+      "seconds": 60.766,
+      "actions": 22,
+      "result": null,
+      "error": "RuntimeError: Cannot transition from unrecognized screen: unknown",
+      "stage_complete": false
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_cface23508d84a6d\\report.json",
+      "phase": "arrive",
+      "seconds": 199.057,
+      "actions": 65,
+      "result": null,
+      "error": "RuntimeError: Low player health; navigation interrupted for recovery",
+      "stage_complete": false
+    }
+  ],
+  "joystick_calibrations": [
+    {
+      "report": "data\\v2\\v2_joystick_calibration_eb3322a2ece34a78\\report.json",
+      "seconds": 9.454,
+      "result": {
+        "verified": true,
+        "dx": 0.0,
+        "dy": -53.19148936170211,
+        "direction_progress": 53.19148936170211,
+        "before": [
+          918.8510638297872,
+          648.9999999999999
+        ],
+        "after": [
+          918.8510638297872,
+          595.8085106382978
+        ],
+        "before_alignment": {
+          "score": 0.9921995997428894,
+          "second_score": 0.635450005531311,
+          "scale": 0.9400000000000004,
+          "top_left": [
+            877,
+            448
+          ],
+          "source_origin": [
+            838.0,
+            449.0
+          ]
+        },
+        "after_alignment": {
+          "score": 0.9934632182121277,
+          "second_score": 0.6354501843452454,
+          "scale": 0.9400000000000004,
+          "top_left": [
+            877,
+            448
+          ],
+          "source_origin": [
+            838.0,
+            449.0
+          ]
+        },
+        "units": "pixels in the observed spawn reference, not world meters"
+      },
+      "error": null,
+      "stage_complete": false
+    }
+  ],
+  "stage_trials": 6,
+  "initial_to_finish_trials": 3,
+  "initial_to_finish_completed": 0,
+  "initial_stage_completion_rate": 0.0,
+  "stage_rate_limit": "Only closed trial reports are counted. Calibration, menu preparation and pre-input ADB failure are separate; unclosed artifacts do not prove a live process or a finished attempt.",
+  "trial_results": [
+    {
+      "report": "data\\v2\\v2_trial_5aa90fc7327340cf\\report.json",
+      "kind": "initial_stage_trial",
+      "outcome": "blocked",
+      "reason": "Four unverified movements including recovery; local route needs obstacle evidence",
+      "seconds": 319.069,
+      "actions": 126,
+      "code_hashes_at_start": null,
+      "health_first_action": null,
+      "health_last_action": null
+    },
+    {
+      "report": "data\\v2\\v2_trial_604785b78ceb4a41\\report.json",
+      "kind": "resumed_stage_trial",
+      "outcome": "blocked",
+      "reason": "Controlled character not confidently located",
+      "seconds": 56.259,
+      "actions": 20,
+      "code_hashes_at_start": {
+        "bot.py": "71f066b036572495ba405260dc068820ee72ef8c13e2588bc57242179dfa040f",
+        "config.json": "c70e104222c45c8e377eff6369a3c838a176869e190dd9f7424c53646b9df281",
+        "cognitive/spatial.py": "75227896b0ed41c50e77348c833c9ce63a59f8bb95d4793014e0eda9dbc8f4d9",
+        "cognitive/map_navigation.py": "9cadb29451c03cabfb9876e3ef48b96027eca32e76fc6cc246332978d83a41f4",
+        "cognitive/map_anchor.py": "ca2f2af3b6d73eca26273ecd038eaab88cbad60de4f81e9bcf90df2f7eda578c",
+        "cognitive/fast_control.py": "b1610d55761bb401949910952c25c4745c38a18bd245c893c59594a8b528be62",
+        "cognitive/stage_v2.py": "7b8dbbdb6b090b4f31b8f2e6fb71a6e8ce45b175f4f15409307c5b7ee48c65f0",
+        "cognitive/puzzle_control.py": "0e3d3734f8557a2ee6d9d1790a256f63e4c8c9516485f297b8db9151d8ebd305",
+        "cognitive/contracts.py": "03c31b5a4b1af1ff8bd05651aaf54875e55b8929488629c80dce5977878c9b6e",
+        "cognitive/memory.py": "30c703ff1e4c1578de514778af2210f161853dcaf545b1b33553151b169f99e4",
+        "cognitive/perception.py": "0843b3e2d5e8975d8202820a4f16c842fb3c32322cd0bb3d40e7a9a795cf7160",
+        "cognitive/runtime.py": "126e63680ae93a0236d647606a6bc7410966b8d3fadfa43f6684e7ff10c4fd85",
+        "cognitive/planning.py": "063fe1fc4657f7d47490e8c31f80b0d244302ee45ee0287f270cf9a33394fcac",
+        "cognitive/research.py": "b2f4ab41a2289b01fe0489d9c2c791bf5a25f58086f736cee52e4ad006822ac7",
+        "cognitive/local_model.py": "0ac3a95549c5224eb3b728ecd4c974afe7f56fb50029ce927256140648c9810c"
+      },
+      "health_first_action": 0.402,
+      "health_last_action": 0.951
+    },
+    {
+      "report": "data\\v2\\v2_trial_76dca5350b004dbb\\report.json",
+      "kind": "initial_stage_trial",
+      "outcome": "blocked",
+      "reason": "Already at the observed destination; need a new objective",
+      "seconds": 4.083,
+      "actions": 0,
+      "code_hashes_at_start": null,
+      "health_first_action": null,
+      "health_last_action": null
+    },
+    {
+      "report": "data\\v2\\v2_trial_7f2943bf285b4f4b\\report.json",
+      "kind": "resumed_stage_trial",
+      "outcome": "interrupted",
+      "reason": "",
+      "seconds": 110.839,
+      "actions": 45,
+      "code_hashes_at_start": {
+        "bot.py": "71f066b036572495ba405260dc068820ee72ef8c13e2588bc57242179dfa040f",
+        "config.json": "c70e104222c45c8e377eff6369a3c838a176869e190dd9f7424c53646b9df281",
+        "cognitive/spatial.py": "d9aa8bc25f10ba53dbba5d2c66f67749731bd0f64258c5f552f76a2a35a69028",
+        "cognitive/map_navigation.py": "19a9d95803621fee1a850c8a7a8ddfb590ea67766e27508441d4fc7d7cc07de6",
+        "cognitive/map_anchor.py": "e2dc7fb1a56fd2cbbacff76a06f159bfadfcba05f4d8d0c5fe71bae5d522276a",
+        "cognitive/fast_control.py": "dd5c17ef670ab5bf71f257db1dedef20ebfdcefa73e2fd31033e4087d1421e38",
+        "cognitive/stage_v2.py": "7b8dbbdb6b090b4f31b8f2e6fb71a6e8ce45b175f4f15409307c5b7ee48c65f0",
+        "cognitive/puzzle_control.py": "0e3d3734f8557a2ee6d9d1790a256f63e4c8c9516485f297b8db9151d8ebd305"
+      },
+      "health_first_action": 0.541,
+      "health_last_action": 0.402
+    },
+    {
+      "report": "data\\v2\\v2_trial_99d348c7cb44486e\\report.json",
+      "kind": "resumed_stage_trial",
+      "outcome": "blocked",
+      "reason": "Observed edge blocked; bounded side-step recovery unavailable",
+      "seconds": 253.529,
+      "actions": 95,
+      "code_hashes_at_start": {
+        "bot.py": "71f066b036572495ba405260dc068820ee72ef8c13e2588bc57242179dfa040f",
+        "config.json": "c70e104222c45c8e377eff6369a3c838a176869e190dd9f7424c53646b9df281",
+        "cognitive/spatial.py": "75227896b0ed41c50e77348c833c9ce63a59f8bb95d4793014e0eda9dbc8f4d9",
+        "cognitive/map_navigation.py": "9cadb29451c03cabfb9876e3ef48b96027eca32e76fc6cc246332978d83a41f4",
+        "cognitive/map_anchor.py": "ca2f2af3b6d73eca26273ecd038eaab88cbad60de4f81e9bcf90df2f7eda578c",
+        "cognitive/fast_control.py": "18d62dc45fa4c7e964ac2e6c368cd065739ce3e31f110b171b6cc66500cfc74d",
+        "cognitive/stage_v2.py": "05fdb2d050a86cecbd86a44a2191659eb1520e39129a1971203ab9fd7c1ac8c5",
+        "cognitive/puzzle_control.py": "0e3d3734f8557a2ee6d9d1790a256f63e4c8c9516485f297b8db9151d8ebd305",
+        "cognitive/contracts.py": "03c31b5a4b1af1ff8bd05651aaf54875e55b8929488629c80dce5977878c9b6e",
+        "cognitive/memory.py": "30c703ff1e4c1578de514778af2210f161853dcaf545b1b33553151b169f99e4",
+        "cognitive/perception.py": "0843b3e2d5e8975d8202820a4f16c842fb3c32322cd0bb3d40e7a9a795cf7160",
+        "cognitive/runtime.py": "126e63680ae93a0236d647606a6bc7410966b8d3fadfa43f6684e7ff10c4fd85",
+        "cognitive/planning.py": "063fe1fc4657f7d47490e8c31f80b0d244302ee45ee0287f270cf9a33394fcac",
+        "cognitive/research.py": "b2f4ab41a2289b01fe0489d9c2c791bf5a25f58086f736cee52e4ad006822ac7",
+        "cognitive/local_model.py": "0ac3a95549c5224eb3b728ecd4c974afe7f56fb50029ce927256140648c9810c"
+      },
+      "health_first_action": 0.951,
+      "health_last_action": 0.852
+    },
+    {
+      "report": "data\\v2\\v2_trial_dfcf9912d4a94e9e\\report.json",
+      "kind": "initial_stage_trial",
+      "outcome": "blocked",
+      "reason": "TypeError: CognitiveRuntime.event() got multiple values for argument 'kind'",
+      "seconds": 8.844,
+      "actions": 3,
+      "code_hashes_at_start": null,
+      "health_first_action": null,
+      "health_last_action": null
+    }
+  ],
+  "controller_ms": {
+    "samples": 118,
+    "mean": 1354.567,
+    "p95": 2103.75,
+    "p95_method": "nearest rank"
+  },
+  "capture_ms": {
+    "samples": 118,
+    "mean": 387.828,
+    "p95": 686.72,
+    "p95_method": "nearest rank"
+  },
+  "map_confirmed_moves": 14,
+  "stable_map_unconfirmed_moves": 2,
+  "map_extent_changed_moves": 10,
+  "stable_map_progress_pixels": 218.0,
+  "stable_extent_map_pixels_per_calibration_minute": 44.431,
+  "progress_limit": "Local map pixels with stable extent only; not meters, global travel or completion percentage.",
+  "movement_flow_confirmed": 24,
+  "repeated_unverified_moves": 0,
+  "local_planning_cycles": 35,
+  "autonomous_replans_in_stage_trials": 7,
+  "real_puzzle_completions": 0,
+  "real_verified_conversations_v2": 0,
+  "failure_incidents": [
+    {
+      "kind": "perception",
+      "evidence": "v2_calibration_7594db2bc4b1496a",
+      "cause": "Large camera motion missed by sparse tracker",
+      "correction": "two-flank phase consensus; historical validation"
+    },
+    {
+      "kind": "perception",
+      "evidence": "v2_calibration_d751883851294319",
+      "cause": "Almost-empty enemy HP bar missed",
+      "correction": "infer full dark bar; no combat success credited"
+    },
+    {
+      "kind": "navigation",
+      "evidence": "v2_calibration_3ec3da0ae06d4f1e",
+      "cause": "Path followed floor too close to corridor wall",
+      "correction": "12-pixel wall clearance; subsequent verified movement"
+    },
+    {
+      "kind": "navigation",
+      "evidence": "v2_calibration_f2a3ea3b17574c90",
+      "cause": "Player pin occluded corridor",
+      "correction": "restore icon-occluded rows only between two observed floor sides"
+    },
+    {
+      "kind": "tool",
+      "evidence": "evaluations/v2/device-status.json",
+      "cause": "ADB shell/screencap stopped responding; reconnect failed",
+      "correction": "recovered after user restarted MSI"
+    },
+    {
+      "kind": "navigation",
+      "evidence": "v2_trial_76dca5350b004dbb",
+      "cause": "Spawn marker sliver selected as zero-length destination; coarse grid aliased eroded corridor",
+      "correction": "discard zero-length frontiers; vertical icon reconstruction and four-pixel map grid"
+    },
+    {
+      "kind": "perception_and_internal",
+      "evidence": "v2_trial_dfcf9912d4a94e9e",
+      "cause": "Party HUD mistaken for enemy; kind key conflicted with event signature",
+      "correction": "exclude observed portrait region; log nested event data; live-flow regression fixture added"
+    }
+  ],
+  "model_profile": {
+    "calls": 9,
+    "input_tokens": 7215,
+    "output_tokens": 582,
+    "by_context": {
+      "full_current": {
+        "samples": 3,
+        "grounded": 3,
+        "mean_inference_ms": 37864.68666666667,
+        "p95_inference_ms": 39614.829,
+        "p95_method": "nearest-rank; n=3, so maximum",
+        "mean_input_tokens": 1433
+      },
+      "minimal": {
+        "samples": 3,
+        "grounded": 3,
+        "mean_inference_ms": 10677.532333333334,
+        "p95_inference_ms": 10705.732,
+        "p95_method": "nearest-rank; n=3, so maximum",
+        "mean_input_tokens": 302
+      },
+      "selective": {
+        "samples": 3,
+        "grounded": 3,
+        "mean_inference_ms": 20497.156333333332,
+        "p95_inference_ms": 21923.849,
+        "p95_method": "nearest-rank; n=3, so maximum",
+        "mean_input_tokens": 670
+      }
+    },
+    "preparation_ms": {
+      "samples": 9,
+      "mean": 0.204,
+      "p95": 0.301,
+      "p95_method": "nearest rank"
+    },
+    "retrieval_ms": {
+      "samples": 9,
+      "mean": 1.974,
+      "p95": 1.974,
+      "p95_method": "nearest rank"
+    },
+    "wall_ms": {
+      "samples": 9,
+      "mean": 23472.37,
+      "p95": 40079.437,
+      "p95_method": "nearest rank"
+    }
+  },
+  "live_stage_metrics": {
+    "closed_trials": 6,
+    "seconds": 752.623,
+    "actions": 289,
+    "navigation_cycle_ms": {
+      "samples": 94,
+      "mean": 7733.989,
+      "p95": 8766.925,
+      "p95_method": "nearest rank"
+    },
+    "isolated_local_planning_ms": {
+      "samples": 51,
+      "mean": 310.436,
+      "p95": 556.207,
+      "p95_method": "nearest rank"
+    },
+    "timing_scope": "Legacy decision_ms includes the full cycle. New reports separate cycle_ms from isolated local decision_ms; never mix the two.",
+    "time_per_task_ms": {
+      "samples": 6,
+      "mean": 125437.167,
+      "p95": 319069.0,
+      "p95_method": "nearest rank"
+    },
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "recorded_perception_failures": 0,
+    "recorded_navigation_failures": 4,
+    "recorded_verification_failures": 0,
+    "successful_recoveries": 5,
+    "interruptions_without_recovery": 6,
+    "controller_ms": {
+      "samples": 289,
+      "mean": 1300.446,
+      "p95": 2049.24,
+      "p95_method": "nearest rank"
+    },
+    "map_confirmed_moves": 59,
+    "stable_map_unconfirmed_moves": 10,
+    "map_extent_changed_moves": 21,
+    "stable_map_progress_pixels_per_minute": 62.979738859960435,
+    "aligned_map_confirmed_moves": 34,
+    "aligned_map_reference_pixels_per_minute": 40.69720968768872,
+    "reason": "Closed actual stage trials only. Recorded counters may omit uncategorized internal failures; each trial preserves its outcome and reason."
+  },
+  "artifact_reports": [
+    "data\\v2\\v2_calibration_3ec3da0ae06d4f1e\\report.json",
+    "data\\v2\\v2_calibration_45124c972be4410b\\report.json",
+    "data\\v2\\v2_calibration_7594db2bc4b1496a\\report.json",
+    "data\\v2\\v2_calibration_a4e9b0194a194103\\report.json",
+    "data\\v2\\v2_calibration_bb3fcd47908b4025\\report.json",
+    "data\\v2\\v2_calibration_d0a257a06a5846b3\\report.json",
+    "data\\v2\\v2_calibration_d2d8d6f70ec4472f\\report.json",
+    "data\\v2\\v2_calibration_d751883851294319\\report.json",
+    "data\\v2\\v2_calibration_f2a3ea3b17574c90\\report.json",
+    "data\\v2\\v2_joystick_calibration_eb3322a2ece34a78\\report.json",
+    "data\\v2\\v2_lantern_calibration_52b8b4ecd2df48c9\\report.json",
+    "data\\v2\\v2_lantern_calibration_57d3f511303f48c8\\report.json",
+    "data\\v2\\v2_lantern_calibration_64f19690f25f4c65\\report.json",
+    "data\\v2\\v2_lantern_calibration_8617713a0ec24422\\report.json",
+    "data\\v2\\v2_lantern_calibration_bcd0a8a339db4292\\report.json",
+    "data\\v2\\v2_lantern_calibration_cface23508d84a6d\\report.json",
+    "data\\v2\\v2_preparation_0477cee818f04e2f\\report.json",
+    "data\\v2\\v2_preparation_2d97b86e35f744bd\\report.json",
+    "data\\v2\\v2_preparation_6368d8e306544534\\report.json",
+    "data\\v2\\v2_preparation_724c616712574707\\report.json",
+    "data\\v2\\v2_trial_5aa90fc7327340cf\\report.json",
+    "data\\v2\\v2_trial_604785b78ceb4a41\\report.json",
+    "data\\v2\\v2_trial_76dca5350b004dbb\\report.json",
+    "data\\v2\\v2_trial_7f2943bf285b4f4b\\report.json",
+    "data\\v2\\v2_trial_99d348c7cb44486e\\report.json",
+    "data\\v2\\v2_trial_dfcf9912d4a94e9e\\report.json"
+  ]
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "png": true,
+    "ms": 729.79,
+    "bytes": 1005906,
+    "header": null
+  },
+  {
+    "png": false,
+    "ms": 309.72,
+    "bytes": 5760016,
+    "header": [
+      1600,
+      900,
+      1,
+      1
+    ]
+  },
+  {
+    "png": true,
+    "ms": 713.84,
+    "bytes": 1005923,
+    "header": null
+  },
+  {
+    "png": false,
+    "ms": 372.16,
+    "bytes": 5760016,
+    "header": [
+      1600,
+      900,
+      1,
+      1
+    ]
+  }
+]

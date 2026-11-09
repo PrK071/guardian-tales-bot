@@ -1,0 +1,37 @@
+{
+  "input": "historical real screenshots; offline OCR/CV replay, no live game commands",
+  "cases": [
+    {
+      "file": "captures/initial.png",
+      "sha256": "c54ccba270d4478d0eb6c8209aec7e89a7ed8d455a4b46d6899969a59d47bbc8",
+      "expected_scene": "mapa",
+      "observed_scene": "mapa",
+      "expected_stage": null,
+      "observed_stage": null,
+      "correct": true,
+      "latency_ms": 6967.54
+    },
+    {
+      "file": "captures/adb-enabled.png",
+      "sha256": "80e63b655761db7218b35abcb3cb79472499a6c293e08af8c00f855e37d5dc97",
+      "expected_scene": "entrada",
+      "observed_scene": "entrada",
+      "expected_stage": "world:1:passage:1",
+      "observed_stage": "world:1:passage:1",
+      "correct": true,
+      "latency_ms": 5924.06
+    },
+    {
+      "file": "captures/1794088457275347900-before.png",
+      "sha256": "eb88ec1e781bf30fcedfe45647841be69da49dde169ef3e41516730fda3f2df6",
+      "expected_scene": "jogo",
+      "observed_scene": "jogo",
+      "expected_stage": null,
+      "observed_stage": null,
+      "correct": true,
+      "latency_ms": 1706.38
+    }
+  ],
+  "scene_accuracy": 1.0,
+  "limits": "Three screenshots only; does not establish general perception accuracy."
+}

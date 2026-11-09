@@ -1,0 +1,20 @@
+{
+  "path": "assets\\v3\\passage1_full_map_floor.png",
+  "sha256": "fe06afe5a982e6f024136c6bd32f8de3c4f5c31988f7ed31dd579d7b89143087",
+  "anchor_identity": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+  "anchor_alignment": {
+    "score": 0.993880822325873,
+    "second_score": 0.8983863592147827,
+    "scale": 0.7100000000000002,
+    "top_left": [
+      937,
+      295
+    ],
+    "source_origin": [
+      838.0,
+      449.0
+    ]
+  },
+  "source_frame": "data/v2/v2_preparation_be1d7e9704fd4785/007-pausa.jpg",
+  "method": "observed_complete_pause_map_with_only_its_spawn_pin_restored_from_verified_spawn_reference"
+}

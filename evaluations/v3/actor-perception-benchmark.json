@@ -1,0 +1,539 @@
+{
+  "scope": "paired offline replay, actor perception only; excludes carried-pose matcher, capture and input",
+  "source_sha256": {
+    "before": "f43dfce905fedfd669b02eff8cdfa91d479de9ddcc580bc423940e2a545937a0",
+    "after": "9b80d85276ab9a0f78e81f6202903ab3e9c416a4898ee6f78efda444243630be"
+  },
+  "groups": {
+    "False": {
+      "before": {
+        "n": 12,
+        "mean": 279.9308666678068,
+        "p95": 385.7486999986577
+      },
+      "after": {
+        "n": 12,
+        "mean": 113.00127500120045,
+        "p95": 196.24959999782732
+      }
+    },
+    "True": {
+      "before": {
+        "n": 12,
+        "mean": 263.7822666674765,
+        "p95": 386.05989999632584
+      },
+      "after": {
+        "n": 12,
+        "mean": 64.03899166737877,
+        "p95": 105.06110000278568
+      }
+    }
+  },
+  "rows": [
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 219.00270000332966,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 113.85110000264831,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 214.11280000029365,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 96.91639999800827,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 244.02930000360357,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 53.36160000297241,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 226.30010000284528,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 122.58899999869755,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 196.24959999782732,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 385.7486999986577,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 148.4506999986479,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 382.64420000632526,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 89.58460000576451,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 362.02659999980824,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 180.54680000204826,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 341.2484000000404,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 330.35260000178823,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 128.65429999510525,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 199.96420000097714,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 89.18330000597052,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 262.3567999980878,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 44.294300001638476,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": false,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 191.38399999792455,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 92.33360000507673,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 190.04990000394173,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 40.77739999775076,
+        "raw_player": [
+          819.0,
+          309
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 192.67340000078548,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 43.29090000101132,
+        "raw_player": [
+          798.5,
+          424
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 187.73050000163494,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 43.80469999887282,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 0,
+      "before": {
+        "ms": 196.40980000258423,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 41.39209999993909,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 46.79030000261264,
+        "raw_player": [
+          819.0,
+          309
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 228.5016999958316,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 58.41850000433624,
+        "raw_player": [
+          798.5,
+          424
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 218.26570000121137,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 57.35629999981029,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 219.62229999917326,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 1,
+      "after": {
+        "ms": 47.90769999817712,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "before": {
+        "ms": 274.42080000037095,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0002-v3-glove-preflight.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 386.05989999632584,
+        "raw_player": [
+          800.5,
+          443
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 101.28960000292864,
+        "raw_player": [
+          819.0,
+          309
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_1c712db0ca8c40f8\\0005-v3-glove-removal-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 362.92210000101477,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 93.75949999957811,
+        "raw_player": [
+          798.5,
+          424
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_c7253326189c4557\\0005-v3-glove-removal-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 323.08600000396837,
+        "raw_player": [
+          800.5,
+          445
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 105.06110000278568,
+        "raw_player": [
+          802.5,
+          448
+        ],
+        "combat_present": false
+      }
+    },
+    {
+      "held_pipeline": true,
+      "frame": "data\\v3\\v3_lantern_probe_215c1f24d894442e\\0030-v3-fixed-independent-check.jpg",
+      "repetition": 2,
+      "before": {
+        "ms": 385.64510000287555,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      },
+      "after": {
+        "ms": 88.61980000074254,
+        "raw_player": [
+          844.5,
+          531
+        ],
+        "combat_present": false
+      }
+    }
+  ]
+}

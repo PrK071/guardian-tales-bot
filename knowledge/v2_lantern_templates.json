@@ -1,0 +1,30 @@
+[
+  {
+    "name": "portable_brazier",
+    "source_frame": "data/v2/v2_trial_99d348c7cb44486e/0225-before-move.jpg",
+    "source_sha256": "53449a8e51a87d5dcd03027930d9217f5ec149508699a628f4b5cd16bfa2c53d",
+    "bbox": [
+      873,
+      150,
+      110,
+      106
+    ],
+    "template": "assets\\v2\\portable_brazier.png",
+    "template_sha256": "b89e51f6dc957a4b819c08d935f6b3533c777dda012d5a2d0d7dd8234b0d08b9",
+    "label_validation": "appearance matched to video; interaction not yet validated in this account"
+  },
+  {
+    "name": "standing_lantern_unlit",
+    "source_frame": "data/v2/v2_trial_99d348c7cb44486e/0315-before-move.jpg",
+    "source_sha256": "f149769f916dedd8cd2f6488fd9ece1d6de213203beb215e413f937fdfbc4bf6",
+    "bbox": [
+      378,
+      234,
+      67,
+      91
+    ],
+    "template": "assets\\v2\\standing_lantern_unlit.png",
+    "template_sha256": "2265334c0978cf9c59d261e43c28330980f96ed1e9ac8f30a3d95cf5229a1232",
+    "label_validation": "appearance matched to video; interaction not yet validated in this account"
+  }
+]

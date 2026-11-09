@@ -1,0 +1,16 @@
+{
+  "adb": "tools/platform-tools/adb.exe",
+  "serial": "127.0.0.1:5555",
+  "package": "com.kakaogames.gdts",
+  "cognitive": {
+    "max_research_requests": 5,
+    "advisor": {"enabled": true, "backend": "llama_cpp", "binary": "tools/llama/llama-completion.exe", "model": "models/Qwen3-0.6B-Q8_0.gguf", "model_sha256":"9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031", "max_calls_per_run": 3, "timeout_seconds": 60, "threads": 2}
+  },
+  "controls": {
+    "joystick": [0.1475, 0.737],
+    "joystick_radius": 0.13,
+    "attack": [0.748, 0.814],
+    "skill": [0.791, 0.628],
+    "interact": [0.896, 0.815]
+  }
+}

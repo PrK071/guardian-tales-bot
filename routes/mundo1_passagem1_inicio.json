@@ -1,0 +1,83 @@
+{
+  "id": "mundo1_passagem1_inicio",
+  "name": "Mundo 1 · início da Passagem 1",
+  "status": "Trecho inicial de 10 passos reproduzido nesta conta. Para antes do próximo encontro; não conclui a fase.",
+  "start": "Personagem parado no nascimento da Passagem 1, antes de caminhar para o norte.",
+  "steps": [
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/000.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 300,
+      "settle": 1.5
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/001.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "interact",
+      "ms": 100,
+      "anchor": "mundo1_passagem1_inicio/002.png",
+      "min_similarity": 0.91,
+      "settle": 2
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/003.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "move",
+      "direction": "right",
+      "ms": 600,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/004.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/005.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/006.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "move",
+      "direction": "up",
+      "ms": 1500,
+      "settle": 1.5,
+      "anchor": "mundo1_passagem1_inicio/007.png",
+      "min_similarity": 0.91
+    },
+    {
+      "op": "pause",
+      "message": "Fim do trecho calibrado de aproximação. Próximo encontro ainda sem rota de fase completa."
+    }
+  ],
+  "scope": "world:1:passage:1",
+  "end_anchor": "mundo1_passagem1_inicio/end.png"
+}

@@ -1,0 +1,9 @@
+{
+  "cancelled": true,
+  "process": {
+    "pid": 16984,
+    "returncode": 1
+  },
+  "elapsed_ms": 10.75,
+  "live_game_input": false
+}

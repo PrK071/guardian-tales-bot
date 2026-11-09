@@ -1,0 +1,40 @@
+{
+  "version": "3.3.2",
+  "url": "https://github.com/Genymobile/scrcpy/releases/download/v3.3.2/scrcpy-server-v3.3.2",
+  "sha256": "2ee5ca0863ef440f5b7c75856bb475c5283d0a8359cb370b1c161314fd29dfd9",
+  "bytes": 90808,
+  "verification_source": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/install_release.sh",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/LICENSE",
+      "path": "tools\\scrcpy\\LICENSE",
+      "sha256": "5e6597827749877cca06765747bf29ed9205ed5021c6aec1ad42373711bcda05"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/doc/develop.md",
+      "path": "data\\v3\\research\\develop.md",
+      "sha256": "1a9235d0c6ce6789690db0ca4f13976abc50082e5e6d2b2383b239adfae2843e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/server/src/main/java/com/genymobile/scrcpy/control/ControlMessageReader.java",
+      "path": "data\\v3\\research\\ControlMessageReader.java",
+      "sha256": "3172a4c625091cc2033c3e099ea11822447afc2673316ec7682b30ce5be80d9a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/server/src/main/java/com/genymobile/scrcpy/control/Controller.java",
+      "path": "data\\v3\\research\\Controller.java",
+      "sha256": "d073ed2638f6c7d72beb255fafbd980aec1f964a2036ec7974d29a0bd0e959ee"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/server/src/main/java/com/genymobile/scrcpy/Options.java",
+      "path": "data\\v3\\research\\Options.java",
+      "sha256": "78a7569e2ae529657fc9de5024d4e69dc17da09302a535714f7eac7ae959b2c4"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Genymobile/scrcpy/v3.3.2/server/src/main/java/com/genymobile/scrcpy/device/DesktopConnection.java",
+      "path": "data\\v3\\research\\DesktopConnection.java",
+      "sha256": "4907a37c7c84d3012e76329f3761d8fcc05488ace71fbaf013048d33f21e414c"
+    }
+  ],
+  "purpose": "root-free persistent normal Android input; no game process or memory modification"
+}

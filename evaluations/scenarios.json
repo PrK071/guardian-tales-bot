@@ -1,0 +1,6 @@
+[
+  {"id":"identify_resume_segment","initial_scene":"jogo","known_stage":false,"stuck":false,"enemy":false,"clear_after":2,"cycles":14},
+  {"id":"wall_no_progress","initial_scene":"jogo","known_stage":true,"stuck":true,"enemy":false,"clear_after":99,"cycles":10},
+  {"id":"enemy_recovery","initial_scene":"jogo","known_stage":true,"stuck":false,"enemy":true,"clear_after":99,"cycles":8},
+  {"id":"protected_revive","initial_scene":"bloqueada","known_stage":true,"stuck":false,"enemy":false,"clear_after":99,"cycles":5}
+]

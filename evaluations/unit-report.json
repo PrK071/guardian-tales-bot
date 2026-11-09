@@ -1,0 +1,9 @@
+{
+  "tests_run": 45,
+  "passed": 45,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "duration_ms": 3494.65,
+  "scope": "Legacy guards + cognitive contracts/memory/planning/recovery/research; simulator/model response fixtures are explicitly synthetic."
+}

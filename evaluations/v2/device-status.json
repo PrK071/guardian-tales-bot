@@ -1,0 +1,46 @@
+{
+  "at": 1794109019.0655127,
+  "ok": true,
+  "probes": [
+    {
+      "command": [
+        "get-state"
+      ],
+      "exit": 0,
+      "stdout_bytes": 8,
+      "stderr": "",
+      "ms": 84.83,
+      "ok": true
+    },
+    {
+      "command": [
+        "shell",
+        "echo",
+        "v2_ping"
+      ],
+      "exit": 0,
+      "stdout_bytes": 9,
+      "stderr": "",
+      "ms": 85.64,
+      "ok": true
+    },
+    {
+      "command": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "stdout_bytes": 5760016,
+      "stderr": "",
+      "ms": 576.92,
+      "ok": true
+    }
+  ],
+  "previous_observed_failures": [
+    "dumpsys activity timed out after 15s",
+    "shell echo and raw screencap timed out after 5s",
+    "disconnect/connect failed",
+    "ADB server restart completed; reconnect still failed"
+  ],
+  "game_input_sent": false
+}

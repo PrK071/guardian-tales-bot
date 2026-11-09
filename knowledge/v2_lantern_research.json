@@ -1,0 +1,23 @@
+{
+  "scope": "world:1:passage:1",
+  "validation": "reported",
+  "sources": [
+    {
+      "url": "https://guardian-tales.fandom.com/wiki/Kanterbury_Forest_Passage_1",
+      "method": "web_text_read",
+      "paraphrase": "After the branching route, a lantern puzzle requires clearing small rocks, carrying a torch and lighting the standing lanterns. A final monster precedes the exit."
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=P8Kob7UhlNs",
+      "method": "video_frames_watched_in_browser",
+      "observations": [
+        {"time": "1:29", "description": "Portable gray brazier lies in the room with the orange barrier and unlit standing lanterns."},
+        {"time": "1:32", "description": "Actor carries the gray brazier overhead; the interact button shows a throw arrow. A standing flame source is already lit."},
+        {"time": "1:36", "description": "Carried brazier burns; lower right standing lantern is lit. A neighboring green rock is burning."},
+        {"time": "1:41", "description": "Actor has crossed the barrier and faces an Orc Warrior."}
+      ]
+    }
+  ],
+  "hypothesis": ["approach_observed_portable_brazier", "verify_pickup_transfer_and_follow", "touch_observed_flame_source", "verify_carried_fire_away_from_source", "light_observed_unlit_lanterns", "verify_fixed_flames_away_from_actor", "verify_crossing_previously_blocked_edge"],
+  "limitation": "Guide observations are not current-account interaction or stage-clear evidence."
+}

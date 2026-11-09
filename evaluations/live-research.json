@@ -1,0 +1,42 @@
+{
+  "real_network": true,
+  "result": {
+    "query": "Guardian Tales \"1-1\" passage progression obstacles route walkthrough",
+    "scope": "world:1:passage:1",
+    "sources": [
+      {
+        "title": "Artigo do Mundo 1",
+        "url": "https://www.gamechosun.co.kr/webzine/article/view.php?no=166807",
+        "snippet": "가디언 테일즈, 탐험의 맛보기, 월드1 캔터베리 왕국 공략 모음집 가디언 테일즈, 탐험의 맛보기, 월드1 캔터베리 왕국 공략 모음집 카카오게임즈의 신작 모바일 RPG '가디언 테일즈'가 게이머로부터 호평을 받으면서 성공적인 데뷔를 마쳤다.",
+        "source": "local_catalog",
+        "validation": "reported",
+        "method": "http_excerpt",
+        "confidence": 0.55,
+        "body_sha256": "c8468b4127a027330c13f6ea4cdee43ee75e3393f759889d8dfac46ba3fab8e4",
+        "retrieved_at": 1794093736.7313445
+      },
+      {
+        "title": "Guia escrito do Mundo 1",
+        "url": "https://kmobilegames.blogspot.com/2021/01/guardian-tales-world-1-kanterbury.html",
+        "snippet": "With the first stage, you can get used to the controls for the game. You can destroy the bush or proceed with a device using a torch. It is not difficult to get purple coins or star peace yet. It is completely clear only when all purple coins and star pieces are obtained, so refer to the image above for detailed location. Even if you don't get all of them when you first proceed, don't worry as the existing progress is saved when you enter again. \"1-5 Secret Forest\", a stage that you can go to while 1-1 is in progress, and \"1-1 Kanterbury Forest Passage 1\" to proceed to 1-2, do not require a guide. There is a new stage, \"1-7 Guardian's Forest\", which opens upon receiving the quest. You'll have a little disagreement with Elf, but if you defeat the poachers and save the forest, you can clear the misunderstanding with Elf and complete the quest. In the case of \"1-2 Kanterbury Forest Passage 2\", which is the connecting stage to the next stag",
+        "source": "local_catalog",
+        "validation": "reported",
+        "method": "http_excerpt",
+        "confidence": 0.55,
+        "body_sha256": "da808ef3d830cc57676338d356761bd07d15950759a7095b86bd446b0ae26a46",
+        "retrieved_at": 1794093737.351528
+      }
+    ],
+    "errors": [],
+    "cached": false,
+    "validation": "reported",
+    "contradictions": [],
+    "strategy": "Use as hypotheses; corroborate against the current screenshot before any action.",
+    "requests": 3,
+    "latency_ms": 3266.0
+  },
+  "second_call_cached": true,
+  "requests_after_two_calls": 3,
+  "integrity": "ok",
+  "assertion": "Source text is reported knowledge; no gameplay strategy has been validated by this test."
+}

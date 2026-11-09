@@ -1,0 +1,50 @@
+{
+  "real_model": true,
+  "live_game_input": false,
+  "context": {
+    "observation": {
+      "id": "real_model_eval_1",
+      "scene": "jogo",
+      "stage": "world:1:passage:1",
+      "confidence": 0.95,
+      "text": "Current stage identified; no known safe continuation.",
+      "features": {
+        "enemy_count": 0,
+        "health": 1.0
+      }
+    },
+    "memories": [],
+    "tasks": [],
+    "budget": {
+      "remaining_model_calls": 1
+    }
+  },
+  "answer": {
+    "strategy": "known_route",
+    "reason": "The observation indicates no known safe continuation, but there is a verified route to proceed.",
+    "evidence_ids": [
+      "real_model_eval_1"
+    ]
+  },
+  "usage": [
+    {
+      "backend": "llama.cpp",
+      "model": "Qwen3-0.6B-Q8_0.gguf",
+      "latency_ms": 10221.67,
+      "input_tokens": 219,
+      "output_tokens": 45,
+      "cost_usd": 0,
+      "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+      "prompt_sha256": "f40f2ae7d1ea9556ab2b1240c03946bdf61b6ee57e1df305d7180d1a2ff1659d",
+      "response": {
+        "strategy": "known_route",
+        "reason": "The observation indicates no known safe continuation, but there is a verified route to proceed.",
+        "evidence_ids": [
+          "real_model_eval_1"
+        ]
+      }
+    }
+  ],
+  "passed": false,
+  "limits": "One strategic text case. No VLM, puzzle-solving, or general model quality claim."
+}

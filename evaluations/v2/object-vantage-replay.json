@@ -1,0 +1,343 @@
+[
+  {
+    "memory_id": "memory_2eae97584e554bd9",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      389.31578947368433,
+      539.7894736842105
+    ],
+    "objects": [
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          428,
+          672,
+          70,
+          228
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0035-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0030-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_05820338e7004f08",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      399.18421052631595,
+      558.2105263157895
+    ],
+    "objects": [
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          350,
+          560,
+          70,
+          206
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0065-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0060-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_05820338e7004f08",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      399.18421052631595,
+      567.421052631579
+    ],
+    "objects": [
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          583,
+          466,
+          70,
+          235
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0075-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0070-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_b5bbe58683294fe3",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      621.3684210526316
+    ],
+    "objects": [
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          498,
+          624,
+          70,
+          231
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          502,
+          150,
+          70,
+          143
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          300,
+          150,
+          70,
+          137
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0135-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0130-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_c84d050bc4564107",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      666.1052631578947
+    ],
+    "objects": [
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          1283,
+          287,
+          70,
+          231
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0165-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0160-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_2b0609ab66d6472b",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      684.5263157894736
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          690,
+          110,
+          106
+        ],
+        "confidence": 0.9960727691650391,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          1285,
+          173,
+          70,
+          210
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0175-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0170-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_8e93ed6601234017",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      702.9473684210525
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          548,
+          110,
+          106
+        ],
+        "confidence": 0.9812747836112976,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          495,
+          227,
+          70,
+          208
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0185-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0180-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_8e93ed6601234017",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      710.8421052631578
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          488,
+          110,
+          106
+        ],
+        "confidence": 0.9809097647666931,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          499,
+          150,
+          70,
+          231
+        ],
+        "confidence": 0.8,
+        "method": "observed_flame_with_gray_brazier_below"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0195-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0190-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_ce85c4423ce84e62",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      729.2631578947368
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          353,
+          110,
+          106
+        ],
+        "confidence": 0.9811199903488159,
+        "method": "recorded_gameplay_template"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0205-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0200-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_b382502bf6f9447c",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      747.6842105263157
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          218,
+          110,
+          106
+        ],
+        "confidence": 0.9814270734786987,
+        "method": "recorded_gameplay_template"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0215-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0210-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  },
+  {
+    "memory_id": "memory_b382502bf6f9447c",
+    "run_id": "v2_trial_99d348c7cb44486e",
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "actor_reference": [
+      409.0526315789475,
+      755.578947368421
+    ],
+    "objects": [
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          873,
+          150,
+          110,
+          106
+        ],
+        "confidence": 1.0,
+        "method": "recorded_gameplay_template"
+      }
+    ],
+    "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0225-before-move.jpg",
+    "map_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_99d348c7cb44486e\\0220-planning-map.jpg",
+    "historical_replay": true,
+    "claim": "past object sighting from a paired observed map pose; not a claim of current object presence"
+  }
+]

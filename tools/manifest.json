@@ -1,0 +1,14 @@
+{
+  "files": {
+    "tools/platform-tools/adb.exe": "b4a6b455702684652cccf7b46258b29e653538904359a58fd4931cf3ef286b3f",
+    "tools/python/python.exe": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+    "bot.py": "77267e9b4daaa9cfef2ff3bc9fddc32b8b915eb71c8e3d9f3914c222b71310ad",
+    "panel.html": "965e2fe60b42cbc6c07496c7137b9b8b403e3955d735e96c7ecfb89412d212ca",
+    "config.json": "1923f34c9c8b0d3de34fa2ee3a16e1453f21dd88bc70824210225d5cb2f52c18"
+  },
+  "sources": {
+    "python": "https://www.python.org/downloads/release/python-31210/",
+    "adb": "https://developer.android.com/tools/releases/platform-tools",
+    "rapidocr": "https://github.com/RapidAI/RapidOCR"
+  }
+}

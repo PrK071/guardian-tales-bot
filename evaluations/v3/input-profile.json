@@ -1,0 +1,22 @@
+[
+  {
+    "run_id": "v3_input_probe_72f5c24ddb51463c",
+    "mode": "move",
+    "direction": "up",
+    "requested_ms": 1000,
+    "actual_ms": 1000.6215000030352,
+    "reference_pixels": 59.57446808510633,
+    "reference_pixels_per_ms": 0.059537465550086245,
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99"
+  },
+  {
+    "run_id": "v3_input_probe_521ecfbba9594c09",
+    "mode": "run",
+    "direction": "up",
+    "requested_ms": 1000,
+    "actual_ms": 1001.5123999983189,
+    "reference_pixels": 74.46808510638289,
+    "reference_pixels_per_ms": 0.07435562965222187,
+    "anchor_id": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99"
+  }
+]

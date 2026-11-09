@@ -1,0 +1,87 @@
+{
+  "kind": "historical_image_plus_reported_web_source",
+  "frame": "E:\\GuardianTalesBot\\data\\v2\\v2_calibration_d0a257a06a5846b3\\0109-before-pausa.jpg",
+  "features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          763,
+          350,
+          62,
+          50
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_connected_component"
+      },
+      {
+        "kind": "hazard",
+        "bbox": [
+          311,
+          679,
+          77,
+          75
+        ],
+        "confidence": 0.72,
+        "method": "observed_cave_blue_spike_shape"
+      },
+      {
+        "kind": "hazard",
+        "bbox": [
+          304,
+          144,
+          84,
+          72
+        ],
+        "confidence": 0.72,
+        "method": "observed_cave_blue_spike_shape"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          71,
+          218,
+          219,
+          430
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      },
+      {
+        "kind": "bomb_candidate",
+        "bbox": [
+          304,
+          136,
+          110,
+          109
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      794.0,
+      400
+    ],
+    "enemy_count": 0,
+    "hazard_count": 2,
+    "scene": "jogo",
+    "health": 0.961,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.5083861111111111
+  },
+  "solution": {
+    "validation": "hypothesis",
+    "memory_id": "memory_2a35ada996cb4e6d",
+    "steps": [
+      "approach_observed_bomb",
+      "interact_and_verify_pickup",
+      "face_observed_rock",
+      "interact_and_verify_obstacle_change"
+    ]
+  },
+  "actions_executed": 0,
+  "puzzle_solved": false,
+  "limitation": "Object classes are appearance hypotheses; pickup, throw and rock removal still require real validation."
+}

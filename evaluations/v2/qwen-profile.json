@@ -1,0 +1,453 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "mode": "full_current",
+      "repeat": 0,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 40077.53,
+        "input_tokens": 1433,
+        "output_tokens": 61,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "d991fb51db5baad1953fedc3a076efb02e98860a287977e681db6a3c0c9d481d",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "full_current",
+          "preparation_ms": 0.301,
+          "tokenizer_probe_ms": 453.954,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 1434,
+          "prefill_ms": 28548.51,
+          "generation_ms": 9780.76,
+          "load_ms": 28553.55,
+          "inference_process_ms": 39614.829,
+          "parse_validation_ms": 1.589,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 40079.437,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "minimal",
+      "repeat": 0,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 11120.82,
+        "input_tokens": 302,
+        "output_tokens": 58,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "15efe6397f4e6fca6641e8bfeabeb7f5d08c10ca077d721f838915c8805c81c3",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "minimal",
+          "preparation_ms": 0.143,
+          "tokenizer_probe_ms": 412.484,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 303,
+          "prefill_ms": 4420.33,
+          "generation_ms": 4929.86,
+          "load_ms": 4422.86,
+          "inference_process_ms": 10705.732,
+          "parse_validation_ms": 0.152,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 11121.845,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "selective",
+      "repeat": 0,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 19958.57,
+        "input_tokens": 670,
+        "output_tokens": 75,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "edfe9aaeec7c7e446146e87ce1cc37be76eeb03d54895ea717c5b9c94c439450",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "selective",
+          "preparation_ms": 0.189,
+          "tokenizer_probe_ms": 604.828,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 671,
+          "prefill_ms": 10493.05,
+          "generation_ms": 7432.38,
+          "load_ms": 10496.38,
+          "inference_process_ms": 19346.809,
+          "parse_validation_ms": 0.525,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 19959.467,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "full_current",
+      "repeat": 1,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 36560.56,
+        "input_tokens": 1433,
+        "output_tokens": 61,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "d991fb51db5baad1953fedc3a076efb02e98860a287977e681db6a3c0c9d481d",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "full_current",
+          "preparation_ms": 0.259,
+          "tokenizer_probe_ms": 418.594,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 1434,
+          "prefill_ms": 25330.04,
+          "generation_ms": 9502.4,
+          "load_ms": 25337.96,
+          "inference_process_ms": 36135.931,
+          "parse_validation_ms": 0.222,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 36561.519,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "minimal",
+      "repeat": 1,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 11114.79,
+        "input_tokens": 302,
+        "output_tokens": 58,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "15efe6397f4e6fca6641e8bfeabeb7f5d08c10ca077d721f838915c8805c81c3",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "minimal",
+          "preparation_ms": 0.145,
+          "tokenizer_probe_ms": 419.538,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 303,
+          "prefill_ms": 4518.0,
+          "generation_ms": 4949.91,
+          "load_ms": 4519.33,
+          "inference_process_ms": 10692.406,
+          "parse_validation_ms": 0.273,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 11115.95,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "selective",
+      "repeat": 1,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 22348.73,
+        "input_tokens": 670,
+        "output_tokens": 75,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "edfe9aaeec7c7e446146e87ce1cc37be76eeb03d54895ea717c5b9c94c439450",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "selective",
+          "preparation_ms": 0.192,
+          "tokenizer_probe_ms": 420.697,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 671,
+          "prefill_ms": 10569.85,
+          "generation_ms": 9838.27,
+          "load_ms": 10574.54,
+          "inference_process_ms": 21923.849,
+          "parse_validation_ms": 0.164,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 22349.55,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "full_current",
+      "repeat": 2,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 38383.83,
+        "input_tokens": 1433,
+        "output_tokens": 61,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "d991fb51db5baad1953fedc3a076efb02e98860a287977e681db6a3c0c9d481d",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the presence of a passage with a cavaleiro, suggesting an inspection or safe waiting opportunity.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "full_current",
+          "preparation_ms": 0.249,
+          "tokenizer_probe_ms": 534.789,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 1434,
+          "prefill_ms": 25712.02,
+          "generation_ms": 10672.63,
+          "load_ms": 25717.9,
+          "inference_process_ms": 37843.3,
+          "parse_validation_ms": 0.166,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 38384.684,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "minimal",
+      "repeat": 2,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 11048.64,
+        "input_tokens": 302,
+        "output_tokens": 58,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "15efe6397f4e6fca6641e8bfeabeb7f5d08c10ca077d721f838915c8805c81c3",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates the passage is empty with no enemy count, suggesting a potential location to explore.",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "minimal",
+          "preparation_ms": 0.161,
+          "tokenizer_probe_ms": 411.561,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 303,
+          "prefill_ms": 4473.88,
+          "generation_ms": 4905.66,
+          "load_ms": 4475.54,
+          "inference_process_ms": 10634.459,
+          "parse_validation_ms": 0.404,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 11049.558,
+      "memory_retrieval_ms": 1.974
+    },
+    {
+      "mode": "selective",
+      "repeat": 2,
+      "answer": {
+        "strategy": "inspect",
+        "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+        "evidence_ids": [
+          "observation_6684ea5a01944d40"
+        ]
+      },
+      "usage": {
+        "backend": "llama.cpp",
+        "model": "Qwen3-0.6B-Q8_0.gguf",
+        "latency_ms": 20627.32,
+        "input_tokens": 670,
+        "output_tokens": 75,
+        "cost_usd": 0,
+        "cost_basis": "local inference, no billed API; electricity/hardware not estimated",
+        "prompt_sha256": "edfe9aaeec7c7e446146e87ce1cc37be76eeb03d54895ea717c5b9c94c439450",
+        "response": {
+          "strategy": "inspect",
+          "reason": "The observation indicates a passage with no enemy count, but the location is in a forest. Inspecting the passage could reveal any obstacles or routes that might be relevant to the ",
+          "evidence_ids": [
+            "observation_6684ea5a01944d40"
+          ]
+        },
+        "profile": {
+          "context_mode": "selective",
+          "preparation_ms": 0.194,
+          "tokenizer_probe_ms": 402.805,
+          "tokenizer_probe_scope": "separate executable including tokenizer/model metadata loading; not isolated in-process tokenization",
+          "tokenizer_tokens": 671,
+          "prefill_ms": 10527.64,
+          "generation_ms": 8297.35,
+          "load_ms": 10530.0,
+          "inference_process_ms": 20220.811,
+          "parse_validation_ms": 0.23,
+          "output_limit": 160,
+          "threads": 2
+        }
+      },
+      "grounded_strategy": true,
+      "source": "real_local_model_no_game_commands",
+      "wall_ms": 20629.317,
+      "memory_retrieval_ms": 1.974
+    }
+  ],
+  "summary": {
+    "full_current": {
+      "samples": 3,
+      "grounded": 3,
+      "mean_inference_ms": 37864.68666666667,
+      "p95_inference_ms": 39614.829,
+      "p95_method": "nearest-rank; n=3, so maximum",
+      "mean_input_tokens": 1433
+    },
+    "minimal": {
+      "samples": 3,
+      "grounded": 3,
+      "mean_inference_ms": 10677.532333333334,
+      "p95_inference_ms": 10705.732,
+      "p95_method": "nearest-rank; n=3, so maximum",
+      "mean_input_tokens": 302
+    },
+    "selective": {
+      "samples": 3,
+      "grounded": 3,
+      "mean_inference_ms": 20497.156333333332,
+      "p95_inference_ms": 21923.849,
+      "p95_method": "nearest-rank; n=3, so maximum",
+      "mean_input_tokens": 670
+    }
+  },
+  "hardware": "existing i5-7400; CPU, 2 threads; unchanged Qwen3-0.6B Q8 weights",
+  "controls": "same prompt instructions, schema, seed, temperature and 160-token output budget; order interleaved over 3 rounds",
+  "limits": [
+    "tokenizer probe includes executable/metadata startup",
+    "small decision sample, not a puzzle-solving benchmark",
+    "selective/minimal context applies to this observed decision; no general quality guarantee"
+  ],
+  "deterministic_opportunity": "Identified pause screen and an exact Continue target can be handled without LLM. No model replacement proposed."
+}

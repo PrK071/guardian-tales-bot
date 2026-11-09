@@ -1,0 +1,53 @@
+{
+  "recorded_at": 1794102583.9663408,
+  "checks": {
+    "unit_tests": true,
+    "historical_image_replay": true,
+    "real_http_research": true,
+    "real_process_resume": true,
+    "real_model": true,
+    "real_model_integrated": true,
+    "final_live_safe_stop": true,
+    "model_cancellation": true,
+    "database_integrity": true
+  },
+  "evidence_scope": "Acceptance evidence for the architecture base only; not proof of whole-story gameplay.",
+  "database": {
+    "counts": {
+      "goals": 1,
+      "tasks": 7,
+      "observations": 18,
+      "memories": 25,
+      "operations": 5
+    },
+    "integrity": "ok",
+    "schema": 1,
+    "database": "E:\\GuardianTalesBot\\data\\cognitive.sqlite"
+  },
+  "source_sha256": {
+    "cognitive\\advisor.py": "78683f011c7e30ead0374e02ce32cac74c677ccbe9cda532ff32aa994540a1d5",
+    "cognitive\\contracts.py": "03c31b5a4b1af1ff8bd05651aaf54875e55b8929488629c80dce5977878c9b6e",
+    "cognitive\\local_model.py": "2f9c2131a6e0a5607fb6cf709c76be850a5c3598da2f3ddcedabe9cc7a46ed87",
+    "cognitive\\memory.py": "30c703ff1e4c1578de514778af2210f161853dcaf545b1b33553151b169f99e4",
+    "cognitive\\perception.py": "ae3371e31898451e809630e61e1dfeb274c49dc8f72b45b8dfc902bfaabf8d89",
+    "cognitive\\planning.py": "063fe1fc4657f7d47490e8c31f80b0d244302ee45ee0287f270cf9a33394fcac",
+    "cognitive\\research.py": "b2f4ab41a2289b01fe0489d9c2c791bf5a25f58086f736cee52e4ad006822ac7",
+    "cognitive\\runtime.py": "126e63680ae93a0236d647606a6bc7410966b8d3fadfa43f6684e7ff10c4fd85",
+    "cognitive\\__init__.py": "5ceda0f24c5fdac5ae7150e7831ee7ddba804f34755a54ed74f63408933ae947",
+    "bot.py": "2600fc7d85299dd362156b2c0424f684559706d93096c79b9f1d052022a0d085",
+    "config.json": "c70e104222c45c8e377eff6369a3c838a176869e190dd9f7424c53646b9df281",
+    "panel.html": "149b378f646e43f4da1f24d089074b0fc4dc42f17b59895f3b97eb9c9828a028"
+  },
+  "documentation": [
+    "docs/AUDITORIA-ARQUITETURAL.md",
+    "docs/ARQUITETURA-COGNITIVA.md",
+    "docs/ACEITACAO.md"
+  ],
+  "remaining_game_capabilities": [
+    "Universal puzzles",
+    "All-world routes",
+    "Validated trap dodge",
+    "Boss tactics",
+    "VLM/video understanding"
+  ]
+}

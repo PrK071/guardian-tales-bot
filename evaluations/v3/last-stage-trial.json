@@ -1,0 +1,1681 @@
+{
+  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_a35aef4ee70f47c6",
+  "outcome": "interrupted",
+  "reason": "",
+  "metrics": {
+    "cycles": 3,
+    "replans": 1,
+    "recoveries": 0,
+    "frontier_deferrals": 0,
+    "no_progress": 0,
+    "perception_failures": 0,
+    "perception_gaps": 0,
+    "navigation_failures": 0,
+    "verification_failures": 0,
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "decision_ms": [],
+    "cycle_ms": [
+      72473.01700000389,
+      15215.533499998855
+    ],
+    "timing_scope": "isolated_local_planning_ms",
+    "puzzle_attempts": 0,
+    "puzzle_verified": 0,
+    "completed": false,
+    "high_level_completed": 1,
+    "segments": 0,
+    "combats": 0,
+    "guide_cache_hits": 1
+  },
+  "active_plan": {
+    "cursor": 7,
+    "entry_token": "1794178740.800703",
+    "mode": "normal",
+    "plan_id": "a000d25a6d0af23adb5c",
+    "resumed": true,
+    "run_id": "v3_trial_a35aef4ee70f47c6",
+    "scope": "world:1:passage:1",
+    "states": {
+      "first_encounter": {
+        "at": 1794178833.522337,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0127-v3-combat-checkpoint.jpg",
+        "result": {
+          "clear_frames": [
+            "data\\v3\\v3_trial_b09c6691d29a412e\\0121-v3-live-observation.jpg",
+            "data\\v3\\v3_trial_b09c6691d29a412e\\0122-v3-live-observation.jpg",
+            "data\\v3\\v3_trial_b09c6691d29a412e\\0123-v3-live-observation.jpg"
+          ],
+          "continuous_actions": [
+            {
+              "actual_ms": 636.7016000003787,
+              "at_start": 1794178824.6200635,
+              "direction": [
+                -137.0,
+                -364
+              ],
+              "end_monotonic": 47188.0889358,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "duration_elapsed",
+              "release_errors": [],
+              "requested_ms": 633.9273043292887,
+              "run": false,
+              "start_monotonic": 47187.4522246,
+              "wall_ms": 636.7112000007182
+            },
+            {
+              "actual_ms": 457.8112000017427,
+              "at_start": 1794178825.2679582,
+              "direction": [
+                -137.5,
+                -279
+              ],
+              "end_monotonic": 47188.5579921,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "duration_elapsed",
+              "release_errors": [],
+              "requested_ms": 456.91409024840885,
+              "run": false,
+              "start_monotonic": 47188.1001587,
+              "wall_ms": 457.8334000034374
+            },
+            {
+              "actual_ms": 172.90689999936149,
+              "at_start": 1794178825.735903,
+              "direction": [
+                -137.0,
+                -125
+              ],
+              "end_monotonic": 47188.740618,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "duration_elapsed",
+              "release_errors": [],
+              "requested_ms": 171.491350655842,
+              "run": false,
+              "start_monotonic": 47188.5676931,
+              "wall_ms": 172.92490000545513
+            },
+            {
+              "actual_ms": 1705.9047000002465,
+              "at_start": 1794178825.9307935,
+              "end_monotonic": 47190.4689942,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "attack_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "out_of_range",
+              "release_errors": [],
+              "requested_ms": 30000,
+              "start_monotonic": 47188.7630781,
+              "wall_ms": 1705.9160999997403
+            },
+            {
+              "actual_ms": 375.0637999983155,
+              "at_start": 1794178827.6509538,
+              "direction": [
+                80.0,
+                259
+              ],
+              "end_monotonic": 47190.8580397,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "duration_elapsed",
+              "release_errors": [],
+              "requested_ms": 366.07679702672675,
+              "run": false,
+              "start_monotonic": 47190.4829677,
+              "wall_ms": 375.07199999527074
+            },
+            {
+              "actual_ms": 600.6083000029321,
+              "at_start": 1794178828.4511871,
+              "end_monotonic": 47191.8834155,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "attack_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "out_of_range",
+              "release_errors": [],
+              "requested_ms": 30000,
+              "start_monotonic": 47191.2827804,
+              "wall_ms": 600.6351000032737
+            },
+            {
+              "actual_ms": 419.93530000036117,
+              "at_start": 1794178829.0630603,
+              "direction": [
+                -339.0,
+                249
+              ],
+              "end_monotonic": 47192.314807,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_a24b6289b9254bdd",
+              "outcome": "enemy_changed",
+              "release_errors": [],
+              "requested_ms": 705.9567489092401,
+              "run": false,
+              "start_monotonic": 47191.8948382,
+              "wall_ms": 419.9688000007882
+            }
+          ],
+          "evasions": 0,
+          "observations": {
+            "captures": [
+              {
+                "acquisition_ms": 2.06,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 104.2814999964321,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0086-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 1
+              },
+              {
+                "acquisition_ms": 1.91,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 103.2070000001113,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0087-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 2
+              },
+              {
+                "acquisition_ms": 1.4,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 115.74470000050496,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0088-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 3
+              },
+              {
+                "acquisition_ms": 3.23,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 100.76419999677455,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0089-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 4
+              },
+              {
+                "acquisition_ms": 1.78,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 97.26799999771174,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0090-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 5
+              },
+              {
+                "acquisition_ms": 1.36,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 110.21900000196183,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0091-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 6
+              },
+              {
+                "acquisition_ms": 1.51,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 82.25440000387607,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0092-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 7
+              },
+              {
+                "acquisition_ms": 1.78,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 131.98800000100164,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0093-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 8
+              },
+              {
+                "acquisition_ms": 2.01,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 97.54679999605287,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0094-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 9
+              },
+              {
+                "acquisition_ms": 2.81,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 94.69620000163559,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0095-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 10
+              },
+              {
+                "acquisition_ms": 1.44,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 85.61310000368394,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0096-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 11
+              },
+              {
+                "acquisition_ms": 2.7,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 143.13929999480024,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0097-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 12
+              },
+              {
+                "acquisition_ms": 3.5,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 144.3269000010332,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0098-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 13
+              },
+              {
+                "acquisition_ms": 2.14,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 87.72060000046622,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0099-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 14
+              },
+              {
+                "acquisition_ms": 2.56,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 112.71680000209017,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0100-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 15
+              },
+              {
+                "acquisition_ms": 1.33,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 164.59719999693334,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0101-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 16
+              },
+              {
+                "acquisition_ms": 12.25,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 185.61169999884441,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0102-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 17
+              },
+              {
+                "acquisition_ms": 2.27,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 132.27919999917503,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0103-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 18
+              },
+              {
+                "acquisition_ms": 1.66,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 158.6548000050243,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0104-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 19
+              },
+              {
+                "acquisition_ms": 3.06,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 185.19299999752548,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0105-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 20
+              },
+              {
+                "acquisition_ms": 2.12,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 116.37940000218805,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0106-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 21
+              },
+              {
+                "acquisition_ms": 1.28,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 120.12890000187326,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0107-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 22
+              },
+              {
+                "acquisition_ms": 2.18,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 130.43010000546928,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0108-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 23
+              },
+              {
+                "acquisition_ms": 2.02,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 169.24310000467813,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0109-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 24
+              },
+              {
+                "acquisition_ms": 2.24,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 192.40710000303807,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0110-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 25
+              },
+              {
+                "acquisition_ms": 2.57,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 177.48939999728464,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0111-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 26
+              },
+              {
+                "acquisition_ms": 1.32,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 169.2992000025697,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0112-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 27
+              },
+              {
+                "acquisition_ms": 2.2,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 162.12090000044554,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0113-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 28
+              },
+              {
+                "acquisition_ms": 2.98,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 139.74030000099447,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0114-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 29
+              },
+              {
+                "acquisition_ms": 1.9,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 90.61769999971148,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0115-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 30
+              },
+              {
+                "acquisition_ms": 2.46,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 119.19689999922412,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0116-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 31
+              },
+              {
+                "acquisition_ms": 3.45,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 161.84480000083568,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0117-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 32
+              },
+              {
+                "acquisition_ms": 1.36,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 184.64129999483703,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0118-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 33
+              },
+              {
+                "acquisition_ms": 2.02,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 147.307200000796,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0119-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 34
+              },
+              {
+                "acquisition_ms": 1.94,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 153.12419999827398,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0120-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 35
+              },
+              {
+                "acquisition_ms": 2.18,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 184.79930000466993,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0121-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 36
+              },
+              {
+                "acquisition_ms": 2.7,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 151.27220000431407,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0122-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 37
+              },
+              {
+                "acquisition_ms": 1.28,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 155.9650999988662,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0123-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 38
+              },
+              {
+                "acquisition_ms": 1.84,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 173.8091999941389,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0124-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 39
+              }
+            ],
+            "error": null,
+            "seconds": 6.775674500000605
+          },
+          "outcome": "visible_combat_ended",
+          "raw_confirmation": "data\\v3\\v3_trial_b09c6691d29a412e\\0125-v3-combat-raw-clear-confirmation.jpg",
+          "reorientations": 0,
+          "skill_attempts": 0,
+          "stage_complete": false,
+          "states": [
+            {
+              "at": 1794178824.6093297,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0085-v3-distant-threat-preflight.jpg",
+              "observed": true,
+              "prior_frame": null,
+              "state": "ENEMY_DETECTED"
+            },
+            {
+              "at": 1794178824.6161585,
+              "distance": 388.92801390488705,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0085-v3-distant-threat-preflight.jpg",
+              "observed": true,
+              "state": "APPROACH"
+            },
+            {
+              "at": 1794178825.2640533,
+              "distance": 311.0421997092999,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0091-v3-live-observation.jpg",
+              "observed": true,
+              "state": "APPROACH"
+            },
+            {
+              "at": 1794178825.7319992,
+              "distance": 185.4561942885705,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0095-v3-live-observation.jpg",
+              "observed": true,
+              "state": "APPROACH"
+            },
+            {
+              "at": 1794178825.915179,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0097-v3-live-observation.jpg",
+              "observed": true,
+              "state": "ENGAGE"
+            },
+            {
+              "at": 1794178825.920059,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0097-v3-live-observation.jpg",
+              "state": "CONTINUOUS_ATTACK"
+            },
+            {
+              "at": 1794178827.6421704,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0109-v3-live-observation.jpg",
+              "observed": true,
+              "reason": "out_of_range",
+              "state": "VERIFY_COMBAT_STATE"
+            },
+            {
+              "at": 1794178827.64705,
+              "distance": 271.07379069175977,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0109-v3-live-observation.jpg",
+              "observed": true,
+              "state": "APPROACH"
+            },
+            {
+              "at": 1794178828.4440787,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0114-v3-live-observation.jpg",
+              "observed": true,
+              "state": "ENGAGE"
+            },
+            {
+              "at": 1794178828.4469633,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0114-v3-live-observation.jpg",
+              "state": "CONTINUOUS_ATTACK"
+            },
+            {
+              "at": 1794178829.055719,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0118-v3-live-observation.jpg",
+              "observed": true,
+              "reason": "out_of_range",
+              "state": "VERIFY_COMBAT_STATE"
+            },
+            {
+              "at": 1794178829.0601325,
+              "distance": 420.62096952006567,
+              "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0118-v3-live-observation.jpg",
+              "observed": true,
+              "state": "APPROACH"
+            },
+            {
+              "at": 1794178831.384004,
+              "observed": true,
+              "outcome": "visible_combat_ended",
+              "state": "FINISH"
+            }
+          ],
+          "visible_combat_ended": true
+        },
+        "state": "completed"
+      },
+      "initial_stem": {
+        "at": 1794178788.1387417,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0020-v3-segment-after-map.jpg",
+        "result": {
+          "after": [
+            919.6901408450703,
+            578.5774647887324
+          ],
+          "after_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0020-v3-segment-after-map.jpg",
+          "before": [
+            919.6901408450703,
+            654.6338028169014
+          ],
+          "before_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0003-v3-segment-before-map.jpg",
+          "controls": [
+            {
+              "actual_ms": 1291.7116000025999,
+              "at_start": 1794178783.7945108,
+              "direction": [
+                0.0,
+                -1.0
+              ],
+              "end_monotonic": 47147.9180825,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_b0fed03940d24d91",
+              "outcome": "duration_elapsed",
+              "planned_action_indices": [
+                0
+              ],
+              "release_errors": [],
+              "requested_ms": 1289.281676186004,
+              "run": false,
+              "start_monotonic": 47146.6263606,
+              "wall_ms": 1291.7219000009936
+            }
+          ],
+          "goal_error_reference_pixels": 1.1972759215446753,
+          "model_calls": 0,
+          "net_progress_reference_pixels": 76.05633802816897,
+          "observations": {
+            "captures": [
+              {
+                "acquisition_ms": 1.5,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 77.63850000628736,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0006-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 1
+              },
+              {
+                "acquisition_ms": 2.63,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 82.17330000479706,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0007-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 2
+              },
+              {
+                "acquisition_ms": 2.16,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 89.47039999475237,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0008-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 3
+              },
+              {
+                "acquisition_ms": 2.0,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 127.82349999906728,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0009-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 4
+              },
+              {
+                "acquisition_ms": 1.71,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 106.95030000351835,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0010-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 5
+              },
+              {
+                "acquisition_ms": 1.45,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 82.73560000088764,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0011-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 6
+              },
+              {
+                "acquisition_ms": 1.52,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 87.08209999895189,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0012-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 7
+              },
+              {
+                "acquisition_ms": 1.45,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 103.78080000373302,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0013-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 8
+              },
+              {
+                "acquisition_ms": 2.21,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 99.08100000029663,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0014-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 9
+              },
+              {
+                "acquisition_ms": 1.9,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 163.42579999763984,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0015-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 10
+              },
+              {
+                "acquisition_ms": 1.9,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 131.4548999944236,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0016-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 11
+              },
+              {
+                "acquisition_ms": 2.31,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 116.79089999961434,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0017-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 12
+              },
+              {
+                "acquisition_ms": 2.03,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 80.62039999640547,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0018-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 13
+              }
+            ],
+            "error": null,
+            "seconds": 1.3674213999984204
+          },
+          "partial_observation_horizon": false,
+          "plan": {
+            "calibrated_reference_pixels_per_ms": 0.059537465550086245,
+            "checkpoints": [
+              [
+                995.0,
+                441
+              ],
+              [
+                995.0,
+                386.5
+              ]
+            ],
+            "original_grid_points": 50,
+            "segments": [
+              {
+                "direction": [
+                  0.0,
+                  -1.0
+                ],
+                "duration_ms": 1289.281676186004,
+                "end": [
+                  995.0,
+                  386.5
+                ],
+                "evidence": "line entirely inside observed floor with wall clearance",
+                "reference_distance": 76.76056338028167,
+                "start": [
+                  995.0,
+                  441.0
+                ]
+              }
+            ],
+            "target": [
+              994.4042553191489,
+              386.3936170212766
+            ],
+            "unobserved_space_crossed": false
+          },
+          "planning_ms": 60.953299995162524,
+          "progress_verified": true,
+          "reason": "duration_elapsed",
+          "reused_map_checkpoint": false,
+          "seconds": 8.878375200001756,
+          "target": [
+            918.8510638297872,
+            577.7234042553191
+          ],
+          "verified": true
+        },
+        "state": "completed"
+      },
+      "lantern_puzzle": {
+        "state": "completed",
+        "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0141-v3-lantern-gate-crossing-map.jpg",
+        "result": {
+          "verified": true,
+          "lowered_stone_observations": [
+            {
+              "verified": true,
+              "closed_panel_correlation": 0.13636450469493866,
+              "exposed_floor_fraction": 1.0,
+              "current_panel": [
+                772,
+                461,
+                210,
+                100
+              ],
+              "motion": {
+                "background_dx": 363.8999087386611,
+                "background_dy": -136.68502405765324,
+                "confidence": 0.9,
+                "method": "independent_aligned_map_checkpoints_and_measured_scale"
+              },
+              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0120-v3-lantern-gate-lowered-check.jpg"
+            },
+            {
+              "verified": true,
+              "closed_panel_correlation": 0.13636450469493866,
+              "exposed_floor_fraction": 1.0,
+              "current_panel": [
+                772,
+                461,
+                210,
+                100
+              ],
+              "motion": {
+                "background_dx": 363.8999087386611,
+                "background_dy": -136.68502405765324,
+                "confidence": 0.9,
+                "method": "independent_aligned_map_checkpoints_and_measured_scale"
+              },
+              "closed_frame": "data/v3/v3_lantern_probe_e1bb4aa9ddb84c44/0002-lantern-find-object.jpg",
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0121-v3-lantern-gate-lowered-check.jpg"
+            }
+          ],
+          "formerly_blocked_edge_reference": [
+            439.88715244409747,
+            802.1031122432369
+          ],
+          "target_reference": [
+            439.88715244409747,
+            812.1031122432369
+          ],
+          "after_reference": [
+            439.40845070422546,
+            813.7887323943661
+          ],
+          "crossing_map_frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0141-v3-lantern-gate-crossing-map.jpg",
+          "enemy_interrupted": false,
+          "stage_complete": false,
+          "entry_token": "1794178740.800703",
+          "room_views": [
+            {
+              "viewpoint_reference": [
+                426,
+                713
+              ],
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0098-v3-lantern-room-view.jpg",
+              "lit": [
+                {
+                  "kind": "standing_lantern_lit",
+                  "bbox": [
+                    354,
+                    144,
+                    69,
+                    175
+                  ],
+                  "fire_center": [
+                    390.09132260321906,
+                    227.90115465360392
+                  ],
+                  "pedestal_bbox": [
+                    354,
+                    264,
+                    69,
+                    55
+                  ],
+                  "confidence": 0.9864237904548645,
+                  "method": "floor_lantern_pedestal_with_current_fire"
+                },
+                {
+                  "kind": "standing_lantern_lit",
+                  "bbox": [
+                    1142,
+                    145,
+                    69,
+                    175
+                  ],
+                  "fire_center": [
+                    1180.2668352408837,
+                    212.99041788661165
+                  ],
+                  "pedestal_bbox": [
+                    1142,
+                    265,
+                    69,
+                    55
+                  ],
+                  "confidence": 0.9773439168930054,
+                  "method": "floor_lantern_pedestal_with_current_fire"
+                }
+              ]
+            },
+            {
+              "viewpoint_reference": [
+                426,
+                775
+              ],
+              "frame": "data\\v3\\v3_trial_a35aef4ee70f47c6\\0113-v3-lantern-room-view.jpg",
+              "lit": [
+                {
+                  "kind": "standing_lantern_lit",
+                  "bbox": [
+                    370,
+                    278,
+                    69,
+                    175
+                  ],
+                  "fire_center": [
+                    410.94915938130464,
+                    355.6244788164089
+                  ],
+                  "pedestal_bbox": [
+                    370,
+                    398,
+                    69,
+                    55
+                  ],
+                  "confidence": 0.9711965322494507,
+                  "method": "floor_lantern_pedestal_with_current_fire"
+                },
+                {
+                  "kind": "standing_lantern_lit",
+                  "bbox": [
+                    1157,
+                    278,
+                    69,
+                    175
+                  ],
+                  "fire_center": [
+                    1185.677143917832,
+                    356.932557851751
+                  ],
+                  "pedestal_bbox": [
+                    1157,
+                    398,
+                    69,
+                    55
+                  ],
+                  "confidence": 0.9570205211639404,
+                  "method": "floor_lantern_pedestal_with_current_fire"
+                }
+              ]
+            }
+          ],
+          "substeps": []
+        },
+        "at": 1794196867.0784266
+      },
+      "north_corridor": {
+        "at": 1794178807.1638815,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0071-v3-segment-after-map.jpg",
+        "result": {
+          "after": [
+            904.1971830985915,
+            371.53521126760563
+          ],
+          "after_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0071-v3-segment-after-map.jpg",
+          "before": [
+            907.0140845070423,
+            574.3521126760563
+          ],
+          "before_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0032-v3-segment-before-map.jpg",
+          "controls": [
+            {
+              "actual_ms": 88.45129999826895,
+              "at_start": 1794178801.0594501,
+              "direction": [
+                -0.7071067811865475,
+                -0.7071067811865475
+              ],
+              "end_monotonic": 47163.9801071,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_d04107043e5d4ec1",
+              "outcome": "duration_elapsed",
+              "planned_action_indices": [
+                0
+              ],
+              "release_errors": [],
+              "requested_ms": 83.63851523767725,
+              "run": false,
+              "start_monotonic": 47163.8916466,
+              "wall_ms": 88.46049999556271
+            },
+            {
+              "actual_ms": 3359.561700002814,
+              "at_start": 1794178801.1590874,
+              "direction": [
+                0.0,
+                -1.0
+              ],
+              "end_monotonic": 47167.3509937,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_d04107043e5d4ec1",
+              "outcome": "duration_elapsed",
+              "planned_action_indices": [
+                1
+              ],
+              "release_errors": [],
+              "requested_ms": 3359.229321438763,
+              "run": false,
+              "start_monotonic": 47163.9914217,
+              "wall_ms": 3359.572000001208
+            }
+          ],
+          "goal_error_reference_pixels": 1.8120147771123125,
+          "model_calls": 0,
+          "net_progress_reference_pixels": 202.83646228050355,
+          "observations": {
+            "captures": [
+              {
+                "acquisition_ms": 3.13,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 117.10779999702936,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0035-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 1
+              },
+              {
+                "acquisition_ms": 17.53,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 122.6886000004015,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0036-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 2
+              },
+              {
+                "acquisition_ms": 2.52,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 91.86429999681422,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0037-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 3
+              },
+              {
+                "acquisition_ms": 1.39,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 95.20579999662004,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0038-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 4
+              },
+              {
+                "acquisition_ms": 3.25,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 114.45439999806695,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0039-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 5
+              },
+              {
+                "acquisition_ms": 2.24,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 96.41989999363432,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0040-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 6
+              },
+              {
+                "acquisition_ms": 1.66,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 108.3571999988635,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0041-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 7
+              },
+              {
+                "acquisition_ms": 2.06,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 130.12159999925643,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0042-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 8
+              },
+              {
+                "acquisition_ms": 1.32,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 100.74039999744855,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0043-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 9
+              },
+              {
+                "acquisition_ms": 1.4,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 90.28629999374971,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0044-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 10
+              },
+              {
+                "acquisition_ms": 1.86,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 98.07040000305278,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0045-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 11
+              },
+              {
+                "acquisition_ms": 2.62,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 85.9030999999959,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0046-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 12
+              },
+              {
+                "acquisition_ms": 1.65,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 98.28740000375547,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0047-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 13
+              },
+              {
+                "acquisition_ms": 10.47,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 79.86610000079963,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0048-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 14
+              },
+              {
+                "acquisition_ms": 1.96,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 96.20670000003884,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0049-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 15
+              },
+              {
+                "acquisition_ms": 2.67,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 87.93790000345325,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0050-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 16
+              },
+              {
+                "acquisition_ms": 1.55,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 97.81670000666054,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0051-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 17
+              },
+              {
+                "acquisition_ms": 2.69,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 104.43560000567231,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0052-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 18
+              },
+              {
+                "acquisition_ms": 1.32,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 93.41349999886006,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0053-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 19
+              },
+              {
+                "acquisition_ms": 9.44,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 85.79420000023674,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0054-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 20
+              },
+              {
+                "acquisition_ms": 2.87,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 99.3464999992284,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0055-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 21
+              },
+              {
+                "acquisition_ms": 7.83,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 109.76379999920027,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0056-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 22
+              },
+              {
+                "acquisition_ms": 1.98,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 137.4835000024177,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0057-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 23
+              },
+              {
+                "acquisition_ms": 1.84,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 86.14539999689441,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0058-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 24
+              },
+              {
+                "acquisition_ms": 2.4,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 103.25390000070911,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0059-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 25
+              },
+              {
+                "acquisition_ms": 1.95,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 85.04559999710182,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0060-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 26
+              },
+              {
+                "acquisition_ms": 1.29,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 102.26529999636114,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0061-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 27
+              },
+              {
+                "acquisition_ms": 1.49,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 95.77870000066468,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0062-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 28
+              },
+              {
+                "acquisition_ms": 1.48,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 113.30330000055255,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0063-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 29
+              },
+              {
+                "acquisition_ms": 2.81,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 102.95030000270344,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0064-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 30
+              },
+              {
+                "acquisition_ms": 2.56,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 91.18920000037178,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0065-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 31
+              },
+              {
+                "acquisition_ms": 1.53,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 96.24439999606693,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0066-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 32
+              },
+              {
+                "acquisition_ms": 2.26,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 115.53740000090329,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0067-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 33
+              },
+              {
+                "acquisition_ms": 1.44,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 112.94640000414802,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0068-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 34
+              },
+              {
+                "acquisition_ms": 1.28,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 93.25099999841768,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0069-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 35
+              }
+            ],
+            "error": null,
+            "seconds": 3.5776712000006228
+          },
+          "partial_observation_horizon": false,
+          "plan": {
+            "calibrated_reference_pixels_per_ms": 0.059537465550086245,
+            "checkpoints": [
+              [
+                986.0,
+                384
+              ],
+              [
+                983.5,
+                381.5
+              ],
+              [
+                983.5,
+                239.5
+              ]
+            ],
+            "original_grid_points": 150,
+            "segments": [
+              {
+                "direction": [
+                  -0.7071067811865475,
+                  -0.7071067811865475
+                ],
+                "duration_ms": 83.63851523767725,
+                "end": [
+                  983.5,
+                  381.5
+                ],
+                "evidence": "line entirely inside observed floor with wall clearance",
+                "reference_distance": 4.979625219623573,
+                "start": [
+                  986.0,
+                  384.0
+                ]
+              },
+              {
+                "direction": [
+                  0.0,
+                  -1.0
+                ],
+                "duration_ms": 3359.229321438763,
+                "end": [
+                  983.5,
+                  239.5
+                ],
+                "evidence": "line entirely inside observed floor with wall clearance",
+                "reference_distance": 199.99999999999994,
+                "start": [
+                  983.5,
+                  381.5
+                ]
+              }
+            ],
+            "target": [
+              983.0744680851063,
+              239.10638297872342
+            ],
+            "unobserved_space_crossed": false
+          },
+          "planning_ms": 110.41110000223853,
+          "progress_verified": true,
+          "reason": "duration_elapsed",
+          "reused_map_checkpoint": false,
+          "seconds": 10.928171999999904,
+          "target": [
+            902.8936170212766,
+            370.2765957446809
+          ],
+          "verified": true
+        },
+        "state": "completed"
+      },
+      "npc_bypass": {
+        "at": 1794178796.200961,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0030-v3-segment-after-map.jpg",
+        "result": {
+          "after": [
+            907.0140845070423,
+            574.3521126760563
+          ],
+          "after_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0030-v3-segment-after-map.jpg",
+          "before": [
+            919.6901408450703,
+            578.5774647887324
+          ],
+          "before_frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0022-v3-segment-before-map.jpg",
+          "controls": [
+            {
+              "actual_ms": 153.39490000042133,
+              "at_start": 1794178792.9793174,
+              "direction": [
+                -0.7071067811865476,
+                -0.7071067811865476
+              ],
+              "end_monotonic": 47155.9645248,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_5f74ed8002ba4e01",
+              "outcome": "duration_elapsed",
+              "planned_action_indices": [
+                0
+              ],
+              "release_errors": [],
+              "requested_ms": 150.54932742781904,
+              "run": false,
+              "start_monotonic": 47155.8111131,
+              "wall_ms": 153.41170000465354
+            },
+            {
+              "actual_ms": 166.93819999636617,
+              "at_start": 1794178793.1448884,
+              "direction": [
+                -1.0,
+                0.0
+              ],
+              "end_monotonic": 47156.1437872,
+              "error": null,
+              "fingers_remaining": [],
+              "kind": "move_hold",
+              "observed_effect_verified": false,
+              "operation_id": "operation_5f74ed8002ba4e01",
+              "outcome": "duration_elapsed",
+              "planned_action_indices": [
+                1
+              ],
+              "release_errors": [],
+              "requested_ms": 165.5958116202207,
+              "run": false,
+              "start_monotonic": 47155.9768359,
+              "wall_ms": 166.95130000152858
+            }
+          ],
+          "goal_error_reference_pixels": 5.323895116703639,
+          "model_calls": 0,
+          "net_progress_reference_pixels": 13.361736592260653,
+          "observations": {
+            "captures": [
+              {
+                "acquisition_ms": 2.74,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 89.81409999978496,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0025-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 1
+              },
+              {
+                "acquisition_ms": 2.34,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 104.95190000074217,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0026-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 2
+              },
+              {
+                "acquisition_ms": 1.26,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 90.23759999399772,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0027-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 3
+              },
+              {
+                "acquisition_ms": 2.31,
+                "capture_source": "scrcpy_h264",
+                "capture_wall_ms": 123.98570000368636,
+                "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0028-v3-live-observation.jpg",
+                "raw_capture_ms": null,
+                "scene": "jogo",
+                "sequence": 4
+              }
+            ],
+            "error": null,
+            "seconds": 0.41175430000294
+          },
+          "partial_observation_horizon": false,
+          "plan": {
+            "calibrated_reference_pixels_per_ms": 0.059537465550086245,
+            "checkpoints": [
+              [
+                995.0,
+                387
+              ],
+              [
+                990.5,
+                382.5
+              ],
+              [
+                983.5,
+                382.5
+              ]
+            ],
+            "original_grid_points": 18,
+            "segments": [
+              {
+                "direction": [
+                  -0.7071067811865476,
+                  -0.7071067811865476
+                ],
+                "duration_ms": 150.54932742781904,
+                "end": [
+                  990.5,
+                  382.5
+                ],
+                "evidence": "line entirely inside observed floor with wall clearance",
+                "reference_distance": 8.96332539532243,
+                "start": [
+                  995.0,
+                  387.0
+                ]
+              },
+              {
+                "direction": [
+                  -1.0,
+                  0.0
+                ],
+                "duration_ms": 165.5958116202207,
+                "end": [
+                  983.5,
+                  382.5
+                ],
+                "evidence": "line entirely inside observed floor with wall clearance",
+                "reference_distance": 9.859154929577462,
+                "start": [
+                  990.5,
+                  382.5
+                ]
+              }
+            ],
+            "target": [
+              983.0744680851063,
+              386.3936170212766
+            ],
+            "unobserved_space_crossed": false
+          },
+          "planning_ms": 46.05230000015581,
+          "progress_verified": true,
+          "reason": "duration_elapsed",
+          "reused_map_checkpoint": false,
+          "seconds": 8.026902100005827,
+          "target": [
+            902.8936170212766,
+            577.7234042553191
+          ],
+          "verified": true
+        },
+        "state": "completed"
+      },
+      "reach_lantern_room": {
+        "at": 1794178908.0280657,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0241-after-pausa.jpg",
+        "result": {
+          "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0240-after-jogo.jpg",
+          "landmark_observed": "portable_brazier"
+        },
+        "state": "completed"
+      },
+      "west_and_junction": {
+        "at": 1794178904.064257,
+        "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0239-after-pausa.jpg",
+        "result": {
+          "adaptation": "later landmark reached by alternative branch",
+          "frame": "data\\v3\\v3_trial_b09c6691d29a412e\\0238-after-jogo.jpg",
+          "landmark_observed": "portable_brazier"
+        },
+        "state": "completed"
+      }
+    }
+  }
+}

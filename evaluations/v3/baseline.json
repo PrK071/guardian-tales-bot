@@ -1,0 +1,542 @@
+{
+  "at": 1794123834.4458585,
+  "historical_runs": [
+    {
+      "report": "data\\v2\\v2_lantern_calibration_52b8b4ecd2df48c9\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 1.985,
+      "actions": 0,
+      "moves": 0,
+      "move_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "controller_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: Cannot transition from unrecognized screen: unknown; pause: Cannot transition from unrecognized screen: unknown"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_57d3f511303f48c8\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 0.28,
+      "actions": 0,
+      "moves": 0,
+      "move_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "controller_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: error: device '127.0.0.1:5555' not found; pause: error: device '127.0.0.1:5555' not found"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_64f19690f25f4c65\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 376.387,
+      "actions": 135,
+      "moves": 27,
+      "move_duration_ms": {
+        "n": 27,
+        "mean": 422.22222222222223,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 134,
+        "mean": 1300.6566069019375,
+        "p95": 2036.123514175415
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 135,
+        "mean": 416.94533333333334,
+        "p95": 545.21
+      },
+      "controller_ms": {
+        "n": 135,
+        "mean": 1378.5131111111111,
+        "p95": 2092.0
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "InterruptedError: V2 manually stopped"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_7150388e43af4628\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 138.716,
+      "actions": 52,
+      "moves": 18,
+      "move_duration_ms": {
+        "n": 18,
+        "mean": 379.05555555555554,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 51,
+        "mean": 1045.6732581643498,
+        "p95": 3074.6705532073975
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 52,
+        "mean": 421.32634615384615,
+        "p95": 601.32
+      },
+      "controller_ms": {
+        "n": 52,
+        "mean": 1487.7076923076922,
+        "p95": 2279.64
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: Controlled character absent in immediate pre-input observation; movement withheld"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_8617713a0ec24422\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 134.035,
+      "actions": 41,
+      "moves": 13,
+      "move_duration_ms": {
+        "n": 13,
+        "mean": 676.9230769230769,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 40,
+        "mean": 1595.91863155365,
+        "p95": 2380.6912899017334
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 41,
+        "mean": 414.7012195121951,
+        "p95": 543.26
+      },
+      "controller_ms": {
+        "n": 41,
+        "mean": 1556.1807317073171,
+        "p95": 2323.22
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: Low player health; navigation interrupted for recovery"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_bcd0a8a339db4292\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 60.766,
+      "actions": 22,
+      "moves": 4,
+      "move_duration_ms": {
+        "n": 4,
+        "mean": 525,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 21,
+        "mean": 1308.1856228056408,
+        "p95": 2147.886276245117
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 22,
+        "mean": 420.185,
+        "p95": 516.05
+      },
+      "controller_ms": {
+        "n": 22,
+        "mean": 1360.8613636363636,
+        "p95": 2021.85
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: Cannot transition from unrecognized screen: unknown"
+    },
+    {
+      "report": "data\\v2\\v2_lantern_calibration_cface23508d84a6d\\report.json",
+      "kind": "lantern_calibration_not_stage_completion",
+      "seconds": 199.057,
+      "actions": 65,
+      "moves": 22,
+      "move_duration_ms": {
+        "n": 22,
+        "mean": 602.8636363636364,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 1,
+        "mean": 850,
+        "p95": 850
+      },
+      "observation_gaps_ms": {
+        "n": 64,
+        "mean": 1128.1580924987793,
+        "p95": 2591.3732051849365
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 65,
+        "mean": 496.1463076923077,
+        "p95": 785.49
+      },
+      "controller_ms": {
+        "n": 65,
+        "mean": 1784.616,
+        "p95": 3318.53
+      },
+      "cycles": null,
+      "model_calls": 0,
+      "outcome": "RuntimeError: Low player health; navigation interrupted for recovery"
+    },
+    {
+      "report": "data\\v2\\v2_trial_5aa90fc7327340cf\\report.json",
+      "kind": "initial_stage_trial",
+      "seconds": 319.069,
+      "actions": 126,
+      "moves": 42,
+      "move_duration_ms": {
+        "n": 42,
+        "mean": 541.6666666666666,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 125,
+        "mean": 1105.1502113342285,
+        "p95": 1679.9168586730957
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 126,
+        "mean": 360.73761904761903,
+        "p95": 471.07
+      },
+      "controller_ms": {
+        "n": 126,
+        "mean": 1307.4895238095237,
+        "p95": 2081.83
+      },
+      "cycles": 42,
+      "model_calls": 0,
+      "outcome": "blocked"
+    },
+    {
+      "report": "data\\v2\\v2_trial_604785b78ceb4a41\\report.json",
+      "kind": "resumed_stage_trial",
+      "seconds": 56.259,
+      "actions": 20,
+      "moves": 6,
+      "move_duration_ms": {
+        "n": 6,
+        "mean": 600,
+        "p95": 600
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 19,
+        "mean": 1199.6824741363525,
+        "p95": 1927.6840686798096
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 20,
+        "mean": 358.084,
+        "p95": 420.24
+      },
+      "controller_ms": {
+        "n": 20,
+        "mean": 1278.964,
+        "p95": 1889.92
+      },
+      "cycles": 7,
+      "model_calls": 0,
+      "outcome": "blocked"
+    },
+    {
+      "report": "data\\v2\\v2_trial_76dca5350b004dbb\\report.json",
+      "kind": "initial_stage_trial",
+      "seconds": 4.083,
+      "actions": 0,
+      "moves": 0,
+      "move_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "controller_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "cycles": 1,
+      "model_calls": 0,
+      "outcome": "blocked"
+    },
+    {
+      "report": "data\\v2\\v2_trial_7f2943bf285b4f4b\\report.json",
+      "kind": "resumed_stage_trial",
+      "seconds": 110.839,
+      "actions": 45,
+      "moves": 15,
+      "move_duration_ms": {
+        "n": 15,
+        "mean": 540,
+        "p95": 900
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 44,
+        "mean": 1074.393857609142,
+        "p95": 1742.2897815704346
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 45,
+        "mean": 334.7126666666667,
+        "p95": 457.67
+      },
+      "controller_ms": {
+        "n": 45,
+        "mean": 1289.3017777777777,
+        "p95": 2082.04
+      },
+      "cycles": 15,
+      "model_calls": 0,
+      "outcome": "interrupted"
+    },
+    {
+      "report": "data\\v2\\v2_trial_99d348c7cb44486e\\report.json",
+      "kind": "resumed_stage_trial",
+      "seconds": 253.529,
+      "actions": 95,
+      "moves": 31,
+      "move_duration_ms": {
+        "n": 31,
+        "mean": 448.6774193548387,
+        "p95": 600
+      },
+      "attack_duration_ms": {
+        "n": 4,
+        "mean": 850,
+        "p95": 850
+      },
+      "observation_gaps_ms": {
+        "n": 94,
+        "mean": 1222.2407117803045,
+        "p95": 2142.3752307891846
+      },
+      "attack_observation_gaps_ms": {
+        "n": 3,
+        "mean": 1927.2945721944172,
+        "p95": 4166.316270828247
+      },
+      "raw_capture_ms": {
+        "n": 95,
+        "mean": 348.71852631578946,
+        "p95": 462.44
+      },
+      "controller_ms": {
+        "n": 95,
+        "mean": 1299.884,
+        "p95": 2000.02
+      },
+      "cycles": 31,
+      "model_calls": 0,
+      "outcome": "blocked"
+    },
+    {
+      "report": "data\\v2\\v2_trial_dfcf9912d4a94e9e\\report.json",
+      "kind": "initial_stage_trial",
+      "seconds": 8.844,
+      "actions": 3,
+      "moves": 1,
+      "move_duration_ms": {
+        "n": 1,
+        "mean": 500,
+        "p95": 500
+      },
+      "attack_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "observation_gaps_ms": {
+        "n": 2,
+        "mean": 1618.5965538024902,
+        "p95": 2172.9769706726074
+      },
+      "attack_observation_gaps_ms": {
+        "n": 0,
+        "mean": null,
+        "p95": null
+      },
+      "raw_capture_ms": {
+        "n": 3,
+        "mean": 346.5,
+        "p95": 439.46
+      },
+      "controller_ms": {
+        "n": 3,
+        "mean": 1332.7633333333333,
+        "p95": 1749.9
+      },
+      "cycles": 1,
+      "model_calls": 0,
+      "outcome": "blocked"
+    }
+  ],
+  "read_only_timings": {
+    "adb_shell_echo": {
+      "n": 8,
+      "mean": 66.63137499890581,
+      "p95": 84.48640000278829
+    },
+    "adb_raw_screencap": {
+      "n": 8,
+      "mean": 334.3901874986841,
+      "p95": 472.90500000235625
+    }
+  },
+  "llm_finding": "V2 tactical loop already records zero Qwen calls. The V3 bottleneck is per-action UI/capture/ADB orchestration, not one LLM call per hit.",
+  "limitations": [
+    "Historical gaps are observation-stamp estimates, not exact input issue/finish measurements.",
+    "Different route portions, health and code revisions cannot prove equivalent combat or route speedup."
+  ]
+}

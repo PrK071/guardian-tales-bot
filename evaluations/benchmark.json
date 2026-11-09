@@ -1,0 +1,189 @@
+{
+  "environment": "action-conditioned simulation; no game commands or paid model calls",
+  "scenarios": [
+    {
+      "id": "identify_resume_segment",
+      "initial_scene": "jogo",
+      "known_stage": false,
+      "stuck": false,
+      "enemy": false,
+      "clear_after": 2,
+      "cycles": 14
+    },
+    {
+      "id": "wall_no_progress",
+      "initial_scene": "jogo",
+      "known_stage": true,
+      "stuck": true,
+      "enemy": false,
+      "clear_after": 99,
+      "cycles": 10
+    },
+    {
+      "id": "enemy_recovery",
+      "initial_scene": "jogo",
+      "known_stage": true,
+      "stuck": false,
+      "enemy": true,
+      "clear_after": 99,
+      "cycles": 8
+    },
+    {
+      "id": "protected_revive",
+      "initial_scene": "bloqueada",
+      "known_stage": true,
+      "stuck": false,
+      "enemy": false,
+      "clear_after": 99,
+      "cycles": 5
+    }
+  ],
+  "results": [
+    {
+      "variant": "A_monolithic_no_memory",
+      "scenario": "identify_resume_segment",
+      "simulated": true,
+      "stage_clear": true,
+      "actions": 4,
+      "unnecessary_actions": 0,
+      "latency_ms": 0.223,
+      "decision_median_ms": 0.008850000085658394,
+      "tokens": 0,
+      "cost_usd": 0,
+      "note": "Handwritten naive baseline, not a universal agent comparison."
+    },
+    {
+      "variant": "B_hierarchical_persistent",
+      "scenario": "identify_resume_segment",
+      "simulated": true,
+      "stage_clear": true,
+      "actions": 4,
+      "unnecessary_actions": 0,
+      "latency_ms": 295.871,
+      "decision_median_ms": 0.0,
+      "tokens": 0,
+      "cost_usd": 0,
+      "outcome": "stage_complete",
+      "replans": 0,
+      "fixture_research_requests": 0,
+      "task_completion_rate": 1.0,
+      "task_counts": {
+        "completed": 7,
+        "failed": 0,
+        "replanned": 0,
+        "blocked": 0
+      }
+    },
+    {
+      "variant": "A_monolithic_no_memory",
+      "scenario": "wall_no_progress",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 10,
+      "unnecessary_actions": 9,
+      "latency_ms": 0.2,
+      "decision_median_ms": 0.003200000719516538,
+      "tokens": 0,
+      "cost_usd": 0,
+      "note": "Handwritten naive baseline, not a universal agent comparison."
+    },
+    {
+      "variant": "B_hierarchical_persistent",
+      "scenario": "wall_no_progress",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 4,
+      "unnecessary_actions": 0,
+      "latency_ms": 281.818,
+      "decision_median_ms": 0.0,
+      "tokens": 0,
+      "cost_usd": 0,
+      "outcome": "blocked",
+      "replans": 1,
+      "fixture_research_requests": 2,
+      "task_completion_rate": 0.5,
+      "task_counts": {
+        "completed": 4,
+        "failed": 1,
+        "replanned": 1,
+        "blocked": 0
+      }
+    },
+    {
+      "variant": "A_monolithic_no_memory",
+      "scenario": "enemy_recovery",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 8,
+      "unnecessary_actions": 0,
+      "latency_ms": 0.426,
+      "decision_median_ms": 0.006800000846851617,
+      "tokens": 0,
+      "cost_usd": 0,
+      "note": "Handwritten naive baseline, not a universal agent comparison."
+    },
+    {
+      "variant": "B_hierarchical_persistent",
+      "scenario": "enemy_recovery",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 6,
+      "unnecessary_actions": 0,
+      "latency_ms": 510.354,
+      "decision_median_ms": 0.0,
+      "tokens": 0,
+      "cost_usd": 0,
+      "outcome": "blocked",
+      "replans": 0,
+      "fixture_research_requests": 2,
+      "task_completion_rate": 0.8888888888888888,
+      "task_counts": {
+        "completed": 8,
+        "failed": 0,
+        "replanned": 0,
+        "blocked": 0
+      }
+    },
+    {
+      "variant": "A_monolithic_no_memory",
+      "scenario": "protected_revive",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 0,
+      "unnecessary_actions": 0,
+      "latency_ms": 0.044,
+      "decision_median_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0,
+      "note": "Handwritten naive baseline, not a universal agent comparison."
+    },
+    {
+      "variant": "B_hierarchical_persistent",
+      "scenario": "protected_revive",
+      "simulated": true,
+      "stage_clear": false,
+      "actions": 0,
+      "unnecessary_actions": 0,
+      "latency_ms": 35.864,
+      "decision_median_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0,
+      "outcome": "blocked",
+      "replans": 0,
+      "fixture_research_requests": 0,
+      "task_completion_rate": 0.0,
+      "task_counts": {
+        "completed": 0,
+        "failed": 0,
+        "replanned": 0,
+        "blocked": 0
+      }
+    }
+  ],
+  "limits": [
+    "Small deterministic scenarios do not establish real-game success rates.",
+    "The monolithic baseline is an explicit simple reactive policy.",
+    "Latency is local CPU/database time; network and OCR absent.",
+    "Zero tokens/cost refers to these no-model runs; unconfigured provider cost is unknown."
+  ]
+}
