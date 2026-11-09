@@ -5,6 +5,7 @@ import numpy as np
 from ..contracts import Action,Provenance
 from ..puzzle_control import BombRockController,rock_mask
 from ..spatial import SpatialVision
+from .local_observation import motion_after_pulse
 
 def fixed_base_motion(before,after,heading,duration_ms):
     """Recover camera translation from unambiguous currently seen fixed bases."""
@@ -53,7 +54,7 @@ def light_nearest(s,c,max_actions=16):
             if not changed:raise RuntimeError('Fixed-lantern approach is blocked without verified rock removal')
             before,f=after,af;continue
         row=s.pulse(Action('move',{'direction':heading,'ms':ms},'Align verified carried flame with the tracked fixed lantern'))
-        after,af=c.observe('v3-fixed-contact-progress');motion=SpatialVision.motion(before,after,f['player'],af['player'])
+        after,af,motion=motion_after_pulse(s,c,row,before,f,'v3-fixed-contact-progress')
         if motion['confidence']<.25:
             recovered=fixed_base_motion(f,af,heading,ms)
             if recovered:motion=recovered

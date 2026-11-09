@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 134/134. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 137/137. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -99,7 +99,7 @@ Preparações sem inimigo confirmado e leituras OCR sem identidade suficiente n�
 | Trial integrado | Cursor | Ciclos | Chamadas Qwen | Resultado |
 | --- | --- | --- | --- | --- |
 | v3_trial_042e8212b28a46f5 | 6 | 18 | 0 | blocked: RuntimeError: Lantern approach stalled twice; no repeated blind movement |
-| v3_trial_6a4365c39ff4431c | 6 | 12 | 0 | blocked: RuntimeError: Fixed-lantern target tracking lost camera alignment |
+| v3_trial_21350416b06c4724 | 6 | 13 | 0 | blocked: RuntimeError: Fixed-lantern target tracking lost camera alignment |
 
 
 ## Latência, decisões e limites da medição
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T12:12:09. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T12:18:48. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -177,7 +177,7 @@ A passagem lateral também exige reconstruir somente as linhas do próprio sprit
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
 
-Ensaio integrado final `data\v3\v3_trial_6a4365c39ff4431c\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 506.693s, 0.710 objetivos/min; 12 ciclos. Motivo: RuntimeError: Fixed-lantern target tracking lost camera alignment.
+Ensaio integrado final `data\v3\v3_trial_21350416b06c4724\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 419.705s, 0.858 objetivos/min; 13 ciclos. Motivo: RuntimeError: Fixed-lantern target tracking lost camera alignment.
 
 Comparação de combate selecionada: `v3_combat_benchmark_f7859decec7c4428`. Não misturar séries antigas com código diferente. Tempos de falha não contam como conclusão. Os JSONs preservam entradas iniciais, raw final, ações e erros.
 
@@ -187,7 +187,7 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 134/134; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 137/137; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.
 
@@ -238,3 +238,9 @@ No ensaio isolado `v3_exit_stall_probe_a0a93adc88194e5a`, RIGHT243ms levou de[40
 A retomada `d19a544cdc3b4b9c`, depois da correção lateral medida, concluiu o último objetivo em56,154s. Cursor9/9, interação da casa emitida, duas observações independentes do mapa e zero erros de fechamento. O tempo pertence somente ao objetivo final dessa retomada; a entrada iniciada por `6a4365c39ff4431c` precisou de correções e não é um ensaio integral autônomo. Prova e capturas selecionadas: `evaluations/v3/resumed-wall-exit-completion.json`.
 
 O extrator somente de leitura `evaluations/v3/measure_exit_stalls.py` cruza os IDs de operações SQLite com os controles efetivamente emitidos e os stalls confirmados pelo mapa. Em `916e1e8034d74945`, foram2 tentativas estagnadas em8 holds de saída(25%); em `d19a544cdc3b4b9c`,0 em2(0%). As posições iniciais diferem e a segunda execução começou após a correção lateral: esses números não constituem um benchmark equivalente de colisão V2/V3 nem provam uma redução geral. Repetições na mesma parede são tentativas, não episódios físicos distintos. Dados: `evaluations/v3/exit-stall-metrics.json`; taxa física de colisão permanece sem estimativa equivalente.
+
+## Observação pós-ação sem captura redundante
+
+O ensaio integral `21350416b06c4724` parou em6/9 após419,705s. No último UP_RIGHT226ms, o par bruto medido por `pulse` tinha confiança0,514 e deslocamento de cenário[−63,64;+63,65]. O código descartava essa observação e capturava outra imediatamente: nesse segundo quadro, fogo/oclusão esconderam a base fixa e o rastreador perdeu correspondência. Os PNGs do par recusado e a captura imediata diagnóstica estão em `fixed-base-motion/redundant-capture-replay.json`.
+
+`local_observation.py` reutiliza somente o frame atual que corresponde ao retorno da ação, com idade<=350ms, ator/HUD válidos, saúde>=30% e sem ameaça indicada. Saúde baixa, ameaça, frame antigo ou cena/ator inválidos continuam passando pelo observador com suas guardas. A medida de movimento só é reutilizada quando os IDs dos dois frames correspondem exatamente; caso contrário, é recalculada. Isso elimina uma captura e uma análise redundantes nas condições verificadas, sem chamar Qwen. As confirmações finais da luva, fogo afastado, mapa e conclusão permanecem independentes. O replay comprova a seleção do par válido e os casos negativos; não se atribui ganho temporal integral a essa alteração sem um ensaio comparável.

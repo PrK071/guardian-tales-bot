@@ -11,6 +11,27 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_verified_immediate_pair_is_reused_without_the_real_redundant_failure_frame(self):
+        import json,numpy as np
+        from cognitive.v3.local_observation import motion_after_pulse
+        r=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/redundant-capture-replay.json').read_text());row=r['row'];row['after']['at']=time.time();frame=np.zeros((4,4,3),np.uint8)
+        c=SimpleNamespace(check=lambda:None,observe=lambda *a:self.fail('A fresh completed observation must not be recaptured'));s=SimpleNamespace(last_frame=frame,last_features=row['after'])
+        with patch('cognitive.v3.local_observation.SpatialVision.motion',side_effect=AssertionError('Same exact pair already measured')):after,f,motion=motion_after_pulse(s,c,row,frame,row['before'],'synthetic:unused')
+        self.assertIs(after,frame);self.assertEqual(f['frame'],row['after']['frame']);self.assertNotEqual(f['frame'],r['redundant_after']['frame']);self.assertEqual(motion['confidence'],.514);self.assertTrue(row['metrics']['post_action_observation_reused'])
+    def test_stale_threat_and_health_conditions_keep_the_observation_guards(self):
+        import json,copy,numpy as np
+        from cognitive.v3.local_observation import motion_after_pulse
+        row=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/redundant-capture-replay.json').read_text())['row'];frame=np.zeros((4,4,3),np.uint8)
+        for changes in ({'at':time.time()-2},{'at':time.time(),'combat_present':True},{'at':time.time(),'health':.2}):
+            f={**copy.deepcopy(row['after']),**changes};s=SimpleNamespace(last_frame=frame,last_features=f)
+            def guarded(*a):raise RuntimeError('fresh observation guard')
+            with self.subTest(changes=changes),self.assertRaisesRegex(RuntimeError,'observation guard'):motion_after_pulse(s,SimpleNamespace(check=lambda:None,observe=guarded),row,frame,row['before'],'synthetic:guard')
+    def test_motion_from_a_different_before_frame_is_recomputed(self):
+        import json,numpy as np
+        from cognitive.v3.local_observation import motion_after_pulse
+        row=json.loads((ROOT/'evaluations/v3/fixtures/fixed-base-motion/redundant-capture-replay.json').read_text())['row'];row['after']['at']=time.time();frame=np.zeros((4,4,3),np.uint8);s=SimpleNamespace(last_frame=frame,last_features=row['after']);measured={'confidence':.42}
+        with patch('cognitive.v3.local_observation.SpatialVision.motion',return_value=measured) as motion:_,_,result=motion_after_pulse(s,SimpleNamespace(check=lambda:None),row,frame,{**row['before'],'frame':'synthetic:different-before'},'unused')
+        self.assertIs(result,measured);self.assertEqual(motion.call_count,1);self.assertFalse(row['metrics']['post_action_motion_pair_reused'])
     def test_current_fixed_base_recovers_real_diagonal_rock_access_translation(self):
         import json
         from cognitive.v3.fixed_lanterns import fixed_base_motion

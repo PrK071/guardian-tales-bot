@@ -165,8 +165,9 @@ def ensure_lantern_access(s,c,obj,max_steps=12):
         else:
             try:heading,ms=BombRockController.local_approach(frame,f,approach)
             except RuntimeError:return approach_registered_column(s,c,frame,f,rock)
-        s.pulse(Action('move',{'direction':heading,'ms':ms},'Approach cracked stone until the observed Mole Glove affordance appears'))
-        after,af=c.observe('v3-glove-access-progress');motion=SpatialVision.motion(frame,after,f['player'],af['player'])
+        row=s.pulse(Action('move',{'direction':heading,'ms':ms},'Approach cracked stone until the observed Mole Glove affordance appears'))
+        from .local_observation import motion_after_pulse
+        after,af,motion=motion_after_pulse(s,c,row,frame,f,'v3-glove-access-progress')
         if motion['confidence']<.25:
             from .fixed_lanterns import fixed_base_motion
             recovered=fixed_base_motion(f,af,heading,ms)

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T12:12:07.235164",
+  "generated_at": "2026-11-09T12:18:46.026931",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -7456,6 +7456,50 @@
       "cursor": 8,
       "initial_spawn_verified": false,
       "objectives_per_minute": 0.45190438223263724
+    },
+    {
+      "source": "data\\v3\\v3_trial_21350416b06c4724\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Fixed-lantern target tracking lost camera alignment",
+      "seconds": 419.7047473999992,
+      "metrics": {
+        "cycles": 13,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          8744.817699989653,
+          8909.156099995016,
+          12033.16750000522,
+          27408.651700010523,
+          16251.515500000096,
+          13932.971099988208,
+          17056.970200006617,
+          4866.050399999949,
+          3781.6754000086803,
+          19200.85690000269
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 6,
+        "segments": 6,
+        "combats": 2,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": true,
+      "objectives_per_minute": 0.8577458373538538
     },
     {
       "source": "data\\v3\\v3_trial_2a43047839604e78\\report.json",
@@ -14995,12 +15039,12 @@
     ]
   },
   "final_fresh_trial": {
-    "source": "data\\v3\\v3_trial_6a4365c39ff4431c\\report.json",
+    "source": "data\\v3\\v3_trial_21350416b06c4724\\report.json",
     "outcome": "blocked",
     "reason": "RuntimeError: Fixed-lantern target tracking lost camera alignment",
-    "seconds": 506.69337319998886,
+    "seconds": 419.7047473999992,
     "metrics": {
-      "cycles": 12,
+      "cycles": 13,
       "replans": 3,
       "recoveries": 0,
       "frontier_deferrals": 0,
@@ -15014,28 +15058,29 @@
       "output_tokens": 0,
       "decision_ms": [],
       "cycle_ms": [
-        9353.985399997327,
-        8941.694700013613,
-        11539.099899993744,
-        8765.476300002774,
-        29625.576499995077,
-        20036.33119999722,
-        4532.713699998567,
-        3861.1071000050288,
-        19290.509900005418
+        8744.817699989653,
+        8909.156099995016,
+        12033.16750000522,
+        27408.651700010523,
+        16251.515500000096,
+        13932.971099988208,
+        17056.970200006617,
+        4866.050399999949,
+        3781.6754000086803,
+        19200.85690000269
       ],
       "timing_scope": "isolated_local_planning_ms",
       "puzzle_attempts": 0,
       "puzzle_verified": 0,
       "completed": false,
       "high_level_completed": 6,
-      "segments": 5,
+      "segments": 6,
       "combats": 2,
       "guide_cache_hits": 1
     },
     "cursor": 6,
     "initial_spawn_verified": true,
-    "objectives_per_minute": 0.7104888657344057
+    "objectives_per_minute": 0.8577458373538538
   },
   "tests": {
     "groups": {
@@ -15043,73 +15088,73 @@
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2195.529999997234
+        "duration_ms": 2238.3688000118127
       },
       "simulated_combat_states": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 13.742900002398528
+        "duration_ms": 13.291800001752563
       },
       "geometry_and_historical_map": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 4286.5812000090955
+        "duration_ms": 6219.667400000617
       },
       "persistent_walkthroughs": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 153.33649999229237
+        "duration_ms": 206.42420000513084
       },
       "historical_enemy_detection": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 475.95340000407305
+        "duration_ms": 922.2573000006378
       },
       "stream_protocol_and_decoder": {
         "tests": 2,
         "passed": 2,
         "failures": [],
-        "duration_ms": 114.33310000575148
+        "duration_ms": 147.25810001255013
       },
       "high_level_execution": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 44.028999996953644
+        "duration_ms": 66.16819999180734
       },
       "visible_frontier_horizons": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 27.549799997359514
+        "duration_ms": 40.776000008918345
       },
       "distant_threat_confirmation": {
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 113.93249999673571
+        "duration_ms": 292.1556000073906
       },
       "real_held_object_tracking": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 5820.120999997016
+        "duration_ms": 9043.456800005515
       },
       "real_lantern_tool_and_gate_evidence": {
-        "tests": 27,
-        "passed": 27,
+        "tests": 30,
+        "passed": 30,
         "failures": [],
-        "duration_ms": 13256.68140000198
+        "duration_ms": 16069.084200004
       },
       "current_entry_exit_completion_guards": {
         "tests": 19,
         "passed": 19,
         "failures": [],
-        "duration_ms": 17093.233600011445
+        "duration_ms": 17622.728499991354
       }
     },
     "all_passed": true,
