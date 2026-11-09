@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T07:40:15.650052",
+  "generated_at": "2026-11-09T08:07:09.833202",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -7664,6 +7664,39 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_5278d4ac31b048bc\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No direct local segment with observed player clearance",
+      "seconds": 178.04943539999658,
+      "metrics": {
+        "cycles": 2,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
       "source": "data\\v3\\v3_trial_600cda7447b0465a\\report.json",
       "outcome": "interrupted",
       "reason": "",
@@ -9190,6 +9223,106 @@
       "fix": "Choose the closest of multiple standoffs that passes unchanged floor-clearance threshold"
     }
   },
+  "room_detour_regression": {
+    "source_run": "v3_trial_ee5dd3bad6204536",
+    "fixture": "evaluations/v3/fixtures/room-detour/replay.json",
+    "before_reference": [
+      379.549295774648,
+      756.0422535211267
+    ],
+    "after_reference": [
+      378.14084507042264,
+      740.5492957746478
+    ],
+    "goal_errors_reference_pixels": [
+      50.17035055277539,
+      58.96905741315514
+    ],
+    "old_guard_rejects_this_observed_detour": true,
+    "new_guard_replay": "accepted new map pose; no goal-completion claim",
+    "negative_revisit_replay": "rejected despite apparent visual motion",
+    "directed_tests": {
+      "module": "evaluations.v3.test_lantern_flow",
+      "passed": 23,
+      "failed": 0
+    },
+    "room_navigation_sha256": "4bb19be5e05f1658c6a1015dde130dde497415f92f18ea2f16afe50810672ef1",
+    "live_validation": {
+      "run_id": "v3_trial_5278d4ac31b048bc",
+      "status": "in_progress"
+    }
+  },
+  "raw_corner_regression": {
+    "before_probe": "v3_lantern_probe_981cef4ad81a40cb",
+    "before_result": "No direct local segment with observed player clearance; zero movement inputs",
+    "exact_fixture": "evaluations/v3/fixtures/raw-torch-approach/replay.json",
+    "pixels_bgr_sha256": "836a657b35b6418fb3ef0d5fe572a0dbe2b4a4f7fd143863ad4820f237582064",
+    "floor_mask_difference_raw_vs_jpeg_pixels": 7615,
+    "change": "Fallback to strict finer eight-direction segment planner with unchanged 28px clearance; 80ms minimum extension checked along the whole ray",
+    "after_probe": "v3_lantern_probe_0be178eec14a4731",
+    "pickup_verified": true,
+    "error": null,
+    "movements": [
+      {
+        "direction": "up_left",
+        "ms": 80,
+        "motion": {
+          "background_dx": 21.14,
+          "background_dy": 21.22,
+          "inliers": 0,
+          "confidence": 0.668,
+          "player_dx": 0.0,
+          "player_dy": -2,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": -21.14,
+          "effective_dy": -23.22,
+          "moved": true
+        }
+      },
+      {
+        "direction": "left",
+        "ms": 299,
+        "motion": {
+          "background_dx": 120.01,
+          "background_dy": -0.11,
+          "inliers": 0,
+          "confidence": 0.337,
+          "player_dx": 0.0,
+          "player_dy": -1,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": -120.01,
+          "effective_dy": -0.89,
+          "moved": true
+        }
+      }
+    ],
+    "pickup_result": {
+      "verified": true,
+      "held_match": {
+        "bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "confidence": 0.9773501753807068,
+        "method": "verified_burning_brazier_side_rim",
+        "scale": 1.0
+      },
+      "frame": "data\\v3\\v3_lantern_probe_0be178eec14a4731\\0010-lantern-held-follow.jpg",
+      "stage_complete": false
+    },
+    "stage_complete": false,
+    "speedup_claim": false,
+    "directed_tests": {
+      "modules": [
+        "evaluations.v3.test_lantern_flow",
+        "evaluations.v3.test_segments"
+      ],
+      "passed": 37,
+      "failed": 0
+    }
+  },
   "final_fresh_trial": {
     "source": "data\\v3\\v3_trial_ee5dd3bad6204536\\report.json",
     "outcome": "blocked",
@@ -9239,73 +9372,73 @@
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2210.0086999998894
+        "duration_ms": 2203.6858000064967
       },
       "simulated_combat_states": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 13.645300001371652
+        "duration_ms": 14.100000000325963
       },
       "geometry_and_historical_map": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 3785.2317999931984
+        "duration_ms": 3932.8540000133216
       },
       "persistent_walkthroughs": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 166.8814000004204
+        "duration_ms": 162.11550000298303
       },
       "historical_enemy_detection": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 556.3591999962227
+        "duration_ms": 589.5397999993293
       },
       "stream_protocol_and_decoder": {
         "tests": 2,
         "passed": 2,
         "failures": [],
-        "duration_ms": 126.6924000083236
+        "duration_ms": 122.45740000798833
       },
       "high_level_execution": {
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 51.45579999953043
+        "duration_ms": 51.41800000274088
       },
       "visible_frontier_horizons": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 45.774800004437566
+        "duration_ms": 26.838499994482845
       },
       "distant_threat_confirmation": {
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 269.1806000075303
+        "duration_ms": 135.71499999670777
       },
       "real_held_object_tracking": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 6208.943799996632
+        "duration_ms": 5272.160799999256
       },
       "real_lantern_tool_and_gate_evidence": {
-        "tests": 21,
-        "passed": 21,
+        "tests": 24,
+        "passed": 24,
         "failures": [],
-        "duration_ms": 7968.189599996549
+        "duration_ms": 7812.96100000327
       },
       "current_entry_exit_completion_guards": {
         "tests": 9,
         "passed": 9,
         "failures": [],
-        "duration_ms": 5053.371700007119
+        "duration_ms": 3592.6122999953805
       }
     },
     "all_passed": true,
@@ -9317,7 +9450,7 @@
     "failures": [],
     "errors": [],
     "skipped": [],
-    "duration_ms": 5468.9,
+    "duration_ms": 4883.22,
     "scope": "Legacy guards + cognitive contracts/memory/planning/recovery/research; simulator/model response fixtures are explicitly synthetic."
   },
   "v2_tests": {
@@ -9326,61 +9459,61 @@
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 638.05
+        "duration_ms": 646.01
       },
       "simulated_stage_integration": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 571.68
+        "duration_ms": 525.74
       },
       "simulated_puzzle_controller": {
         "tests": 7,
         "passed": 7,
         "failures": [],
-        "duration_ms": 713.78
+        "duration_ms": 600.09
       },
       "simulated_map_alignment": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 2467.25
+        "duration_ms": 1992.32
       },
       "simulated_combat_guard": {
         "tests": 5,
         "passed": 5,
         "failures": [],
-        "duration_ms": 1153.49
+        "duration_ms": 997.77
       },
       "simulated_recovery_and_initial_state": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 3639.68
+        "duration_ms": 2425.29
       },
       "simulated_lantern_guards": {
         "tests": 5,
         "passed": 5,
         "failures": [],
-        "duration_ms": 1047.03
+        "duration_ms": 911.48
       },
       "simulated_hazard_endpoints": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 2.34
+        "duration_ms": 1.15
       },
       "historical_real_screenshots": {
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2490.56
+        "duration_ms": 1695.7
       },
       "historical_lantern_vision": {
         "tests": 3,
         "passed": 3,
         "failures": [],
-        "duration_ms": 2837.44
+        "duration_ms": 1880.3
       }
     },
     "real_stage_completion_proven": false,

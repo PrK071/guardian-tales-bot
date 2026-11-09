@@ -126,6 +126,19 @@ class BombRockController:
                 duration=max(80,round(distance/.44*.9))
                 if np.any((ray>0)&(sprite_occlusion>0)):duration=min(duration,300)
                 return heading,duration
+        # A coarse cell can require a small diagonal connector before a long
+        # straight run. Reuse the finer eight-direction planner, retaining the
+        # exact same clearance. Any extension to the input's 80ms minimum must
+        # itself pass the full line check; never clamp a turn through a wall.
+        from .v3.segments import SegmentPlanner
+        try:plan=SegmentPlanner(.44).plan(state,path[-1],margin=28)
+        except ValueError:plan=None
+        if plan and plan['segments']:
+            segment=plan['segments'][0];vx,vy=segment['direction'];ms=max(80,min(1200,round(segment['duration_ms']*.9)))
+            ray=np.zeros_like(floor);endpoint=[px+vx*ms*.44,py+vy*ms*.44]
+            cv2.line(ray,(round(px),round(py)),tuple(map(round,endpoint)),255,1)
+            if np.any((ray>0)&(sprite_occlusion>0)):ms=min(ms,300);endpoint=[px+vx*ms*.44,py+vy*ms*.44]
+            if clear_line(clearance,[px,py],endpoint,28,start_escape=True):return direction(vx,vy),ms
         raise RuntimeError('No direct local segment with observed player clearance')
     def solve(self):
         if self.session.scope!='world:1:passage:1' or self.hypothesis.get('validation')!='hypothesis':raise RuntimeError('Puzzle hypothesis scope/type not supported')

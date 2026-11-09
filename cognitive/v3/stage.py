@@ -254,6 +254,7 @@ class StageV3Runner(StageRunner):
                     self.memory.save_task(task)
                     if outcome=='stage_complete':break
                 except (RuntimeError,ValueError) as exc:
+                    if hasattr(s,'failure_checkpoint'):s.failure_checkpoint(str(exc))
                     evidence=self.verify_completion()
                     if evidence:root.evidence.extend(evidence);outcome='stage_complete';self.metrics['completed']=True;break
                     self.planner.divergence(plan,active,step,str(exc),s.last_features['frame']);self.metrics['replans']+=1
@@ -271,7 +272,7 @@ class StageV3Runner(StageRunner):
             self.memory.save_task(root);self.memory.goal_state(self.runtime.goal_id,root.state)
             try:
                 s.backend.release_all()
-                if s.last_features and s.last_features['scene']=='jogo':s.transition('pausa')
+                if outcome!='stage_complete' and s.last_features and s.last_features['scene']=='jogo':s.transition('pausa')
             except Exception as exc:reason+='; final pause: '+str(exc)
             report=s.close();report.update(kind='v3_initial_stage_trial' if start_verified else 'v3_resumed_stage_trial',outcome=outcome,reason=reason,initial_spawn_verified=start_verified,metrics=self.metrics,active_plan=active,stage_plan_id=plan['id'] if plan else None,seconds_total=time.perf_counter()-begun)
             (s.folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

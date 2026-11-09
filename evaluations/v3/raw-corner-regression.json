@@ -1,0 +1,75 @@
+{
+  "before_probe": "v3_lantern_probe_981cef4ad81a40cb",
+  "before_result": "No direct local segment with observed player clearance; zero movement inputs",
+  "exact_fixture": "evaluations/v3/fixtures/raw-torch-approach/replay.json",
+  "pixels_bgr_sha256": "836a657b35b6418fb3ef0d5fe572a0dbe2b4a4f7fd143863ad4820f237582064",
+  "floor_mask_difference_raw_vs_jpeg_pixels": 7615,
+  "change": "Fallback to strict finer eight-direction segment planner with unchanged 28px clearance; 80ms minimum extension checked along the whole ray",
+  "after_probe": "v3_lantern_probe_0be178eec14a4731",
+  "pickup_verified": true,
+  "error": null,
+  "movements": [
+    {
+      "direction": "up_left",
+      "ms": 80,
+      "motion": {
+        "background_dx": 21.14,
+        "background_dy": 21.22,
+        "inliers": 0,
+        "confidence": 0.668,
+        "player_dx": 0.0,
+        "player_dy": -2,
+        "method": "two_flank_phase_consensus",
+        "effective_dx": -21.14,
+        "effective_dy": -23.22,
+        "moved": true
+      }
+    },
+    {
+      "direction": "left",
+      "ms": 299,
+      "motion": {
+        "background_dx": 120.01,
+        "background_dy": -0.11,
+        "inliers": 0,
+        "confidence": 0.337,
+        "player_dx": 0.0,
+        "player_dy": -1,
+        "method": "two_flank_phase_consensus",
+        "effective_dx": -120.01,
+        "effective_dy": -0.89,
+        "moved": true
+      }
+    }
+  ],
+  "pickup_result": {
+    "verified": true,
+    "held_match": {
+      "bbox": [
+        746,
+        277,
+        110,
+        106
+      ],
+      "confidence": 0.9773501753807068,
+      "method": "verified_burning_brazier_side_rim",
+      "scale": 1.0
+    },
+    "frame": "data\\v3\\v3_lantern_probe_0be178eec14a4731\\0010-lantern-held-follow.jpg",
+    "stage_complete": false
+  },
+  "stage_complete": false,
+  "speedup_claim": false,
+  "directed_tests": {
+    "modules": [
+      "evaluations.v3.test_lantern_flow",
+      "evaluations.v3.test_segments"
+    ],
+    "passed": 37,
+    "failed": 0
+  },
+  "versioned_live_frames": [
+    "evaluations/v3/evidence/raw-corner-pickup-ready.jpg",
+    "evaluations/v3/evidence/raw-corner-held-follow.jpg"
+  ]
+}

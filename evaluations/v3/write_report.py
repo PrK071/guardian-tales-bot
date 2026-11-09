@@ -69,6 +69,8 @@ for path in (ROOT/'data/v3').glob('v3_trial_*/report.json'):
 measured['integrated_trials']=trials
 measured['actor_perception_replay']=json.loads((ROOT/'evaluations/v3/actor-perception-benchmark.json').read_text())
 measured['registered_stone_regression']=json.loads((ROOT/'evaluations/v3/registered-stone-regression.json').read_text())
+measured['room_detour_regression']=json.loads((ROOT/'evaluations/v3/room-detour-regression.json').read_text())
+measured['raw_corner_regression']=json.loads((ROOT/'evaluations/v3/raw-corner-regression.json').read_text())
 measured['stage_completion_claim']=bool(measured['stage_completion_claim'] or any(t['outcome']=='stage_complete' for t in trials))
 measured['final_fresh_trial']=next((t for t in trials if args.stage_trial and args.stage_trial in t['source']),None)
 measured['tests']=json.loads((ROOT/'evaluations/v3/tests.json').read_text())
@@ -243,9 +245,11 @@ A reconciliação dessa entrada confirmou duas imagens independentes do mapa em1
 
 O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
 
-O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. Esse resultado fica preservado em `evaluations/v3/final-fresh-trial.json`; não há conclusão integral autônoma comprovada pela versão final. A navegação da sala e o alinhamento das lanternas continuam sendo limitações reais, separadas do ganho medido no corredor conhecido.
+O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. O report original permanece em `data/v3/v3_trial_ee5dd3bad6204536/report.json`; esse ensaio não comprovou conclusão integral autônoma. Suas falhas de navegação e de alinhamento ficam separadas do ganho medido no corredor conhecido.
 
 A análise do retorno mostrou um desvio válido: o mapa passou de[379,55;756,04] para[378,14;740,55] ao contornar a pedra antes de seguir para[426;775]. A distância euclidiana cresceu temporariamente. A guarda antiga exigia aproximação em linha reta e recusava esse caminho. Agora, após uma sequência escolhida pelo piso observado, uma posição nova confirmada no mapa pode validar o desvio; revisitar uma posição a até4pixels de referência continua sendo recusado e o orçamento de16ações permanece. Isso não conclui o objetivo: a chegada ainda exige o endpoint medido. O replay real e o teste negativo de retorno estão em `evaluations/v3/fixtures/room-detour/`; não são medição de ganho de tempo no jogo.
+
+O pickup seguinte expôs outra diferença: o JPEG diagnóstico mudava7615pixels da máscara de piso e não reproduzia a recusa dos pixels brutos. Falhas V3 agora guardam PNG com hash dos pixels, sem acrescentar gravação lossless ao caminho normal. O planejador local usa uma alternativa de grade fina somente quando o extrator anterior não encontra trecho executável; mantém28pixels de folga e verifica também qualquer extensão ao mínimo de80ms. O replay lossless passa. No teste real `v3_lantern_probe_0be178eec14a4731`, dois movimentos completaram a aproximação, seguidos de transferência e acompanhamento verificados. O ensaio anterior no mesmo ponto parou sem mover. Isso comprova correção desse bloqueio, não uma razão de aceleração temporal nem conclusão da fase. Dados: `evaluations/v3/raw-corner-regression.json`.
 
 ## Métricas de aceitação e limites
 

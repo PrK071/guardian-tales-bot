@@ -4,61 +4,61 @@
       "tests": 10,
       "passed": 10,
       "failures": [],
-      "duration_ms": 638.05
+      "duration_ms": 646.01
     },
     "simulated_stage_integration": {
       "tests": 4,
       "passed": 4,
       "failures": [],
-      "duration_ms": 571.68
+      "duration_ms": 525.74
     },
     "simulated_puzzle_controller": {
       "tests": 7,
       "passed": 7,
       "failures": [],
-      "duration_ms": 713.78
+      "duration_ms": 600.09
     },
     "simulated_map_alignment": {
       "tests": 4,
       "passed": 4,
       "failures": [],
-      "duration_ms": 2467.25
+      "duration_ms": 1992.32
     },
     "simulated_combat_guard": {
       "tests": 5,
       "passed": 5,
       "failures": [],
-      "duration_ms": 1153.49
+      "duration_ms": 997.77
     },
     "simulated_recovery_and_initial_state": {
       "tests": 4,
       "passed": 4,
       "failures": [],
-      "duration_ms": 3639.68
+      "duration_ms": 2425.29
     },
     "simulated_lantern_guards": {
       "tests": 5,
       "passed": 5,
       "failures": [],
-      "duration_ms": 1047.03
+      "duration_ms": 911.48
     },
     "simulated_hazard_endpoints": {
       "tests": 6,
       "passed": 6,
       "failures": [],
-      "duration_ms": 2.34
+      "duration_ms": 1.15
     },
     "historical_real_screenshots": {
       "tests": 11,
       "passed": 11,
       "failures": [],
-      "duration_ms": 2490.56
+      "duration_ms": 1695.7
     },
     "historical_lantern_vision": {
       "tests": 3,
       "passed": 3,
       "failures": [],
-      "duration_ms": 2837.44
+      "duration_ms": 1880.3
     }
   },
   "real_stage_completion_proven": false,

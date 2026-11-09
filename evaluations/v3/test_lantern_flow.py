@@ -11,6 +11,16 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_exact_raw_pickup_frame_gets_safe_fine_grid_connector_without_relaxing_clearance(self):
+        import json,hashlib,math
+        from cognitive.puzzle_control import BombRockController,DIRECTIONS
+        from cognitive.v3.segments import SegmentPlanner,clear_line
+        folder=ROOT/'evaluations/v3/fixtures/raw-torch-approach';r=json.loads((folder/'replay.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));self.assertEqual(hashlib.sha256(frame.tobytes()).hexdigest(),r['pixels_bgr_sha256']);f=r['features'];obj=next(o for o in f['puzzle_objects'] if o['kind']=='portable_brazier');target=LanternController.foot(obj);original=SegmentPlanner.plan;calls=[]
+        def plan(planner,state,target,**kw):calls.append((state,kw));return original(planner,state,target,**kw)
+        with patch.object(SegmentPlanner,'plan',plan):heading,ms=BombRockController.local_approach(frame,f,target)
+        self.assertTrue(calls);self.assertEqual(calls[0][1]['margin'],28);self.assertGreaterEqual(ms,80);self.assertLessEqual(ms,300)
+        state=calls[0][0];vx,vy=DIRECTIONS[heading];norm=math.hypot(vx,vy);end=[f['player'][0]+vx/norm*ms*.44,f['player'][1]+vy/norm*ms*.44]
+        self.assertTrue(clear_line(cv2.distanceTransform(state['floor'],cv2.DIST_L2,5),f['player'],end,28,start_escape=True))
     def room_detour_replay(self,revisit=False):
         import json
         from cognitive.map_anchor import SpawnMapAnchor

@@ -1,0 +1,99 @@
+{
+  "reason": "No direct local segment with observed player clearance",
+  "source_frame": "evaluations/v3/fixtures/raw-torch-approach/diagnostic.jpg",
+  "lossless_frame": "evaluations/v3/fixtures/raw-torch-approach/controller-input.png",
+  "pixels_bgr_sha256": "836a657b35b6418fb3ef0d5fe572a0dbe2b4a4f7fd143863ad4820f237582064",
+  "features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          763,
+          350,
+          62,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      },
+      {
+        "kind": "rock_obstacle_candidate",
+        "bbox": [
+          1046,
+          349,
+          111,
+          116
+        ],
+        "confidence": 0.7,
+        "method": "passage1_observed_color_shape_hypothesis"
+      }
+    ],
+    "player": [
+      794.0,
+      445
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.724,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.3175701388888889,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [
+      {
+        "kind": "standing_lantern_unlit",
+        "bbox": [
+          1179,
+          345,
+          67,
+          91
+        ],
+        "confidence": 0.9293573498725891,
+        "method": "recorded_gameplay_template"
+      },
+      {
+        "kind": "portable_brazier",
+        "bbox": [
+          498,
+          358,
+          110,
+          106
+        ],
+        "confidence": 0.9262579679489136,
+        "method": "verified_burning_brazier_side_rim"
+      },
+      {
+        "kind": "standing_lantern_lit",
+        "bbox": [
+          393,
+          275,
+          69,
+          175
+        ],
+        "fire_center": [
+          432.5519890940637,
+          351.6026769116371
+        ],
+        "pedestal_bbox": [
+          393,
+          395,
+          69,
+          55
+        ],
+        "confidence": 0.9761176109313965,
+        "method": "floor_lantern_pedestal_with_current_fire"
+      }
+    ],
+    "perception_timing": {
+      "spatial_ms": 106.1623999994481,
+      "puzzle_ms": 959.3886000075145,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "evaluations/v3/fixtures/raw-torch-approach/diagnostic.jpg",
+    "capture_ms": 706.74,
+    "at": 1794221684.2392645
+  },
+  "source_run": "v3_lantern_probe_981cef4ad81a40cb"
+}

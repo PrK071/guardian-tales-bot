@@ -56,7 +56,8 @@ try:
             result=navigate_room(s,args.target)
     else:result=c.pickup() if args.mode=='pickup' else c.ignite()
     task.state=State.COMPLETED if result.get('verified') else State.BLOCKED
-except Exception as exc:error=type(exc).__name__+': '+str(exc);task.state=State.BLOCKED
+except Exception as exc:
+    error=type(exc).__name__+': '+str(exc);task.state=State.BLOCKED;s.failure_checkpoint(error)
 finally:
     memory.save_task(task);memory.goal_state(goal,task.state)
     try:s.transition('pausa')

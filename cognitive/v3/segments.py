@@ -29,11 +29,12 @@ class SegmentPlanner:
     def __init__(self,reference_pixels_per_ms):
         if not math.isfinite(reference_pixels_per_ms) or reference_pixels_per_ms<=0:raise ValueError('Measured movement calibration required')
         self.speed=reference_pixels_per_ms
-    def plan(self,state,target):
-        parser=PauseMap();scale=state.get('map_scale',1.);margin=12*scale
+    def plan(self,state,target,margin=None):
+        parser=PauseMap();scale=state.get('map_scale',1.);margin=12*scale if margin is None else margin
+        if not math.isfinite(margin) or margin<=0:raise ValueError('Positive measured floor clearance required')
         # V2's majority-cell grid may admit a cell whose center is too close
         # to a corner. V3 needs individually clear centers for long LOS holds.
-        path=parser.path(state,target,cell=max(1,round(2*scale)),strict_centers=True)
+        path=parser.path(state,target,cell=max(1,round(2*scale)),margin=margin,strict_centers=True)
         clearance=cv2.distanceTransform(state['floor'],cv2.DIST_L2,5)
         # Preserve measured geometry; no line may cut a staircase corner or wall.
         route=[state['player'],*path[1:]];knots=[route[0]];index=0

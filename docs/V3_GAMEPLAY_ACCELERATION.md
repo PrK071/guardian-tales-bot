@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 116/116. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 119/119. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T07:40:16. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T08:07:10. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -163,7 +163,11 @@ A reconciliação dessa entrada confirmou duas imagens independentes do mapa em1
 
 O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
 
-O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. Esse resultado fica preservado em `evaluations/v3/final-fresh-trial.json`; não há conclusão integral autônoma comprovada pela versão final. A navegação da sala e o alinhamento das lanternas continuam sendo limitações reais, separadas do ganho medido no corredor conhecido.
+O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. O report original permanece em `data/v3/v3_trial_ee5dd3bad6204536/report.json`; esse ensaio não comprovou conclusão integral autônoma. Suas falhas de navegação e de alinhamento ficam separadas do ganho medido no corredor conhecido.
+
+A análise do retorno mostrou um desvio válido: o mapa passou de[379,55;756,04] para[378,14;740,55] ao contornar a pedra antes de seguir para[426;775]. A distância euclidiana cresceu temporariamente. A guarda antiga exigia aproximação em linha reta e recusava esse caminho. Agora, após uma sequência escolhida pelo piso observado, uma posição nova confirmada no mapa pode validar o desvio; revisitar uma posição a até4pixels de referência continua sendo recusado e o orçamento de16ações permanece. Isso não conclui o objetivo: a chegada ainda exige o endpoint medido. O replay real e o teste negativo de retorno estão em `evaluations/v3/fixtures/room-detour/`; não são medição de ganho de tempo no jogo.
+
+O pickup seguinte expôs outra diferença: o JPEG diagnóstico mudava7615pixels da máscara de piso e não reproduzia a recusa dos pixels brutos. Falhas V3 agora guardam PNG com hash dos pixels, sem acrescentar gravação lossless ao caminho normal. O planejador local usa uma alternativa de grade fina somente quando o extrator anterior não encontra trecho executável; mantém28pixels de folga e verifica também qualquer extensão ao mínimo de80ms. O replay lossless passa. No teste real `v3_lantern_probe_0be178eec14a4731`, dois movimentos completaram a aproximação, seguidos de transferência e acompanhamento verificados. O ensaio anterior no mesmo ponto parou sem mover. Isso comprova correção desse bloqueio, não uma razão de aceleração temporal nem conclusão da fase. Dados: `evaluations/v3/raw-corner-regression.json`.
 
 ## Métricas de aceitação e limites
 
@@ -179,6 +183,6 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 116/116; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 119/119; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.

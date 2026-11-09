@@ -111,7 +111,9 @@ class LanternController:
             facing_only=False
             try:heading,ms=BombRockController.local_approach(frame,f,target)
             except RuntimeError as exc:
-                if kind!='portable_brazier' or distance>=reach or faced or str(exc)!='No direct local segment with observed player clearance':raise
+                if kind!='portable_brazier' or distance>=reach or faced or str(exc)!='No direct local segment with observed player clearance':
+                    if hasattr(self.s,'failure_checkpoint'):self.s.failure_checkpoint(str(exc),frame,f)
+                    raise
                 # At a wall, the feet can be visually occluded although the
                 # adjacent bowl is seen. Face it once; pickup still requires
                 # a new hand/bubble observation and the transfer verifier.

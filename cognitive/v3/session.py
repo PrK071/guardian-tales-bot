@@ -17,7 +17,7 @@ from .hazards import solid_spike
 class GameplaySession(FastSession):
     def __init__(self,root,adb,memory,cancel=None,scope='world:1:passage:1',run_id=None,video=False):
         super().__init__(root,adb,memory,cancel,scope,run_id,artifact_base='data/v3')
-        self.kind='v3_continuous_stage_execution';self.backend=ScrcpyTouch(self.root,adb,self.folder,video=video);self.controls=None;self.active_operation=None;self.segment_results=[];self.combat_results=[];self.video_sequence=0;self.last_confirmed_enemy=None
+        self.kind='v3_continuous_stage_execution';self.backend=ScrcpyTouch(self.root,adb,self.folder,video=video);self.controls=None;self.active_operation=None;self.segment_results=[];self.combat_results=[];self.video_sequence=0;self.last_confirmed_enemy=None;self.failure_checkpoints=[]
         try:
             anchors=memory.retrieve(scope,kind='v2_spawn_anchor',include_global=False,limit=1)
             if not anchors or anchors[0]['validation']!='verified':raise RuntimeError('A validated map reference is required for this stage')
@@ -37,6 +37,17 @@ class GameplaySession(FastSession):
     def check_cancel(self):
         if (self.root/'data/v3/STOP').exists():raise InterruptedError('V3 manually stopped')
         super().check_cancel()
+    def failure_checkpoint(self,reason,frame=None,features=None):
+        """Keep exact controller pixels only on failure; JPEG is diagnostic lossy."""
+        if frame is None:frame=self.last_frame
+        if features is None:features=self.last_features
+        if frame is None or not features:return None
+        if self.failure_checkpoints and self.failure_checkpoints[-1]['source_frame']==features['frame']:return self.failure_checkpoints[-1]
+        path=self.folder/f'failure-{self.frames:04d}.png'
+        if not cv2.imwrite(str(path),frame,[cv2.IMWRITE_PNG_COMPRESSION,1]):raise OSError('Cannot preserve lossless failure pixels')
+        record={'reason':reason,'source_frame':features['frame'],'lossless_frame':str(path.relative_to(self.root)),'pixels_bgr_sha256':hashlib.sha256(frame.tobytes()).hexdigest(),'features':features}
+        path.with_suffix('.json').write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8');self.failure_checkpoints.append(record)
+        return record
     def capture_live(self,label):
         if not self.backend.video:return self.capture(label)
         if not self.memory.acquire(self.owner,ttl=180):raise RuntimeError('Game executor lease lost')
@@ -230,5 +241,5 @@ class GameplaySession(FastSession):
         if self.active_operation:
             try:self.verify_continuous({'reason':'session_closed_before_verification'},False)
             except Exception as exc:errors.append(str(exc))
-        report=super().close();report.update(continuous_actions=self.controls.actions if self.controls else [],segments=self.segment_results,combats=self.combat_results,backend=backend,close_errors=errors)
+        report=super().close();report.update(continuous_actions=self.controls.actions if self.controls else [],segments=self.segment_results,combats=self.combat_results,backend=backend,close_errors=errors,failure_checkpoints=self.failure_checkpoints)
         (self.folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8');return report
