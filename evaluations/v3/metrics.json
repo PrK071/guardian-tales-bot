@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T07:25:09.471824",
+  "generated_at": "2026-11-09T07:40:15.650052",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -8497,6 +8497,49 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_ee5dd3bad6204536\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Room checkpoint did not improve across the bounded visual sequence",
+      "seconds": 543.0274415000022,
+      "metrics": {
+        "cycles": 12,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          9516.824899998028,
+          8762.37859998946,
+          11853.145100001711,
+          31226.492900008452,
+          20320.040699996753,
+          4560.261399994488,
+          4050.472400005674,
+          19236.292900008266,
+          182708.0253000022
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 6,
+        "segments": 4,
+        "combats": 3,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": true,
+      "objectives_per_minute": 0.6629499220252547
+    },
+    {
       "source": "data\\v3\\v3_trial_f4c1d291deb74571\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Observed standing_lantern_lit lost during approach",
@@ -9148,10 +9191,10 @@
     }
   },
   "final_fresh_trial": {
-    "source": "data\\v3\\v3_trial_19f75214f5fe4c78\\report.json",
+    "source": "data\\v3\\v3_trial_ee5dd3bad6204536\\report.json",
     "outcome": "blocked",
-    "reason": "RuntimeError: Mole Glove input did not produce verified tile removal",
-    "seconds": 428.4165986000007,
+    "reason": "RuntimeError: Room checkpoint did not improve across the bounded visual sequence",
+    "seconds": 543.0274415000022,
     "metrics": {
       "cycles": 12,
       "replans": 3,
@@ -9167,28 +9210,28 @@
       "output_tokens": 0,
       "decision_ms": [],
       "cycle_ms": [
-        9141.604399992502,
-        9286.595300000045,
-        12132.930700012366,
-        30012.187700005597,
-        15869.710999992094,
-        16829.156900013913,
-        4726.0554000095,
-        4419.332700010273,
-        20250.506399999722
+        9516.824899998028,
+        8762.37859998946,
+        11853.145100001711,
+        31226.492900008452,
+        20320.040699996753,
+        4560.261399994488,
+        4050.472400005674,
+        19236.292900008266,
+        182708.0253000022
       ],
       "timing_scope": "isolated_local_planning_ms",
       "puzzle_attempts": 0,
       "puzzle_verified": 0,
       "completed": false,
       "high_level_completed": 6,
-      "segments": 5,
-      "combats": 2,
+      "segments": 4,
+      "combats": 3,
       "guide_cache_hits": 1
     },
     "cursor": 6,
     "initial_spawn_verified": true,
-    "objectives_per_minute": 0.8403035764170306
+    "objectives_per_minute": 0.6629499220252547
   },
   "tests": {
     "groups": {

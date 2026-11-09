@@ -243,6 +243,8 @@ A reconciliação dessa entrada confirmou duas imagens independentes do mapa em1
 
 O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
 
+O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. Esse resultado fica preservado em `evaluations/v3/final-fresh-trial.json`; não há conclusão integral autônoma comprovada pela versão final. A navegação da sala e o alinhamento das lanternas continuam sendo limitações reais, separadas do ganho medido no corredor conhecido.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.

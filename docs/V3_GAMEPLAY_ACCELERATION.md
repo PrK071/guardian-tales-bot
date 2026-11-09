@@ -99,7 +99,7 @@ Preparações sem inimigo confirmado e leituras OCR sem identidade suficiente n�
 | Trial integrado | Cursor | Ciclos | Chamadas Qwen | Resultado |
 | --- | --- | --- | --- | --- |
 | v3_trial_042e8212b28a46f5 | 6 | 18 | 0 | blocked: RuntimeError: Lantern approach stalled twice; no repeated blind movement |
-| v3_trial_19f75214f5fe4c78 | 6 | 12 | 0 | blocked: RuntimeError: Mole Glove input did not produce verified tile removal |
+| v3_trial_ee5dd3bad6204536 | 6 | 12 | 0 | blocked: RuntimeError: Room checkpoint did not improve across the bounded visual sequence |
 
 
 ## Latência, decisões e limites da medição
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T07:25:10. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T07:40:16. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -163,11 +163,13 @@ A reconciliação dessa entrada confirmou duas imagens independentes do mapa em1
 
 O ensaio fresco `19f75214f5fe4c78` chegou a6/9 em428,417s e parou na confirmação da luva. A área antiga era centrada no personagem e atravessava duas colunas de um grupo em L: parte da pedra vizinha intacta entrava na medição. A seleção agora usa a coluna observada mais próxima que realmente contém pedra; mantém os limiares de remoção, piso, visibilidade e alinhamento. O replay antes/depois desse caso passa com a coluna correta e permanece separado de uma nova validação ao vivo. A primeira recusa do pickup foi recuperada internamente por reconciliação visual, sem repetir a interação.
 
+O ensaio fresco seguinte `ee5dd3bad6204536`, com a seleção corrigida, chegou a6/9 em543,027s. Confirmou o pickup, recuperou autonomamente um encontro intermediário com item e executou a ignição. Parou no puzzle quando o mapa não confirmou melhora no retorno ao checkpoint da sala. Esse resultado fica preservado em `evaluations/v3/final-fresh-trial.json`; não há conclusão integral autônoma comprovada pela versão final. A navegação da sala e o alinhamento das lanternas continuam sendo limitações reais, separadas do ganho medido no corredor conhecido.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
 
-Ensaio integrado final `data\v3\v3_trial_19f75214f5fe4c78\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 428.417s, 0.840 objetivos/min; 12 ciclos. Motivo: RuntimeError: Mole Glove input did not produce verified tile removal.
+Ensaio integrado final `data\v3\v3_trial_ee5dd3bad6204536\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 543.027s, 0.663 objetivos/min; 12 ciclos. Motivo: RuntimeError: Room checkpoint did not improve across the bounded visual sequence.
 
 Comparação de combate selecionada: `v3_combat_benchmark_f7859decec7c4428`. Não misturar séries antigas com código diferente. Tempos de falha não contam como conclusão. Os JSONs preservam entradas iniciais, raw final, ações e erros.
 
