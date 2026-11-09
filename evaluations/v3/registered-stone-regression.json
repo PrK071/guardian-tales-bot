@@ -6,9 +6,32 @@
   "change": "Use independently measured map actor and current registered fixed lamp to navigate to a clear side; require current tool glyph and existing tile-removal verification",
   "regression_tests": {
     "module": "evaluations.v3.test_lantern_flow",
-    "passed": 15,
+    "passed": 16,
     "failed": 0
   },
-  "live_validation": "pending",
-  "stage_completion_claim": false
+  "live_validation": {
+    "run_id": "v3_trial_a0c41cef618c410b",
+    "approach_memory_id": "memory_138a560a269e44c6",
+    "chosen_side": {
+      "face": "right",
+      "standoff_reference": 10,
+      "target": [
+        445.7309126140739,
+        766.1024999175012
+      ]
+    },
+    "before_frame": "data\\v3\\v3_trial_a0c41cef618c410b\\0070-v3-glove-preflight.jpg",
+    "after_frame": "data\\v3\\v3_trial_a0c41cef618c410b\\0072-v3-glove-removal-check.jpg",
+    "rock_pixels_before": 10272,
+    "rock_pixels_remaining": 549,
+    "visible_floor_fraction": 0.8102161605764282,
+    "tile_removal_verified": true,
+    "whole_stage_complete": false
+  },
+  "stage_completion_claim": false,
+  "first_live_refusal": {
+    "run_id": "v3_trial_6a933031abef4d9c",
+    "reason": "Nearest 6-reference-pixel standoff lacked static-map clearance; no unsafe movement issued",
+    "fix": "Choose the closest of multiple standoffs that passes unchanged floor-clearance threshold"
+  }
 }

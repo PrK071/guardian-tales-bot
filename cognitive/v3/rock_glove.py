@@ -32,8 +32,10 @@ def registered_column_goal(actor_reference,objects,known,rock,ratio,raw_player):
     _,row,reference,point,actor_pixel=max(matches,key=lambda value:value[0]);x,y,w,h=rock['bbox']
     low=[reference[0]+(x-point[0])/ratio,reference[1]+(y-point[1])/ratio];high=[low[0]+w/ratio,low[1]+h/ratio]
     cy=min(max(actor_reference[1],low[1]+6),high[1]-6) if high[1]-low[1]>=12 else (low[1]+high[1])/2
-    candidates=[{'target':[low[0]-6,cy],'face':'right'},{'target':[high[0]+6,cy],'face':'left'}]
-    candidates.sort(key=lambda candidate:math.dist(candidate['target'],actor_reference))
+    candidates=[{'target':[low[0]-gap,cy],'face':'right','standoff_reference':gap} for gap in (6,10,14,18)]+[{'target':[high[0]+gap,cy],'face':'left','standoff_reference':gap} for gap in (6,10,14,18)]
+    # Prefer the closest safe standoff to the observed stone. A map edge
+    # can exclude its apparent pixel-side margin; retain the clearance gate.
+    candidates.sort(key=lambda candidate:(candidate['standoff_reference'],math.dist(candidate['target'],actor_reference)))
     return {'candidates':candidates,'landmark_memory':row['id'],'landmark_reference':reference,'observed_landmark_foot':point,'associated_actor_pixel':actor_pixel,'rock_reference_bounds':[low,high]}
 
 def approach_registered_column(s,c,frame,features,rock):

@@ -43,6 +43,16 @@ class LanternFlowTests(unittest.TestCase):
         with patch('cognitive.v3.rock_glove.drill_visible') as drill:
             with self.assertRaisesRegex(RuntimeError,'did not progress'):approach_registered_column(session,controller,frame,features,rock)
             drill.assert_not_called();self.assertFalse(actions)
+    def test_registered_side_keeps_clearance_when_nearest_standoffs_touch_map_edge(self):
+        from cognitive.v3.rock_glove import approach_registered_column
+        import numpy as np
+        frame,features,known,rock=self.registered_stone_fixture();floor=np.zeros((900,1600),np.uint8);floor[:,:456]=255;routes=[]
+        def navigate(target,**kw):routes.append(target);return {'verified':True}
+        session=SimpleNamespace(scope='world:1:passage:1',run_id='fixture',backend=SimpleNamespace(held={}),speeds={'move':.059537465550086245},controls=SimpleNamespace(actions=[]),memory=SimpleNamespace(retrieve=lambda *a,**kw:known,remember=lambda *a,**kw:None),map_state=lambda *a:({'floor':floor},{'scale':1},[426.7323943661973,770.1267605633802],{'frame':'fixture:map'}),raw_target=lambda point,alignment:point,transition=lambda *a:None,navigate_to=navigate)
+        controller=SimpleNamespace(observe=lambda *a:(frame,features))
+        with patch('cognitive.v3.rock_glove.glove_visible',return_value=True),patch('cognitive.v3.rock_glove.drill_visible',return_value={'verified':True}) as drill:
+            result=approach_registered_column(session,controller,frame,features,rock)
+        self.assertTrue(result['verified']);self.assertEqual(result['registered_approach']['chosen']['standoff_reference'],14);self.assertAlmostEqual(routes[0][0],441.8662,places=3);drill.assert_called_once()
     def test_nearby_brazier_with_neutral_boot_is_not_returned_as_pickup_ready(self):
         frame=cv2.imread(str(ROOT/'data/v3/v3_trial_1503120023e54414/0093-lantern-find-object.jpg'));vision=LanternVision(ROOT);features=SpatialVision().entities(frame);features['frame']='synthetic:neutral-near-brazier';features['puzzle_objects']=vision.detect(frame,features['player'],False)
         def pulse(action):raise RuntimeError('synthetic control withheld after planning approach')
