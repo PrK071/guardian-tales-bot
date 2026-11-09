@@ -184,10 +184,10 @@ class StageV3Runner(StageRunner):
             evidence=[]
             if evidence:return True,{'stage_complete':True,'result_evidence':evidence}
             map_state,alignment,position,map_features=s.map_state('v3-exit-route-map')
-            if position[1]<930 or abs(position[0]-425.5)>9:
+            if position[1]<930 or abs(position[0]-425.5)>30:
                 # Use the live floor in the compact object room: the pause
                 # marker can occlude its narrow map nodes near a pedestal.
-                result=self.final_corridor_segment(s,map_state,alignment,position,map_features,938)
+                result=self.final_corridor_segment(s,map_state,alignment,position,map_features,938 if position[1]<930 else position[1])
                 if result.get('reason')=='enemy_detected':
                     combat=s.fight_continuously(min(60,remaining));self.metrics['combats']+=1
                     if not combat['visible_combat_ended']:raise RuntimeError('Combat not verified: '+combat['outcome'])

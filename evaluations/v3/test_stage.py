@@ -43,6 +43,18 @@ class StageTests(unittest.TestCase):
         calls=[];runner=self.runner();f={'scene':'jogo','frame':'synthetic:game','at':time.time()}
         session=SimpleNamespace(last_features=f,transition=lambda *a:None,capture=lambda *a:(None,f),map_state=lambda *a:({}, {},[438.7,819.3],{'frame':'synthetic:map','at':time.time()}),controls=SimpleNamespace(actions=[]),navigate_to=lambda target,**kw:(calls.append(target) or {'verified':True}))
         complete,result=runner.execute_step(session,{'kind':'exit','id':'exit'},30);self.assertFalse(complete);self.assertEqual(calls,[[425.5,938]])
+    def test_exit_lateral_detour_does_not_restart_the_route_north_of_current_progress(self):
+        import time
+        runner=self.runner();runner.runtime=None;runner.bot=None;f={'scene':'jogo','frame':'synthetic:game','at':time.time()};calls=[]
+        s=SimpleNamespace(last_features=f,transition=lambda *a:None,map_state=lambda *a:({}, {},[440,988],{'frame':'synthetic:map'}),controls=SimpleNamespace(actions=[]),navigate_to=lambda target,**kw:(_ for _ in ()).throw(AssertionError('No northbound restart after a legitimate flank detour')))
+        with patch('cognitive.v3.exit_control.exit_forward',side_effect=lambda *a:(calls.append(a[3]) or {'stage_complete':False})):
+            done,result=runner.execute_step(s,{'kind':'exit','id':'exit'},30)
+        self.assertFalse(done);self.assertEqual(calls,[[440,988]])
+    def test_exit_large_lateral_correction_keeps_current_forward_height(self):
+        import time
+        runner=self.runner();f={'scene':'jogo','frame':'synthetic:game','at':time.time()};calls=[]
+        s=SimpleNamespace(last_features=f,transition=lambda *a:None,map_state=lambda *a:({}, {},[470,988],{'frame':'synthetic:map'}),controls=SimpleNamespace(actions=[]),navigate_to=lambda target,**kw:(calls.append(target) or {'verified':True}))
+        done,result=runner.execute_step(s,{'kind':'exit','id':'exit'},30);self.assertFalse(done);self.assertEqual(calls,[[425.5,988]])
     def test_known_route_executes_a_segment_without_model_or_microsteps(self):
         calls=[];runner=self.runner()
         s=SimpleNamespace(navigate_to=lambda *a:(calls.append(a) or {'verified':True,'reason':'duration_elapsed'}))

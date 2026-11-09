@@ -17,7 +17,7 @@ def verified_exit_context(s,arrival,map_frame):
     combat_verified=bool(result.get('visible_combat_ended') or result.get('result',{}).get('visible_combat_ended') or result.get('source',{}).get('visible_combat_ended'))
     if not(active.get('entry_token') and gate.get('state')=='completed' and gate.get('result',{}).get('verified') and combat.get('state')=='completed' and combat_verified):raise RuntimeError('This entry lacks verified gate and final encounter objectives')
     path=(s.root/map_frame).resolve()
-    if not path.is_relative_to(s.folder.resolve()) or not path.exists() or not arrival or arrival[1]<930 or abs(arrival[0]-425.5)>10:raise RuntimeError('No current-run final-corridor map arrival')
+    if not path.is_relative_to(s.folder.resolve()) or not path.exists() or not arrival or arrival[1]<930 or abs(arrival[0]-425.5)>30:raise RuntimeError('No current-run final-corridor map arrival')
     return {'entry_token':active['entry_token'],'plan_id':active['plan_id'],'arrival_reference':arrival,'arrival_map_frame':map_frame,'gate_objective_frame':gate['frame'],'combat_objective_frame':combat['frame'],'current_entry_verified':True}
 
 def house_candidate(frame,features):
@@ -90,9 +90,29 @@ def verify_exit_result(s,runtime,bot,house,context,seconds=45):
         else:observations=[];kind=None
     return None
 
+def visible_exit_detour(frame,features,objects=()):
+    """Take one checked flank segment around an observed forward obstruction."""
+    from .segments import SegmentPlanner,clear_line
+    player=features.get('player')
+    if not player:return None
+    floor=SpatialVision.floor_mask(frame);px,py=player;cv2.circle(floor,(round(px),round(py)),36,255,-1)
+    obstacles=[e for e in features.get('entities',[]) if e['kind'] in ('hazard','rock_obstacle_candidate','bomb_candidate')]+[o for o in objects if o['kind']=='portable_brazier']
+    for obj in obstacles:
+        x,y,w,h=map(round,obj['bbox']);floor[max(0,y):min(900,y+h),max(0,x):min(1600,x+w)]=0
+    clearance=cv2.distanceTransform(floor,cv2.DIST_L2,5)
+    for distance in (320,260,200):
+        target=[px,min(800,py+distance)]
+        try:plan=SegmentPlanner(.44).plan({'floor':floor,'player':player},target,margin=28)
+        except ValueError:continue
+        if not plan['segments'] or plan['segments'][-1]['end'][1]-py<100:continue
+        first=plan['segments'][0];vx,vy=first['direction'];ms=max(80,min(1200,round(first['duration_ms'])));end=[px+vx*ms*.44,py+vy*ms*.44]
+        if vy<-.01 or abs(end[0]-px)>180 or not clear_line(clearance,player,end,28,start_escape=True):continue
+        return {'direction':list(first['direction']),'duration_ms':ms,'source_frame':features['frame'],'forward_target':target,'predicted_endpoint':end,'clearance_pixels':28,'observed_obstacles':obstacles,'plan':plan,'scope':'one visible flank segment; forward continuation requires a new observation'}
+    return None
+
 def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
     context=verified_exit_context(s,arrival,map_frame)
-    s.transition('jogo');house=getattr(s,'exit_house_evidence',None);actions=[]
+    s.transition('jogo');house=getattr(s,'exit_house_evidence',None);actions=[];detour_positions=[list(arrival)];last_map_position=list(arrival)
     for _ in range(max_actions):
         s.check_cancel();frame,f=s.capture_live('v3-exit-forward-observe')
         if f['scene']!='jogo':
@@ -109,7 +129,7 @@ def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
             combat=s.fight_continuously(45)
             if not combat['visible_combat_ended']:raise RuntimeError('Final-corridor combat not verified: '+combat['outcome'])
             s.transition('jogo');continue
-        marker=house_candidate(frame,f)
+        marker=house_candidate(frame,f);detour=None;heading='down';detour_before=None
         if marker:
             house={'frame':f['frame'],**marker};s.exit_house_evidence=house
             # The end-of-stage house offers the same observed interaction
@@ -123,10 +143,18 @@ def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
                 raise RuntimeError('Observed house exit interaction lacks two independent completion observations')
             duration=min(2000,max(100,(marker['point'][1]-f['player'][1]+60)/.44))
         else:
-            horizon=visible_floor_horizon(frame,f,'down')
-            if not horizon:raise RuntimeError('No observed forward floor or house exit; backward exploration withheld')
-            duration=horizon['duration_ms']
-        s.prepare_continuous('final_corridor_exit_forward',{'duration_ms':duration,'exit_landmark':house,'route':'guide final southern corridor; current floor/marker observed'})
+            objects=s.lantern_vision.detect(frame,f['player'],holding=bool(s.held_object_kind));ground=[o for o in objects if o['kind']=='portable_brazier']
+            horizon=visible_floor_horizon(frame,f,'down',extra_obstacles=ground,clearance_pixels=28 if ground else 20)
+            if horizon:duration=horizon['duration_ms']
+            else:
+                if actions:
+                    _,_,detour_before,_=s.map_state('v3-exit-detour-before-map');s.transition('jogo');frame,f=s.capture('v3-exit-detour-preflight')
+                    if s.preflight_enemy(f):raise RuntimeError('Encounter interrupts exit detour')
+                else:detour_before=list(arrival)
+                objects=s.lantern_vision.detect(frame,f['player'],holding=bool(s.held_object_kind));detour=visible_exit_detour(frame,f,objects)
+                if not detour:raise RuntimeError('No observed forward floor or house exit; backward exploration withheld')
+                heading=detour['direction'];duration=detour['duration_ms']
+        s.prepare_continuous('final_corridor_exit_forward',{'direction':heading,'duration_ms':duration,'exit_landmark':house,'visible_detour':detour,'route':'guide final southern corridor; current floor/marker observed'})
         observer=LiveObserver(s).start();gate=ThreatGate();missing=0;last=-1
         def policy(snapshot):
             nonlocal missing,last,house
@@ -140,12 +168,28 @@ def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
                 if not marker and candidate['point'][1]-current['player'][1]<90:return 'exit_marker_approach'
             if snapshot['sequence']!=last:last=snapshot['sequence'];missing=0 if current.get('player') else missing+1
             if missing>=2:return 'actor_lost'
-        try:control=s.controls.move_hold('down',duration,monitor=lambda:observer.reason(policy))
+        before_image=frame
+        try:control=s.controls.move_hold(heading,duration,monitor=lambda:observer.reason(policy))
         finally:s.backend.release_all();observation_report=observer.close()
-        frame,after=s.capture_live('v3-exit-forward-after');row={'control':control,'observations':observation_report,'before_frame':f['frame'],'after_frame':after['frame'],'exit_landmark':house};actions.append(row);context['controls_issued']=True;context['movement_trace']=actions
+        frame,after=s.capture_live('v3-exit-forward-after');row={'control':control,'observations':observation_report,'before_frame':f['frame'],'after_frame':after['frame'],'exit_landmark':house,'visible_detour':detour};actions.append(row);context['controls_issued']=True;context['movement_trace']=actions
         if after['scene']!='jogo' or house and not after.get('player'):
             result=verify_exit_result(s,runtime,bot,house,context)
             if result:s.verify_continuous(result,True);result['exit_actions']=actions;return result
         s.verify_continuous({'control_outcome':control['outcome'],'after_frame':after['frame'],'stage_complete':False},False)
         if control['outcome'] in ('low_health','perception_stale','perception_unavailable'):raise RuntimeError('Exit forward interrupted: '+control['outcome'])
+        if control['outcome']=='enemy_detected':continue
+        if detour and after['scene']=='jogo':
+            _,_,position,checkpoint=s.map_state('v3-exit-detour-after-map');delta=[position[i]-detour_before[i] for i in (0,1)];progress=sum(delta[i]*heading[i] for i in (0,1));revisited=any(math.dist(position,old)<=2 for old in detour_positions)
+            proof={'verified':progress>2 and not revisited,'before_reference':detour_before,'after_reference':position,'directional_progress_reference_pixels':progress,'map_frame':checkpoint['frame'],'goal_reached':False,'route':detour};row['detour_check']=proof
+            s.memory.remember('episodic','v3_exit_detour',s.scope,{'run_id':s.run_id,**proof},Provenance(checkpoint['frame'],method='visible_floor_flank_with_unchanged_clearance_then_independent_map_displacement'),.9,'verified' if proof['verified'] else 'uncertain')
+            if not proof['verified']:raise RuntimeError('Exit detour did not reach a new map position in the planned direction')
+            detour_positions.append(list(position));last_map_position=list(position);s.transition('jogo')
+        elif after['scene']=='jogo' and control['outcome']=='duration_elapsed':
+            motion=SpatialVision.motion(before_image,frame,f.get('player'),after.get('player'));row['motion']=motion
+            if motion['confidence']>=.25 and motion['effective_dy']<8:
+                _,_,position,checkpoint=s.map_state('v3-exit-forward-stall-check');progress=position[1]-last_map_position[1];row['map_stall_check']={'before':last_map_position,'after':position,'forward_progress_reference_pixels':progress,'frame':checkpoint['frame']};last_map_position=list(position)
+                if progress<=2:
+                    s.memory.remember('episodic','v3_exit_stall',s.scope,{'run_id':s.run_id,'stagnancy_verified':True,'check':row['map_stall_check'],'motion':motion,'control':control},Provenance(checkpoint['frame'],method='visual_stall_then_independent_map_nonprogress'),.9,'verified')
+                    raise RuntimeError('Exit forward segment did not progress in the independent map')
+                s.transition('jogo')
     raise RuntimeError('Observed final-corridor exit action budget exhausted')

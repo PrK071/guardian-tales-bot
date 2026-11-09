@@ -24,6 +24,8 @@
   "room_navigation_sha256": "4bb19be5e05f1658c6a1015dde130dde497415f92f18ea2f16afe50810672ef1",
   "live_validation": {
     "run_id": "v3_trial_5278d4ac31b048bc",
-    "status": "in_progress"
+    "status": "blocked",
+    "reason": "RuntimeError: No direct local segment with observed player clearance",
+    "guard_trigger_count": 0
   }
 }

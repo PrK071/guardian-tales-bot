@@ -10,6 +10,44 @@ from cognitive.stage_v2 import completion_evidence
 ROOT=Path(__file__).resolve().parents[2]
 
 class ExitTests(unittest.TestCase):
+    def test_exit_entry_envelope_allows_a_visible_flank_but_still_requires_current_objectives(self):
+        active={'entry_token':'synthetic:entry','plan_id':'synthetic:plan','states':{'lantern_puzzle':{'state':'completed','frame':'synthetic:gate','result':{'verified':True}},'final_encounter':{'state':'completed','frame':'synthetic:combat','result':{'visible_combat_ended':True}}}}
+        with tempfile.TemporaryDirectory(dir=ROOT/'data/v3') as folder:
+            path=Path(folder)/'map.jpg';path.write_bytes(b'synthetic map-path gate; not gameplay evidence');s=SimpleNamespace(root=ROOT,folder=Path(folder),scope='world:1:passage:1',memory=SimpleNamespace(retrieve=lambda *a,**kw:[{'content':active}]))
+            context=verified_exit_context(s,[440,988],str(path.relative_to(ROOT)));self.assertTrue(context['current_entry_verified']);self.assertNotIn('stage_complete',context)
+            for arrival in ([460,988],[440,929]):
+                with self.subTest(arrival=arrival),self.assertRaisesRegex(RuntimeError,'No current-run'):verified_exit_context(s,arrival,str(path.relative_to(ROOT)))
+            active['states']['final_encounter']['state']='pending'
+            with self.assertRaisesRegex(RuntimeError,'lacks verified'):verified_exit_context(s,[440,988],str(path.relative_to(ROOT)))
+    def test_raw_torch_flank_is_not_clear_just_because_floor_colours_skip_its_rim(self):
+        from cognitive.lantern_vision import LanternVision
+        from cognitive.v3.exploration import visible_floor_horizon
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/blocked-flank.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];objects=[o for o in LanternVision(ROOT).detect(frame,f['player'],False) if o['kind']=='portable_brazier']
+        self.assertTrue(objects);self.assertIsNotNone(visible_floor_horizon(frame,f,'down'));self.assertIsNone(visible_floor_horizon(frame,f,'down',extra_obstacles=objects,clearance_pixels=28))
+    def test_exit_stops_on_independent_map_stagnation_instead_of_repeating_forward_holds(self):
+        from cognitive.v3.exit_control import exit_forward
+        from cognitive.lantern_vision import LanternVision
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/replay.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];issued=[];records=[]
+        session=SimpleNamespace(root=ROOT,scope='world:1:passage:1',run_id='synthetic:exit-stall',held_object_kind=None,check_cancel=lambda:None,transition=lambda *a:None,capture_live=lambda *a:(frame,f),preflight_enemy=lambda f:False,lantern_vision=LanternVision(ROOT),prepare_continuous=lambda *a:None,verify_continuous=lambda *a:None,backend=SimpleNamespace(release_all=lambda:None),controls=SimpleNamespace(move_hold=lambda *a,**kw:(issued.append(a) or {'outcome':'duration_elapsed'})),map_state=lambda *a:({},None,[425.5,975],{'frame':'synthetic:independent-map'}),memory=SimpleNamespace(remember=lambda *a,**kw:records.append(a)))
+        observer=SimpleNamespace(start=lambda:observer,close=lambda:{})
+        with patch('cognitive.v3.exit_control.verified_exit_context',return_value={'current_entry_verified':True}),patch('cognitive.v3.exit_control.visible_floor_horizon',return_value={'duration_ms':500}),patch('cognitive.v3.exit_control.LiveObserver',return_value=observer):
+            with self.assertRaisesRegex(RuntimeError,'did not progress in the independent map'):exit_forward(session,None,None,[425.5,975],'synthetic:arrival')
+        self.assertEqual(len(issued),1);self.assertEqual(records[0][1],'v3_exit_stall');self.assertTrue(records[0][3]['stagnancy_verified'])
+    def test_actual_released_torch_blocks_straight_exit_but_has_checked_lateral_route(self):
+        import numpy as np
+        from cognitive.v3.exit_control import visible_exit_detour
+        from cognitive.v3.exploration import visible_floor_horizon
+        from cognitive.lantern_vision import LanternVision
+        from cognitive.spatial import SpatialVision
+        from cognitive.v3.segments import clear_line
+        folder=ROOT/'evaluations/v3/fixtures/exit-obstacle';r=json.loads((folder/'replay.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];objects=LanternVision(ROOT).detect(frame,f['player'],False)
+        self.assertIsNone(house_candidate(frame,f));self.assertIsNone(visible_floor_horizon(frame,f,'down'));route=visible_exit_detour(frame,f,objects)
+        self.assertIsNotNone(route);self.assertGreater(abs(route['direction'][0]),.5);self.assertGreaterEqual(route['direction'][1],0);self.assertEqual(route['clearance_pixels'],28);self.assertLessEqual(route['duration_ms'],1200)
+        floor=SpatialVision.floor_mask(frame);cv2.circle(floor,tuple(map(round,f['player'])),36,255,-1)
+        for obj in route['observed_obstacles']:
+            x,y,w,h=obj['bbox'];floor[y:y+h,x:x+w]=0
+        self.assertTrue(clear_line(cv2.distanceTransform(floor,cv2.DIST_L2,5),f['player'],route['predicted_endpoint'],28,start_escape=True))
+        self.assertIsNone(visible_exit_detour(np.zeros_like(frame),f,objects))
     def test_completed_raw_star_white_core_is_not_split_into_two_small_gold_fragments(self):
         proof=completed_passage_card(cv2.imread(str(ROOT/'evaluations/v3/fixtures/completed-stage-map-raw.png')),ROOT)
         self.assertTrue(proof['verified']);star=proof['star_shapes'][0];self.assertLess(star['gold_fill_fraction'],.55);self.assertEqual(star['lit_fill_fraction'],1);self.assertGreaterEqual(star['gold_pixels'],70)

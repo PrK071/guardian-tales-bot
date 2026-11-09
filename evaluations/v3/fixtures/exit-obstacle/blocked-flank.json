@@ -1,0 +1,60 @@
+{
+  "reason": "Observed final-corridor exit action budget exhausted",
+  "source_frame": "data\\v3\\v3_trial_096f3ffd83134625\\0077-v3-exit-forward-after.jpg",
+  "lossless_frame": "evaluations/v3/fixtures/exit-obstacle/blocked-flank.png",
+  "pixels_bgr_sha256": "2ff4820031b2e0690a7da651cc4a0f8c49bc94b66f03655a7c8ee873b0ff419d",
+  "features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          771,
+          347,
+          69,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      }
+    ],
+    "player": [
+      805.5,
+      442
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.947,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.40643402777777776,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [],
+    "perception_timing": {
+      "spatial_ms": 82.40880000812467,
+      "puzzle_ms": 0.000600004568696022,
+      "puzzle_detection_enabled": false
+    },
+    "frame": "data\\v3\\v3_trial_096f3ffd83134625\\0077-v3-exit-forward-after.jpg",
+    "capture_ms": 1.95,
+    "at": 1794223353.2686574,
+    "capture_source": "scrcpy_h264",
+    "video_sample": {
+      "sequence": 551,
+      "received_monotonic": 91715.9969363,
+      "decoded_monotonic": 91716.004884,
+      "decode_ms": 7.947699996293522,
+      "pts_us": 15225656612,
+      "packet_bytes": 47419,
+      "encoded_size": [
+        1600,
+        904
+      ],
+      "normalized_size": [
+        1600,
+        900
+      ]
+    }
+  }
+}

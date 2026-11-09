@@ -1,0 +1,61 @@
+{
+  "reason": "No observed forward floor or house exit; backward exploration withheld",
+  "source_frame": "data\\v3\\v3_trial_d8bdd49625824311\\0253-v3-exit-forward-observe.jpg",
+  "lossless_frame": "evaluations/v3/fixtures/exit-obstacle/controller-input.png",
+  "pixels_bgr_sha256": "cba2cb56d33d6d122a8295501bafe8b9bc259d1edf348ebc46a65a7ea6ffb80a",
+  "features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          769,
+          354,
+          71,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      }
+    ],
+    "player": [
+      804.5,
+      449
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.947,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.4656972222222222,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [],
+    "perception_timing": {
+      "spatial_ms": 95.01150000141934,
+      "puzzle_ms": 0.0014999968698248267,
+      "puzzle_detection_enabled": false
+    },
+    "frame": "data\\v3\\v3_trial_d8bdd49625824311\\0253-v3-exit-forward-observe.jpg",
+    "capture_ms": 1.3,
+    "at": 1794222725.792234,
+    "capture_source": "scrcpy_h264",
+    "video_sample": {
+      "sequence": 4956,
+      "received_monotonic": 91088.398698,
+      "decoded_monotonic": 91088.4040987,
+      "decode_ms": 5.400699999881908,
+      "pts_us": 14598037050,
+      "packet_bytes": 43503,
+      "encoded_size": [
+        1600,
+        904
+      ],
+      "normalized_size": [
+        1600,
+        900
+      ]
+    }
+  },
+  "source_run": "v3_trial_d8bdd49625824311"
+}

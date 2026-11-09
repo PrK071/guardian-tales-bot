@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T08:07:09.833202",
+  "generated_at": "2026-11-09T10:53:49.782960",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -7242,6 +7242,41 @@
       "objectives_per_minute": 1.5631002182720968
     },
     {
+      "source": "data\\v3\\v3_trial_096f3ffd83134625\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No observed forward floor or house exit; backward exploration withheld",
+      "seconds": 65.33865760000481,
+      "metrics": {
+        "cycles": 3,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          12488.54589999246
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 1,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 8,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
       "source": "data\\v3\\v3_trial_13f26b7f67ff4c73\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Persistent fixed fire was not independently confirmed at its registered room location",
@@ -8452,6 +8487,45 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_d8bdd49625824311\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No observed forward floor or house exit; backward exploration withheld",
+      "seconds": 262.52625439999974,
+      "metrics": {
+        "cycles": 8,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          137810.2918000077,
+          17339.240700006485,
+          22395.002899997053,
+          22487.56370000774,
+          12226.198899996234
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 2,
+        "segments": 3,
+        "combats": 1,
+        "guide_cache_hits": 1
+      },
+      "cursor": 8,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.4570971397670622
+    },
+    {
       "source": "data\\v3\\v3_trial_ebd17a2d61694c04\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: No visible approach to the object within player clearance",
@@ -9249,7 +9323,9 @@
     "room_navigation_sha256": "4bb19be5e05f1658c6a1015dde130dde497415f92f18ea2f16afe50810672ef1",
     "live_validation": {
       "run_id": "v3_trial_5278d4ac31b048bc",
-      "status": "in_progress"
+      "status": "blocked",
+      "reason": "RuntimeError: No direct local segment with observed player clearance",
+      "guard_trigger_count": 0
     }
   },
   "raw_corner_regression": {
@@ -9321,7 +9397,11 @@
       ],
       "passed": 37,
       "failed": 0
-    }
+    },
+    "versioned_live_frames": [
+      "evaluations/v3/evidence/raw-corner-pickup-ready.jpg",
+      "evaluations/v3/evidence/raw-corner-held-follow.jpg"
+    ]
   },
   "final_fresh_trial": {
     "source": "data\\v3\\v3_trial_ee5dd3bad6204536\\report.json",
