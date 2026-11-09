@@ -87,6 +87,7 @@ measured['room_detour_regression']=json.loads((ROOT/'evaluations/v3/room-detour-
 measured['raw_corner_regression']=json.loads((ROOT/'evaluations/v3/raw-corner-regression.json').read_text())
 measured['resumed_exit_detour_completion']=json.loads((ROOT/'evaluations/v3/exit-detour-completion.json').read_text())
 measured['resumed_wall_exit_completion']=json.loads((ROOT/'evaluations/v3/resumed-wall-exit-completion.json').read_text())
+measured['detected_exit_stalls']=json.loads((ROOT/'evaluations/v3/exit-stall-metrics.json').read_text())
 measured['stage_completion_claim']=bool(measured['stage_completion_claim'] or any(t['outcome']=='stage_complete' for t in trials))
 measured['final_fresh_trial']=next((t for t in trials if args.stage_trial and args.stage_trial in t['source']),None)
 if measured['final_fresh_trial']:
@@ -334,6 +335,8 @@ A retomada `916e1e8034d74945` confirmou puzzle, barreira e encontro final, mas t
 No ensaio isolado `v3_exit_stall_probe_a0a93adc88194e5a`, RIGHT243ms levou de[409,831;1009,563] para[422,507;1009,563]: deslocamento lateral12,676pixels de referência, deriva vertical0, erro para o centro2,993pixels. Isso comprova essa recuperação, sem medir aceleração da fase. O PNG versionado em `wall-stall.json` é a observação imediatamente anterior ao preflight efetivamente usado; a pose variou5pixels durante a animação e esse PNG propõe um trecho diagonal, corretamente recusado no replay negativo. Não se apresenta essa imagem como os pixels exatos da decisão bem-sucedida. Novas recuperações preservam o preflight real lossless para evitar essa lacuna. Resultado, controles e escopo estão em `evaluations/v3/fixtures/exit-obstacle/wall-stall.json`.
 
 A retomada `d19a544cdc3b4b9c`, depois da correção lateral medida, concluiu o último objetivo em56,154s. Cursor9/9, interação da casa emitida, duas observações independentes do mapa e zero erros de fechamento. O tempo pertence somente ao objetivo final dessa retomada; a entrada iniciada por `6a4365c39ff4431c` precisou de correções e não é um ensaio integral autônomo. Prova e capturas selecionadas: `evaluations/v3/resumed-wall-exit-completion.json`.
+
+O extrator somente de leitura `evaluations/v3/measure_exit_stalls.py` cruza os IDs de operações SQLite com os controles efetivamente emitidos e os stalls confirmados pelo mapa. Em `916e1e8034d74945`, foram2 tentativas estagnadas em8 holds de saída(25%); em `d19a544cdc3b4b9c`,0 em2(0%). As posições iniciais diferem e a segunda execução começou após a correção lateral: esses números não constituem um benchmark equivalente de colisão V2/V3 nem provam uma redução geral. Repetições na mesma parede são tentativas, não episódios físicos distintos. Dados: `evaluations/v3/exit-stall-metrics.json`; taxa física de colisão permanece sem estimativa equivalente.
 '''
 (ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md').write_text(text,encoding='utf-8')
 print(json.dumps({'report':str(ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md'),'probes':len(probes),'send_ms':measured['input_send_ms']},ensure_ascii=False))

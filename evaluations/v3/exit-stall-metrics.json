@@ -1,0 +1,208 @@
+{
+  "scope": "Detected map-confirmed nonprogress during issued final-corridor exit holds; not physical collision rate",
+  "comparison_limit": "Trials can begin at different positions, including after a calibrated lateral correction. This is not an equivalent V2/V3 collision or speed benchmark. Repeated stalled holds at the same wall are separate attempts, not separate physical episodes.",
+  "physical_collision_rate": null,
+  "cases": [
+    {
+      "run_id": "v3_trial_916e1e8034d74945",
+      "entry_token": "1794234126.4210837",
+      "source_report": "data\\v3\\v3_trial_916e1e8034d74945\\report.json",
+      "exit_move_holds": 8,
+      "map_confirmed_stalled_holds": 2,
+      "detected_stall_fraction": 0.25,
+      "confirmed_stage_exit": false,
+      "controls": [
+        {
+          "operation_id": "operation_d295bbf6f1964fc4",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 536.66019999946,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_0ab68ade88aa438d",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 227.27272727272728,
+          "actual_ms": 233.16289999638684,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_8261024c220d41d5",
+          "kind": "move_hold",
+          "direction": [
+            0.7071067811865476,
+            0.7071067811865476
+          ],
+          "requested_ms": 349,
+          "actual_ms": 356.086800005869,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_b0ed04473634425d",
+          "kind": "move_hold",
+          "direction": [
+            0.7071067811865476,
+            0.7071067811865476
+          ],
+          "requested_ms": 80,
+          "actual_ms": 81.82839999790303,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_6d94628486aa4609",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 529.0433999907691,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_6dc8a3889a2f4584",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 523.6762999993516,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_f11372c9bcad44e4",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 527.1628000045894,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_4c2e600b8c6f4991",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 528.1124000030104,
+          "outcome": "duration_elapsed"
+        }
+      ],
+      "stalls": [
+        {
+          "check": {
+            "after": [
+              409.83098591549305,
+              1009.56338028169
+            ],
+            "before": [
+              409.83098591549305,
+              1009.56338028169
+            ],
+            "forward_progress_reference_pixels": 0.0,
+            "frame": "data\\v3\\v3_trial_916e1e8034d74945\\0277-v3-exit-forward-stall-check.jpg"
+          },
+          "control": {
+            "actual_ms": 527.1628000045894,
+            "at_start": 1794236219.16615,
+            "direction": "down",
+            "end_monotonic": 104582.525336,
+            "error": null,
+            "fingers_remaining": [],
+            "kind": "move_hold",
+            "observed_effect_verified": false,
+            "operation_id": "operation_f11372c9bcad44e4",
+            "outcome": "duration_elapsed",
+            "release_errors": [],
+            "requested_ms": 522.7272727272727,
+            "run": false,
+            "start_monotonic": 104581.9981648,
+            "wall_ms": 527.1712000103435
+          },
+          "motion": {
+            "background_dx": 0.01,
+            "background_dy": 0.01,
+            "confidence": 1,
+            "effective_dx": -0.01,
+            "effective_dy": -3.01,
+            "inliers": 0,
+            "method": "two_flank_phase_consensus",
+            "moved": false,
+            "player_dx": 0.0,
+            "player_dy": -3
+          },
+          "run_id": "v3_trial_916e1e8034d74945",
+          "stagnancy_verified": true
+        },
+        {
+          "check": {
+            "after": [
+              409.83098591549305,
+              1009.56338028169
+            ],
+            "before": [
+              409.83098591549305,
+              1009.56338028169
+            ],
+            "forward_progress_reference_pixels": 0.0,
+            "frame": "data\\v3\\v3_trial_916e1e8034d74945\\0293-v3-exit-forward-stall-check.jpg"
+          },
+          "control": {
+            "actual_ms": 528.1124000030104,
+            "at_start": 1794236240.0541782,
+            "direction": "down",
+            "end_monotonic": 104603.4143528,
+            "error": null,
+            "fingers_remaining": [],
+            "kind": "move_hold",
+            "observed_effect_verified": false,
+            "operation_id": "operation_4c2e600b8c6f4991",
+            "outcome": "duration_elapsed",
+            "release_errors": [],
+            "requested_ms": 522.7272727272727,
+            "run": false,
+            "start_monotonic": 104602.8862229,
+            "wall_ms": 528.1299000052968
+          },
+          "motion": {
+            "background_dx": -0.06,
+            "background_dy": 0.05,
+            "confidence": 1.0,
+            "effective_dx": -0.44,
+            "effective_dy": -0.05,
+            "inliers": 0,
+            "method": "two_flank_phase_consensus",
+            "moved": false,
+            "player_dx": -0.5,
+            "player_dy": 0
+          },
+          "run_id": "v3_trial_916e1e8034d74945",
+          "stagnancy_verified": true
+        }
+      ]
+    },
+    {
+      "run_id": "v3_trial_d19a544cdc3b4b9c",
+      "entry_token": "1794234126.4210837",
+      "source_report": "data\\v3\\v3_trial_d19a544cdc3b4b9c\\report.json",
+      "exit_move_holds": 2,
+      "map_confirmed_stalled_holds": 0,
+      "detected_stall_fraction": 0.0,
+      "confirmed_stage_exit": true,
+      "controls": [
+        {
+          "operation_id": "operation_c1c4438df6d64727",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 522.7272727272727,
+          "actual_ms": 539.785100001609,
+          "outcome": "duration_elapsed"
+        },
+        {
+          "operation_id": "operation_3996ed4832254262",
+          "kind": "move_hold",
+          "direction": "down",
+          "requested_ms": 973.8636363636364,
+          "actual_ms": 975.8771000051638,
+          "outcome": "duration_elapsed"
+        }
+      ],
+      "stalls": []
+    }
+  ]
+}
