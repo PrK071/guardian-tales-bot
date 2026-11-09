@@ -10,6 +10,11 @@ from cognitive.stage_v2 import completion_evidence
 ROOT=Path(__file__).resolve().parents[2]
 
 class ExitTests(unittest.TestCase):
+    def test_actor_and_follower_occlusion_can_be_bypassed_without_painting_the_follower_as_floor(self):
+        from cognitive.v3.exit_control import visible_exit_detour
+        from cognitive.v3.exploration import visible_floor_horizon
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/follower-occlusion.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];self.assertIsNone(visible_floor_horizon(frame,f,'down'));route=visible_exit_detour(frame,f)
+        self.assertIsNotNone(route);self.assertGreater(abs(route['direction'][0]),.5);self.assertGreaterEqual(route['direction'][1],0);self.assertGreater(route['plan']['segments'][-1]['end'][1]-f['player'][1],100)
     def test_exit_entry_envelope_allows_a_visible_flank_but_still_requires_current_objectives(self):
         active={'entry_token':'synthetic:entry','plan_id':'synthetic:plan','states':{'lantern_puzzle':{'state':'completed','frame':'synthetic:gate','result':{'verified':True}},'final_encounter':{'state':'completed','frame':'synthetic:combat','result':{'visible_combat_ended':True}}}}
         with tempfile.TemporaryDirectory(dir=ROOT/'data/v3') as folder:

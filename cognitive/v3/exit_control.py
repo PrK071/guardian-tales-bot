@@ -96,6 +96,12 @@ def visible_exit_detour(frame,features,objects=()):
     player=features.get('player')
     if not player:return None
     floor=SpatialVision.floor_mask(frame);px,py=player;cv2.circle(floor,(round(px),round(py)),36,255,-1)
+    # Match the existing local controller's actor-occlusion treatment. The
+    # known sprite may hide clearance above the feet, while the follower
+    # below them remains an obstacle to go around.
+    for sy in range(max(0,int(py-110)),min(900,int(py+13))):
+        left,right=int(px-95),int(px+95)
+        if 0<=left<right<1600 and floor[sy,left] and floor[sy,right]:floor[sy,max(0,int(px-80)):min(1600,int(px+81))]=255
     obstacles=[e for e in features.get('entities',[]) if e['kind'] in ('hazard','rock_obstacle_candidate','bomb_candidate')]+[o for o in objects if o['kind']=='portable_brazier']
     for obj in obstacles:
         x,y,w,h=map(round,obj['bbox']);floor[max(0,y):min(900,y+h),max(0,x):min(1600,x+w)]=0
