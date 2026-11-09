@@ -86,6 +86,7 @@ measured['registered_stone_regression']=json.loads((ROOT/'evaluations/v3/registe
 measured['room_detour_regression']=json.loads((ROOT/'evaluations/v3/room-detour-regression.json').read_text())
 measured['raw_corner_regression']=json.loads((ROOT/'evaluations/v3/raw-corner-regression.json').read_text())
 measured['resumed_exit_detour_completion']=json.loads((ROOT/'evaluations/v3/exit-detour-completion.json').read_text())
+measured['resumed_wall_exit_completion']=json.loads((ROOT/'evaluations/v3/resumed-wall-exit-completion.json').read_text())
 measured['stage_completion_claim']=bool(measured['stage_completion_claim'] or any(t['outcome']=='stage_complete' for t in trials))
 measured['final_fresh_trial']=next((t for t in trials if args.stage_trial and args.stage_trial in t['source']),None)
 if measured['final_fresh_trial']:
@@ -331,6 +332,8 @@ As limitações acima delimitam a evidência disponível. Não são convertidas 
 A retomada `916e1e8034d74945` confirmou puzzle, barreira e encontro final, mas terminou em8/9 após317,034s: o personagem permaneceu em[409,831;1009,563] ao tentar descer junto à parede esquerda. O mapa confirmou avanço0; a guarda impediu novas repetições. A cor da parede sombreada era semelhante ao piso e produzia horizonte livre falso. Após um stall independente, a saída agora permite somente uma recuperação lateral por chamada, em direção ao centro conhecido425,5 e na altura atual. O planejador local mantém sua folga, aceita somente uma perna horizontal de até600ms e exige chegada independente a até4pixels do centro, sem deriva vertical acima de4pixels. Até3 observações sem entrada podem resolver oclusão transitória; nenhum movimento diagonal é emitido nesse fallback. Outra estagnação continua sendo recusa.
 
 No ensaio isolado `v3_exit_stall_probe_a0a93adc88194e5a`, RIGHT243ms levou de[409,831;1009,563] para[422,507;1009,563]: deslocamento lateral12,676pixels de referência, deriva vertical0, erro para o centro2,993pixels. Isso comprova essa recuperação, sem medir aceleração da fase. O PNG versionado em `wall-stall.json` é a observação imediatamente anterior ao preflight efetivamente usado; a pose variou5pixels durante a animação e esse PNG propõe um trecho diagonal, corretamente recusado no replay negativo. Não se apresenta essa imagem como os pixels exatos da decisão bem-sucedida. Novas recuperações preservam o preflight real lossless para evitar essa lacuna. Resultado, controles e escopo estão em `evaluations/v3/fixtures/exit-obstacle/wall-stall.json`.
+
+A retomada `d19a544cdc3b4b9c`, depois da correção lateral medida, concluiu o último objetivo em56,154s. Cursor9/9, interação da casa emitida, duas observações independentes do mapa e zero erros de fechamento. O tempo pertence somente ao objetivo final dessa retomada; a entrada iniciada por `6a4365c39ff4431c` precisou de correções e não é um ensaio integral autônomo. Prova e capturas selecionadas: `evaluations/v3/resumed-wall-exit-completion.json`.
 '''
 (ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md').write_text(text,encoding='utf-8')
 print(json.dumps({'report':str(ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md'),'probes':len(probes),'send_ms':measured['input_send_ms']},ensure_ascii=False))
