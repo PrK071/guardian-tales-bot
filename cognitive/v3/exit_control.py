@@ -37,7 +37,7 @@ def completed_passage_card(frame,root):
     reference=cv2.imread(str(root/'data/v2/recovery-world.png'))
     if reference is None:return {'verified':False,'reason':'map_card_reference_unavailable'}
     template=reference[419:481,842:894];search=cv2.cvtColor(frame[150:730,250:1350],cv2.COLOR_BGR2GRAY);best=None
-    for scale in (.94,.97,1.,1.03,1.06,1.09,1.12,1.15,1.18):
+    for scale in (value/100 for value in range(94,119)):
         candidate=cv2.resize(template,None,fx=scale,fy=scale);scores=cv2.matchTemplate(search,cv2.cvtColor(candidate,cv2.COLOR_BGR2GRAY),cv2.TM_CCOEFF_NORMED);_,score,_,(x,y)=cv2.minMaxLoc(scores)
         if best is None or score>best[0]:best=(score,x+250+candidate.shape[1]/2,y+150+candidate.shape[0]/2,scale)
     score,cx,cy,scale=best

@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-09T06:01:51.715683",
+  "command": "python -m unittest evaluations.v3.test_stage evaluations.v3.test_combat evaluations.v3.test_exit_control -q",
+  "tests": 26,
+  "passed": 26,
+  "duration_seconds": 1.706,
+  "scope": "unit/replay only, not proof of stage completion"
+}

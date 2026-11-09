@@ -52,13 +52,20 @@ class StageTests(unittest.TestCase):
         import time
         runner=self.runner();runner.memory=SimpleNamespace(retrieve=lambda *a,**kw:[]);calls=[];f={'scene':'jogo','at':time.time(),'frame':'synthetic:game','enemy_count':0}
         def frontier(*a,**kw):raise AssertionError('No unrelated frontier may be explored before final encounter')
-        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,transition=lambda *a:None,map_state=lambda *a:({}, {},[439,819],{'frame':'synthetic:map','at':time.time()}),controls=SimpleNamespace(actions=[]),navigate_once=frontier,navigate_to=lambda target,**kw:(calls.append(target) or {'verified':True}))
+        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,last_confirmed_enemy={'scene':'jogo','combat_present':True,'at':time.time()-11,'frame':'synthetic:stale'},transition=lambda *a:None,map_state=lambda *a:({}, {},[439,819],{'frame':'synthetic:map','at':time.time()}),controls=SimpleNamespace(actions=[]),navigate_once=frontier,navigate_to=lambda target,**kw:(calls.append(target) or {'verified':True}))
         completed,result=runner.execute_step(s,{'id':'final_encounter','kind':'encounter'},30)
-        self.assertFalse(completed);self.assertEqual(calls,[[425.5,900]]);self.assertEqual(result['kind'],'final_encounter_approach');self.assertFalse(s.recover_item_after_combat)
+        self.assertFalse(completed);self.assertEqual(calls,[[425.5,938]]);self.assertEqual(result['kind'],'final_encounter_approach');self.assertFalse(s.recover_item_after_combat)
+    def test_final_encounter_uses_recent_confirmed_presence_when_npc_finishes_during_pause(self):
+        import time
+        runner=self.runner();runner.memory=SimpleNamespace(retrieve=lambda *a,**kw:[]);calls=[];f={'scene':'jogo','at':time.time(),'frame':'synthetic:current-absence','enemy_count':0};prior={'scene':'jogo','at':time.time()-2,'frame':'synthetic:confirmed-enemy','combat_present':True}
+        def fight(seconds,**kwargs):calls.append(kwargs);return {'visible_combat_ended':True,'clear_frames':['synthetic:a','synthetic:b','synthetic:c'],'raw_confirmation':'synthetic:raw'}
+        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,last_confirmed_enemy=prior,transition=lambda *a:None,fight_continuously=fight)
+        completed,result=runner.execute_step(s,{'id':'final_encounter','kind':'encounter'},30)
+        self.assertTrue(completed);self.assertIs(calls[0]['prior_enemy_evidence'],prior);self.assertEqual(len(result['clear_frames']),3)
     def test_final_chamber_absence_cannot_complete_or_send_unrelated_navigation(self):
         import time
         runner=self.runner();runner.memory=SimpleNamespace(retrieve=lambda *a,**kw:[]);f={'scene':'jogo','at':time.time(),'frame':'synthetic:game','enemy_count':0};seen=[]
-        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,transition=lambda *a:None,map_state=lambda *a:({}, {},[425.5,899.7],{'frame':'synthetic:map'}),capture=lambda label:(seen.append(label) or None,f))
+        s=SimpleNamespace(scope='world:1:passage:1',last_features=f,last_frame=None,transition=lambda *a:None,map_state=lambda *a:({}, {},[425.5,937.7],{'frame':'synthetic:map'}),capture=lambda label:(seen.append(label) or None,f))
         with self.assertRaisesRegex(RuntimeError,'Final encounter absent'):runner.execute_step(s,{'id':'final_encounter','kind':'encounter'},30)
         self.assertEqual(len(seen),4)
     def test_revealed_map_uses_brazier_before_gate_instead_of_later_exit_torch(self):

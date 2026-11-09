@@ -17,7 +17,7 @@ from .hazards import solid_spike
 class GameplaySession(FastSession):
     def __init__(self,root,adb,memory,cancel=None,scope='world:1:passage:1',run_id=None,video=False):
         super().__init__(root,adb,memory,cancel,scope,run_id,artifact_base='data/v3')
-        self.kind='v3_continuous_stage_execution';self.backend=ScrcpyTouch(self.root,adb,self.folder,video=video);self.controls=None;self.active_operation=None;self.segment_results=[];self.combat_results=[];self.video_sequence=0
+        self.kind='v3_continuous_stage_execution';self.backend=ScrcpyTouch(self.root,adb,self.folder,video=video);self.controls=None;self.active_operation=None;self.segment_results=[];self.combat_results=[];self.video_sequence=0;self.last_confirmed_enemy=None
         try:
             anchors=memory.retrieve(scope,kind='v2_spawn_anchor',include_global=False,limit=1)
             if not anchors or anchors[0]['validation']!='verified':raise RuntimeError('A validated map reference is required for this stage')
@@ -68,11 +68,13 @@ class GameplaySession(FastSession):
         """Reobserve a distant transient before choosing a combat interrupt."""
         if not features.get('combat_present',features['enemy_count']):return False
         gate=ThreatGate()
-        if gate.update({'sequence':0,'features':features}):return True
+        if gate.update({'sequence':0,'features':features}):self.last_confirmed_enemy=dict(features);return True
         self.check_cancel();_,fresh=self.capture('v3-distant-threat-preflight')
         if fresh['scene']!='jogo' or not fresh.get('player'):raise RuntimeError('Threat preflight lost the gameplay scene or actor')
         if fresh.get('health') is not None and fresh['health']<.25:raise RuntimeError('Threat preflight health too low')
-        return gate.update({'sequence':1,'features':fresh})
+        confirmed=gate.update({'sequence':1,'features':fresh})
+        if confirmed:self.last_confirmed_enemy=dict(fresh)
+        return confirmed
     def navigate_to(self,target,tolerance=8,run=False,allow_npc_bypass=False,max_segment_ms=None,_checkpoint=None):
         self.check_cancel();begun=time.perf_counter()
         cached=bool(_checkpoint and time.time()-_checkpoint[3]['at']<4 and _checkpoint[4]==len(self.controls.actions) and not self.backend.held and self.last_features['scene']=='jogo')
@@ -113,7 +115,7 @@ class GameplaySession(FastSession):
             current=snapshot['features']
             if current['scene']!='jogo':return 'screen_changed'
             if current['health'] is not None and current['health']<.25:return 'low_health'
-            if threat_gate.update(snapshot):return 'enemy_detected'
+            if threat_gate.update(snapshot):self.last_confirmed_enemy=dict(current);return 'enemy_detected'
             if current.get('hazard_count') and current.get('player'):
                 for entity in current.get('entities',[]):
                     if entity['kind']!='hazard' or not solid_spike(snapshot['frame'],entity):continue
@@ -207,13 +209,18 @@ class GameplaySession(FastSession):
         self.verify_continuous(metrics,metrics['verified']);return self.record(action,before,after,metrics)
     def fight_continuously(self,seconds=60,skill_ready=None,prior_enemy_evidence=None):
         self.transition('jogo')
+        if prior_enemy_evidence is None:prior_enemy_evidence=getattr(self,'last_confirmed_enemy',None)
         from .carry_combat import arrow_visible,fight_with_carried_item
         if self.held_object_kind=='brazier' and arrow_visible(self,self.last_frame):
-            return fight_with_carried_item(self,seconds,getattr(self,'recover_item_after_combat',True),prior_enemy_evidence=prior_enemy_evidence)
+            result=fight_with_carried_item(self,seconds,getattr(self,'recover_item_after_combat',True),prior_enemy_evidence=prior_enemy_evidence)
+            if result.get('visible_combat_ended'):self.last_confirmed_enemy=None
+            return result
         if time.time()-self.last_features['at']>.3:self.capture('v3-before-combat-journal')
         self.prepare_continuous('continuous_combat',{'seconds':seconds})
         result=CombatController(self,self.controls,skill_ready,prior_enemy_evidence).run(seconds);self.transition('pausa');self.capture('v3-combat-checkpoint')
-        self.verify_continuous(result,result['visible_combat_ended']);self.combat_results.append(result);return result
+        self.verify_continuous(result,result['visible_combat_ended']);self.combat_results.append(result)
+        if result.get('visible_combat_ended'):self.last_confirmed_enemy=None
+        return result
     def close(self):
         errors=[]
         if self.controls:

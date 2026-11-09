@@ -1,3 +1,17 @@
+## Execução integral NOVA após reconectar — ponto atual
+
+GitHubjárecebeu62d3bcf, remoto/localconfirmadosclean. Usuárioreforçoupushantesdetokens,mantersalvamentosincrementais. Snapshot821+release2ZIPscomSHAjácompletos,nãorepetirupload.
+
+ADBestavadesconectado; `adb connect127.0.0.1:5555` recuperou. JogoestavanoLOBBY (imagemcaptures/current-after-reconnect.jpg),contarecursosmudaram, etapaantiga b09nãopoderiaserretomadacegamente. NÃOdeclararclearantigopelasimplesausência. Cd2/0094 mostraOrcvivoHPbranco;997/0009 mostraOrccombarra vaziaemanimacãomorte;997/0020..23ausência massemresultadodefase. Puzzleantigofoicompletadoa35/0141, gateentry1794178740.800703, nãorepetircomoensaionovo.
+
+CORREÇÕES pós62d3: GameplaySession guarda last_confirmed_enemy somentequandopreflight/ThreatGateconfirmapresença, resetaapóscombateverificado. Fight usaessaevidênciasecaller nãopassar;helperscontinuamexigindoprior<10s,3ausências+raw. Stage.final_encounter poderealizarverificação comcachefreshmesmoseNPCmatouentreobservaçãoepreflight. Aproximaçãofinalagoravaiaté938 (MESMOcheckpointdesaídajáverificadoparaaproximaroOrcabaixodaROIantiga); considera chegada>=931(tol7), nãopara900cedodemais. Pose/arrowreconciliados,rotasempresulsemfronteiraalheia.
+
+UIapósrestart tinhaescala.98, listaantiga.97/1.00davascore<.90. Medidomapaprep_e4b.../002: máximo.9053em.98. Matcherpreparaçãoecompleted_passage_card agoravarrem.94..1.18passo.01, MESMOlimiar.90, mesmaROI+guardestrela/contexto. Prepare_initial2terminou0, stageNOVOpausadoSPAWNverificado.
+
+JOBATUAL: client.py stage_v3 1201800, handle informado no chat (na chamada atual). Logs logs/v3-fresh-final.stdout/stderr.log, bot.pyPIDinformado no chat. ExecuçãodesdespawncomTODAScorreçõesatuais. Aguardarestaexecução,nãocomandaroutroexecutor. Nãointerromperpararepetirbenchmarks; validarprogressocompactamente.
+
+26/26direcionados (Stage+Combat+Exit) passaramagora1.706s. Anteriorestotaiscompletos102/102V3,59/59V2,45/45legadoantesnovoscache/rotas;falta consolidadofinal. Apósfulltrial terminar: corrigirapenasfalhaobservada;quandoestávelregressões/relatóriocomIDFRESHrealecoortecombatef7859decec7c4428;commit/pushatualizado. GoalV3 ATIVO/incompleto. Nãoafirmarconclusãointegralsem2observaçõesreais. Usuáriosemperguntas/permissões.
+
 ## Checkpoint atual para push — 2026-11-09
 
 Usuário reforçou explicitamente: fazer push em https://github.com/PrK071/guardian-tales-bot antes de acabar tokens. Manter publicação incremental. Snapshot base821e2c9 e2ZIPs nareleaseprivada jáconcluídos; não recriarrepo/nãorepetiruploads.

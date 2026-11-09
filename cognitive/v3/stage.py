@@ -95,9 +95,14 @@ class StageV3Runner(StageRunner):
                 if not result['visible_combat_ended']:raise RuntimeError('Combat not verified: '+result['outcome'])
                 s.reconsider_frontiers('new_visible_combat');return True,result
             if step.get('id')=='final_encounter':
+                recent=getattr(s,'last_confirmed_enemy',None)
+                if recent and recent.get('scene')=='jogo' and recent.get('combat_present',recent.get('enemy_count')) and 0<=time.time()-recent.get('at',0)<10:
+                    combat=s.fight_continuously(min(60,remaining),prior_enemy_evidence=recent);self.metrics['combats']+=1
+                    if not combat['visible_combat_ended']:raise RuntimeError('Combat not verified: '+combat['outcome'])
+                    return True,combat
                 state,alignment,position,map_features=s.map_state('v3-final-encounter-route-map')
-                if position[1]<893 or abs(position[0]-425.5)>9:
-                    result=self.final_corridor_segment(s,state,alignment,position,map_features,900);self.metrics['segments']+=1
+                if position[1]<931 or abs(position[0]-425.5)>9:
+                    result=self.final_corridor_segment(s,state,alignment,position,map_features,938);self.metrics['segments']+=1
                     if result.get('reason')=='enemy_detected':
                         combat=s.fight_continuously(min(60,remaining));self.metrics['combats']+=1
                         if not combat['visible_combat_ended']:raise RuntimeError('Combat not verified: '+combat['outcome'])

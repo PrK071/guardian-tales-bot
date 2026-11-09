@@ -17,7 +17,7 @@ from cognitive.perception import Interpreter
 def locate_passage_card(frame,reference):
     template=reference[419:481,842:894];search=frame[150:730,250:1350]
     gray=cv2.cvtColor(search,cv2.COLOR_BGR2GRAY);best=None
-    for scale in (.94,.97,1.,1.03,1.06,1.09,1.12,1.15,1.18):
+    for scale in (value/100 for value in range(94,119)):
         candidate=cv2.resize(template,None,fx=scale,fy=scale);scores=cv2.matchTemplate(gray,cv2.cvtColor(candidate,cv2.COLOR_BGR2GRAY),cv2.TM_CCOEFF_NORMED)
         _,score,_,point=cv2.minMaxLoc(scores)
         if best is None or score>best[0]:best=(score,point,candidate.shape[1],candidate.shape[0])
