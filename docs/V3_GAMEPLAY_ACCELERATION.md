@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 130/130. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 134/134. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T11:51:45. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T12:05:19. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -187,7 +187,7 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 130/130; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 134/134; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.
 
@@ -210,3 +210,27 @@ Nos combates V3 concluídos da série selecionada, 4 períodos com ataque mantid
 ## Alinhamento por bases fixas atuais
 
 O ensaio fresco `6a4365c39ff4431c` chegou a6/9 em506,693s, mas parou no alinhamento da última lanterna. Dois pares reais mostram o rastreador global com confiança0 após movimentos longos: RIGHT670ms deslocou o cenário cerca de−300px no eixo X; UP_RIGHT814ms deslocou−249px/+249px. Isso é falha de correspondência visual, não ausência de movimento nem restrição do jogo. A alternativa usa somente bases fixas de lanternas reconhecidas nos dois quadros com confiança>=0,84; exige deslocamento compatível com direção e duração e recusa hipóteses conflitantes. Aplica-se ao contato da lanterna e à aproximação da pedra. As margens de piso, a confirmação da luva e as duas provas afastadas de fogo permanecem obrigatórias. Os pares reais e casos negativos estão em `evaluations/v3/fixtures/fixed-base-motion/`. Replays não são ganho temporal nem prova de execução integral ao vivo. Falhas agora recebem sufixos distintos para preservar os dois PNGs do par.
+
+## Conferência dos requisitos V3
+
+| Requisito | Implementação e prova | Limite da conclusão |
+| --- | --- | --- |
+| Diagnóstico do ciclo | Baseline ADB/capturas, durações históricas, controles com timestamps e taxas na rota | Tempos observacionais antigos não equivalem a ACK físico |
+| Holds, sequências e interrupção | `continuous.py`, `input_backend.py`; testes de DOWN/UP, cancelamento e ensaios reais | Latência de cancelamento medida em uma amostra |
+| Entrada simultânea | Ponteiros distintos scrcpy; movimento+ataque testado | Mecânica reduziu deslocamento; não é padrão de navegação |
+| Navegação adaptativa e correr | `segments.py`, observador e confirmação independente por mapa; rota pareada 9/9 | Correr não melhorou o tempo total nesta rota |
+| Combate local contínuo | `combat.py`, aproximação, orientação, ataque mantido, recuperação e ausência confirmada | Dois pares válidos não comprovam aceleração consistente |
+| Habilidade, esquiva e retirada | Estados/callbacks locais e testes de interrupção | Habilidade indisponível na equipe inicial; validação ao vivo dessas condições permanece limitada |
+| Walkthrough antes da fase | `walkthrough.py`, guias persistidos, identidade/modo, cache por mapa/versão e pré-requisitos | Compilador executável específico de Passagem1 normal |
+| Segmentos e divergência | Plano ativo SQLite por entrada, checkpoints visuais/mapa e orçamentos | Recusas reais permanecem nos reports; não se segue guia cegamente |
+| Uso estratégico do Qwen | Planos e controladores locais; zero chamadas nos loops medidos | V2 já tinha zero nesse recorte; ações/LLM é N/A |
+| Comparação de desempenho | Rota pareada, latências média/p95, ataques/ociosidade, combate, objetivos/min | Sem comparação integral V2/V3 nem taxa física contínua de colisões; falhas de chegada são indicador separado |
+| Compatibilidade e persistência | V1/V2 preservadas, SQLite, leases, liberação de controles e suítes registradas | Testes de replay não provam todas as fases da história |
+
+As limitações acima delimitam a evidência disponível. Não são convertidas em resultados positivos nem omitidas das métricas de aceitação.
+
+## Recuperação da parede no estreitamento da saída
+
+A retomada `916e1e8034d74945` confirmou puzzle, barreira e encontro final, mas terminou em8/9 após317,034s: o personagem permaneceu em[409,831;1009,563] ao tentar descer junto à parede esquerda. O mapa confirmou avanço0; a guarda impediu novas repetições. A cor da parede sombreada era semelhante ao piso e produzia horizonte livre falso. Após um stall independente, a saída agora permite somente uma recuperação lateral por chamada, em direção ao centro conhecido425,5 e na altura atual. O planejador local mantém sua folga, aceita somente uma perna horizontal de até600ms e exige chegada independente a até4pixels do centro, sem deriva vertical acima de4pixels. Até3 observações sem entrada podem resolver oclusão transitória; nenhum movimento diagonal é emitido nesse fallback. Outra estagnação continua sendo recusa.
+
+No ensaio isolado `v3_exit_stall_probe_a0a93adc88194e5a`, RIGHT243ms levou de[409,831;1009,563] para[422,507;1009,563]: deslocamento lateral12,676pixels de referência, deriva vertical0, erro para o centro2,993pixels. Isso comprova essa recuperação, sem medir aceleração da fase. O PNG versionado em `wall-stall.json` é a observação imediatamente anterior ao preflight efetivamente usado; a pose variou5pixels durante a animação e esse PNG propõe um trecho diagonal, corretamente recusado no replay negativo. Não se apresenta essa imagem como os pixels exatos da decisão bem-sucedida. Novas recuperações preservam o preflight real lossless para evitar essa lacuna. Resultado, controles e escopo estão em `evaluations/v3/fixtures/exit-obstacle/wall-stall.json`.

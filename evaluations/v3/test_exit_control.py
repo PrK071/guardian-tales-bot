@@ -10,6 +10,36 @@ from cognitive.stage_v2 import completion_evidence
 ROOT=Path(__file__).resolve().parents[2]
 
 class ExitTests(unittest.TestCase):
+    def test_recorded_lateral_recovery_requires_independent_same_height_arrival(self):
+        import hashlib
+        from cognitive.v3.exit_control import recenter_exit_after_stall
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/wall-stall.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));self.assertEqual(hashlib.sha256(frame.tobytes()).hexdigest(),r['pixels_bgr_sha256']);issued=[]
+        s=SimpleNamespace(transition=lambda *a:None,capture=lambda *a:(frame,r['features']),preflight_enemy=lambda f:False,speeds={'move':.05957446808510633},pulse=lambda a:(issued.append(a) or {'synthetic':True}),map_state=lambda *a:({},None,r['result']['after'],{'frame':'synthetic:arrival'}))
+        with patch('cognitive.puzzle_control.BombRockController.local_approach',return_value=('right',243)):result=recenter_exit_after_stall(s,r['position_reference'])
+        self.assertTrue(result['verified']);self.assertFalse(result['stage_complete']);self.assertFalse(result['goal_reached']);self.assertEqual(issued[0].args['direction'],'right');self.assertLessEqual(issued[0].args['ms'],600)
+        self.assertAlmostEqual(r['result']['after'][1],r['position_reference'][1]);self.assertGreater(r['result']['after'][0]-r['position_reference'][0],12)
+    def test_lateral_recovery_rejects_wrong_region_and_does_not_confirm_height_drift(self):
+        from cognitive.v3.exit_control import recenter_exit_after_stall
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/wall-stall.json').read_text());issued=[];frame=cv2.imread(str(ROOT/r['lossless_frame']))
+        s=SimpleNamespace(transition=lambda *a:None,capture=lambda *a:(frame,r['features']),preflight_enemy=lambda f:False,speeds={'move':.05957446808510633},pulse=lambda a:issued.append(a),map_state=lambda *a:({},None,[425.5,r['position_reference'][1]+5],{'frame':'synthetic:drift'}))
+        for position in ([425.5,1009],[390,1009],[410,929]):
+            with self.subTest(position=position),self.assertRaisesRegex(RuntimeError,'no bounded'):recenter_exit_after_stall(s,position)
+        self.assertEqual(issued,[])
+        with patch('cognitive.puzzle_control.BombRockController.local_approach',return_value=('right',243)):self.assertFalse(recenter_exit_after_stall(s,r['position_reference'])['verified'])
+    def test_exact_earlier_raw_observation_cannot_emit_an_unconfirmed_diagonal_escape(self):
+        from cognitive.v3.exit_control import recenter_exit_after_stall
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/wall-stall.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));observations=[];issued=[]
+        s=SimpleNamespace(transition=lambda *a:None,capture=lambda *a:(observations.append(a) or (frame,r['features'])),preflight_enemy=lambda f:False,speeds={'move':.05957446808510633},pulse=lambda a:issued.append(a))
+        with self.assertRaisesRegex(RuntimeError,'clear bounded horizontal'):recenter_exit_after_stall(s,r['position_reference'])
+        self.assertEqual(len(observations),3);self.assertEqual(issued,[])
+    def test_exit_uses_at_most_one_lateral_recovery_after_confirmed_stagnation(self):
+        from cognitive.v3.exit_control import exit_forward
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/wall-stall.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];position=r['position_reference'];issued=[];records=[]
+        s=SimpleNamespace(root=ROOT,scope='world:1:passage:1',run_id='synthetic:wall-stall',held_object_kind=None,check_cancel=lambda:None,transition=lambda *a:None,capture_live=lambda *a:(frame,f),preflight_enemy=lambda f:False,lantern_vision=SimpleNamespace(detect=lambda *a,**kw:[]),prepare_continuous=lambda *a:None,verify_continuous=lambda *a:None,backend=SimpleNamespace(release_all=lambda:None),controls=SimpleNamespace(move_hold=lambda *a,**kw:(issued.append(a) or {'outcome':'duration_elapsed'})),map_state=lambda *a:({},None,position,{'frame':'synthetic:map'}),memory=SimpleNamespace(remember=lambda *a,**kw:records.append(a)))
+        observer=SimpleNamespace(start=lambda:observer,close=lambda:{});recovery={'verified':True,'after':[422.5,position[1]],'after_frame':'synthetic:recovered'}
+        with patch('cognitive.v3.exit_control.verified_exit_context',return_value={}),patch('cognitive.v3.exit_control.house_candidate',return_value=None),patch('cognitive.v3.exit_control.visible_floor_horizon',return_value={'duration_ms':500}),patch('cognitive.v3.exit_control.LiveObserver',return_value=observer),patch('cognitive.v3.exit_control.SpatialVision.motion',return_value={'confidence':1,'effective_dy':0}),patch('cognitive.v3.exit_control.recenter_exit_after_stall',return_value=recovery) as recover:
+            with self.assertRaisesRegex(RuntimeError,'did not progress'):exit_forward(s,None,None,position,'synthetic:arrival')
+        self.assertEqual(recover.call_count,1);self.assertEqual(len(issued),2);self.assertEqual(sum(row[1]=='v3_exit_stall_recovery' for row in records),1)
     def test_confirmed_exit_detour_is_json_serializable_and_does_not_claim_completion(self):
         from cognitive.v3.exit_control import exit_forward
         from cognitive.lantern_vision import LanternVision

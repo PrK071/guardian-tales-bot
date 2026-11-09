@@ -1,0 +1,192 @@
+{
+  "source_trial": "v3_trial_916e1e8034d74945",
+  "source_probe": "v3_exit_stall_probe_a0a93adc88194e5a",
+  "path": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\controller-input.png",
+  "pixels_bgr_sha256": "482d544cdc7db80095f93a02daef17a5cba687b83f2ea8efb1157d71c9ff75d9",
+  "features": {
+    "entities": [
+      {
+        "kind": "player",
+        "bbox": [
+          771,
+          349,
+          60,
+          95
+        ],
+        "confidence": 0.82,
+        "method": "silver_helmet_top_plus_observed_95px_height"
+      }
+    ],
+    "player": [
+      801.0,
+      444
+    ],
+    "enemy_count": 0,
+    "hazard_count": 0,
+    "scene": "jogo",
+    "health": 0.961,
+    "enemy_bars": [],
+    "enemy_red_area": 0,
+    "floor_fraction": 0.3148020833333333,
+    "focused_enemy_hp": null,
+    "combat_present": false,
+    "puzzle_objects": [],
+    "perception_timing": {
+      "spatial_ms": 44.5462000061525,
+      "puzzle_ms": 511.5984000003664,
+      "puzzle_detection_enabled": true
+    },
+    "frame": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\0005-v3-exit-stall-probe-before.jpg",
+    "capture_ms": 339.93,
+    "at": 1794236515.4058616
+  },
+  "position_reference": [
+    409.83098591549305,
+    1009.56338028169
+  ],
+  "lossless_frame": "evaluations\\v3\\fixtures\\exit-obstacle\\wall-stall-controller-input.png",
+  "result": {
+    "verified": true,
+    "before": [
+      409.83098591549305,
+      1009.56338028169
+    ],
+    "after": [
+      422.50704225352126,
+      1009.56338028169
+    ],
+    "target_reference": [
+      425.5,
+      1009.56338028169
+    ],
+    "after_frame": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\0009-v3-exit-stall-lateral-arrival.jpg",
+    "preflight_frame": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\0006-v3-exit-stall-lateral-preflight.jpg",
+    "control": {
+      "at": 1794236517.6820319,
+      "action": {
+        "op": "move",
+        "args": {
+          "direction": "right",
+          "ms": 243
+        },
+        "rationale": "Leave the independently confirmed exit wall stall along currently observed lateral floor"
+      },
+      "before": {
+        "entities": [
+          {
+            "kind": "player",
+            "bbox": [
+              771,
+              354,
+              60,
+              95
+            ],
+            "confidence": 0.82,
+            "method": "silver_helmet_top_plus_observed_95px_height"
+          }
+        ],
+        "player": [
+          801.0,
+          449
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.961,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.31497569444444445,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "puzzle_objects": [],
+        "perception_timing": {
+          "spatial_ms": 45.96030000539031,
+          "puzzle_ms": 503.4577999904286,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\0006-v3-exit-stall-lateral-preflight.jpg",
+        "capture_ms": 381.99,
+        "at": 1794236516.4168794
+      },
+      "after": {
+        "entities": [
+          {
+            "kind": "player",
+            "bbox": [
+              775,
+              349,
+              62,
+              95
+            ],
+            "confidence": 0.82,
+            "method": "silver_helmet_top_plus_observed_95px_height"
+          }
+        ],
+        "player": [
+          806.0,
+          444
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.961,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.3089423611111111,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "puzzle_objects": [],
+        "perception_timing": {
+          "spatial_ms": 42.105599990463816,
+          "puzzle_ms": 479.9330999958329,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "data\\v3\\v3_exit_stall_probe_a0a93adc88194e5a\\0007-v3-after-move.jpg",
+        "capture_ms": 318.66,
+        "at": 1794236517.642016
+      },
+      "metrics": {
+        "reused_preinput_observation": true,
+        "verified": true,
+        "motion": {
+          "background_dx": -97.44,
+          "background_dy": 0.1,
+          "inliers": 0,
+          "confidence": 0.443,
+          "player_dx": 5.0,
+          "player_dy": -5,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": 102.44,
+          "effective_dy": -5.1,
+          "moved": true
+        },
+        "controller_ms": 1136.9320000085281,
+        "continuous_control": {
+          "kind": "move_hold",
+          "requested_ms": 243,
+          "at_start": 1794236516.5452437,
+          "start_monotonic": 104879.3773193,
+          "direction": "right",
+          "run": false,
+          "end_monotonic": 104879.6207256,
+          "actual_ms": 243.39610000606626,
+          "wall_ms": 243.40630001097452,
+          "outcome": "duration_elapsed",
+          "error": null,
+          "release_errors": [],
+          "fingers_remaining": [],
+          "observed_effect_verified": false,
+          "operation_id": null
+        },
+        "operation_id": null
+      },
+      "local_position": [
+        0.0,
+        0.0
+      ]
+    },
+    "goal_reached": false,
+    "stage_complete": false
+  },
+  "raw_image_scope": "Exact earlier observation before the recovery preflight; not the subsequent decision frame. This raw frame selects a diagonal connector and is a rejection fixture. The live successful horizontal action used the following observation, recorded in result.control.before; its pixels were not preserved losslessly."
+}

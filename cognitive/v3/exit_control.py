@@ -116,9 +116,30 @@ def visible_exit_detour(frame,features,objects=()):
         return {'direction':list(first['direction']),'duration_ms':ms,'source_frame':features['frame'],'forward_target':target,'predicted_endpoint':end,'clearance_pixels':28,'observed_obstacles':obstacles,'plan':plan,'scope':'one visible flank segment; forward continuation requires a new observation'}
     return None
 
+def recenter_exit_after_stall(s,position):
+    """One visible lateral leg, then independent same-height map arrival."""
+    from ..puzzle_control import BombRockController
+    delta=425.5-position[0]
+    if not 5<abs(delta)<=30 or position[1]<930:raise RuntimeError('Exit stall has no bounded lateral recovery')
+    s.transition('jogo')
+    for _ in range(3):
+        frame,f=s.capture('v3-exit-stall-lateral-preflight')
+        if f.get('scene')!='jogo' or not f.get('player') or f.get('health') is not None and f['health']<.25 or s.preflight_enemy(f):raise RuntimeError('Exit lateral recovery preflight failed')
+        target=[f['player'][0]+delta*.44/s.speeds['move'],f['player'][1]]
+        try:heading,ms=BombRockController.local_approach(frame,f,target)
+        except RuntimeError:continue
+        if heading==('right' if delta>0 else 'left') and ms<=600:break
+    else:raise RuntimeError('Exit lateral recovery requires one clear bounded horizontal leg')
+    if hasattr(s,'failure_checkpoint'):s.failure_checkpoint('Exit wall stall: exact lateral recovery preflight',frame,f)
+    control=s.pulse(Action('move',{'direction':heading,'ms':ms},'Leave the independently confirmed exit wall stall along currently observed lateral floor'))
+    _,_,after,checkpoint=s.map_state('v3-exit-stall-lateral-arrival')
+    verified=bool(abs(after[0]-425.5)<=4 and abs(after[1]-position[1])<=4)
+    return {'verified':verified,'before':list(position),'after':list(after),'target_reference':[425.5,position[1]],'after_frame':checkpoint['frame'],'preflight_frame':f['frame'],'control':control,'goal_reached':False,'stage_complete':False}
+
+
 def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
     context=verified_exit_context(s,arrival,map_frame)
-    s.transition('jogo');house=getattr(s,'exit_house_evidence',None);actions=[];detour_positions=[list(arrival)];last_map_position=list(arrival)
+    s.transition('jogo');house=getattr(s,'exit_house_evidence',None);actions=[];detour_positions=[list(arrival)];last_map_position=list(arrival);recentered=False
     for _ in range(max_actions):
         s.check_cancel();frame,f=s.capture_live('v3-exit-forward-observe')
         if f['scene']!='jogo':
@@ -196,6 +217,14 @@ def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
                 _,_,position,checkpoint=s.map_state('v3-exit-forward-stall-check');progress=position[1]-last_map_position[1];row['map_stall_check']={'before':last_map_position,'after':position,'forward_progress_reference_pixels':progress,'frame':checkpoint['frame']};last_map_position=list(position)
                 if progress<=2:
                     s.memory.remember('episodic','v3_exit_stall',s.scope,{'run_id':s.run_id,'stagnancy_verified':True,'check':row['map_stall_check'],'motion':motion,'control':control},Provenance(checkpoint['frame'],method='visual_stall_then_independent_map_nonprogress'),.9,'verified')
-                    raise RuntimeError('Exit forward segment did not progress in the independent map')
+                    # A flank can meet the narrowing corridor even when wall
+                    # shading resembles floor. Replan once on the independent
+                    # map target at the current height, with live floor checks.
+                    if recentered or abs(position[0]-425.5)<=5:raise RuntimeError('Exit forward segment did not progress in the independent map')
+                    recentered=True;recovery=recenter_exit_after_stall(s,position)
+                    row['stall_recovery']=recovery
+                    if not recovery.get('verified'):raise RuntimeError('Exit lateral recovery lacks a verified map arrival')
+                    last_map_position=list(recovery['after']);detour_positions.append(last_map_position)
+                    s.memory.remember('episodic','v3_exit_stall_recovery',s.scope,{'run_id':s.run_id,'verified':True,'stagnancy_check':row['map_stall_check'],'route':recovery,'stage_complete':False},Provenance(recovery['after_frame'],method='once_only_map_targeted_visible_lateral_recovery_after_independent_stall'),.95,'verified')
                 s.transition('jogo')
     raise RuntimeError('Observed final-corridor exit action budget exhausted')

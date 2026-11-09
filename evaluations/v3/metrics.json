@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T11:51:44.997517",
+  "generated_at": "2026-11-09T12:05:17.433718",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -8101,6 +8101,43 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_916e1e8034d74945\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Exit forward segment did not progress in the independent map",
+      "seconds": 317.0344119999936,
+      "metrics": {
+        "cycles": 6,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          160503.7572000001,
+          21218.914700002642,
+          12390.83779999055
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 2,
+        "segments": 1,
+        "combats": 1,
+        "guide_cache_hits": 1
+      },
+      "cursor": 8,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.3785078069064705
+    },
+    {
       "source": "data\\v3\\v3_trial_9284f3ddf8044ce2\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Cannot transition from unrecognized screen: unknown",
@@ -14077,73 +14114,73 @@
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2237.630799994804
+        "duration_ms": 2195.529999997234
       },
       "simulated_combat_states": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 14.86049999948591
+        "duration_ms": 13.742900002398528
       },
       "geometry_and_historical_map": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 3645.2601999917533
+        "duration_ms": 4286.5812000090955
       },
       "persistent_walkthroughs": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 175.08240000461228
+        "duration_ms": 153.33649999229237
       },
       "historical_enemy_detection": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 706.2677999929292
+        "duration_ms": 475.95340000407305
       },
       "stream_protocol_and_decoder": {
         "tests": 2,
         "passed": 2,
         "failures": [],
-        "duration_ms": 189.1973999881884
+        "duration_ms": 114.33310000575148
       },
       "high_level_execution": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 54.06710000534076
+        "duration_ms": 44.028999996953644
       },
       "visible_frontier_horizons": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 47.63489999459125
+        "duration_ms": 27.549799997359514
       },
       "distant_threat_confirmation": {
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 244.04939998930786
+        "duration_ms": 113.93249999673571
       },
       "real_held_object_tracking": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 5993.105400004424
+        "duration_ms": 5820.120999997016
       },
       "real_lantern_tool_and_gate_evidence": {
         "tests": 27,
         "passed": 27,
         "failures": [],
-        "duration_ms": 11149.466999995639
+        "duration_ms": 13256.68140000198
       },
       "current_entry_exit_completion_guards": {
-        "tests": 15,
-        "passed": 15,
+        "tests": 19,
+        "passed": 19,
         "failures": [],
-        "duration_ms": 11632.139099994674
+        "duration_ms": 17093.233600011445
       }
     },
     "all_passed": true,

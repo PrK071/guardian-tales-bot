@@ -88,6 +88,11 @@ measured['raw_corner_regression']=json.loads((ROOT/'evaluations/v3/raw-corner-re
 measured['resumed_exit_detour_completion']=json.loads((ROOT/'evaluations/v3/exit-detour-completion.json').read_text())
 measured['stage_completion_claim']=bool(measured['stage_completion_claim'] or any(t['outcome']=='stage_complete' for t in trials))
 measured['final_fresh_trial']=next((t for t in trials if args.stage_trial and args.stage_trial in t['source']),None)
+if measured['final_fresh_trial']:
+    selected=measured['final_fresh_trial'];raw_trial=json.loads((ROOT/selected['source']).read_text())
+    summary={key:raw_trial.get(key) for key in ('kind','outcome','reason','initial_spawn_verified','metrics','active_plan','stage_plan_id','seconds_total','close_errors','code_hashes_at_start')}
+    summary.update(source=selected['source'],stage_complete=raw_trial.get('outcome')=='stage_complete')
+    (ROOT/'evaluations/v3/final-fresh-trial.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
 measured['tests']=json.loads((ROOT/'evaluations/v3/tests.json').read_text())
 measured['legacy_tests']=json.loads((ROOT/'evaluations/unit-report.json').read_text())
 measured['v2_tests']=json.loads((ROOT/'evaluations/v2/scenarios.json').read_text())
@@ -302,6 +307,30 @@ text+='''
 ## Alinhamento por bases fixas atuais
 
 O ensaio fresco `6a4365c39ff4431c` chegou a6/9 em506,693s, mas parou no alinhamento da última lanterna. Dois pares reais mostram o rastreador global com confiança0 após movimentos longos: RIGHT670ms deslocou o cenário cerca de−300px no eixo X; UP_RIGHT814ms deslocou−249px/+249px. Isso é falha de correspondência visual, não ausência de movimento nem restrição do jogo. A alternativa usa somente bases fixas de lanternas reconhecidas nos dois quadros com confiança>=0,84; exige deslocamento compatível com direção e duração e recusa hipóteses conflitantes. Aplica-se ao contato da lanterna e à aproximação da pedra. As margens de piso, a confirmação da luva e as duas provas afastadas de fogo permanecem obrigatórias. Os pares reais e casos negativos estão em `evaluations/v3/fixtures/fixed-base-motion/`. Replays não são ganho temporal nem prova de execução integral ao vivo. Falhas agora recebem sufixos distintos para preservar os dois PNGs do par.
+
+## Conferência dos requisitos V3
+
+| Requisito | Implementação e prova | Limite da conclusão |
+| --- | --- | --- |
+| Diagnóstico do ciclo | Baseline ADB/capturas, durações históricas, controles com timestamps e taxas na rota | Tempos observacionais antigos não equivalem a ACK físico |
+| Holds, sequências e interrupção | `continuous.py`, `input_backend.py`; testes de DOWN/UP, cancelamento e ensaios reais | Latência de cancelamento medida em uma amostra |
+| Entrada simultânea | Ponteiros distintos scrcpy; movimento+ataque testado | Mecânica reduziu deslocamento; não é padrão de navegação |
+| Navegação adaptativa e correr | `segments.py`, observador e confirmação independente por mapa; rota pareada 9/9 | Correr não melhorou o tempo total nesta rota |
+| Combate local contínuo | `combat.py`, aproximação, orientação, ataque mantido, recuperação e ausência confirmada | Dois pares válidos não comprovam aceleração consistente |
+| Habilidade, esquiva e retirada | Estados/callbacks locais e testes de interrupção | Habilidade indisponível na equipe inicial; validação ao vivo dessas condições permanece limitada |
+| Walkthrough antes da fase | `walkthrough.py`, guias persistidos, identidade/modo, cache por mapa/versão e pré-requisitos | Compilador executável específico de Passagem1 normal |
+| Segmentos e divergência | Plano ativo SQLite por entrada, checkpoints visuais/mapa e orçamentos | Recusas reais permanecem nos reports; não se segue guia cegamente |
+| Uso estratégico do Qwen | Planos e controladores locais; zero chamadas nos loops medidos | V2 já tinha zero nesse recorte; ações/LLM é N/A |
+| Comparação de desempenho | Rota pareada, latências média/p95, ataques/ociosidade, combate, objetivos/min | Sem comparação integral V2/V3 nem taxa física contínua de colisões; falhas de chegada são indicador separado |
+| Compatibilidade e persistência | V1/V2 preservadas, SQLite, leases, liberação de controles e suítes registradas | Testes de replay não provam todas as fases da história |
+
+As limitações acima delimitam a evidência disponível. Não são convertidas em resultados positivos nem omitidas das métricas de aceitação.
+
+## Recuperação da parede no estreitamento da saída
+
+A retomada `916e1e8034d74945` confirmou puzzle, barreira e encontro final, mas terminou em8/9 após317,034s: o personagem permaneceu em[409,831;1009,563] ao tentar descer junto à parede esquerda. O mapa confirmou avanço0; a guarda impediu novas repetições. A cor da parede sombreada era semelhante ao piso e produzia horizonte livre falso. Após um stall independente, a saída agora permite somente uma recuperação lateral por chamada, em direção ao centro conhecido425,5 e na altura atual. O planejador local mantém sua folga, aceita somente uma perna horizontal de até600ms e exige chegada independente a até4pixels do centro, sem deriva vertical acima de4pixels. Até3 observações sem entrada podem resolver oclusão transitória; nenhum movimento diagonal é emitido nesse fallback. Outra estagnação continua sendo recusa.
+
+No ensaio isolado `v3_exit_stall_probe_a0a93adc88194e5a`, RIGHT243ms levou de[409,831;1009,563] para[422,507;1009,563]: deslocamento lateral12,676pixels de referência, deriva vertical0, erro para o centro2,993pixels. Isso comprova essa recuperação, sem medir aceleração da fase. O PNG versionado em `wall-stall.json` é a observação imediatamente anterior ao preflight efetivamente usado; a pose variou5pixels durante a animação e esse PNG propõe um trecho diagonal, corretamente recusado no replay negativo. Não se apresenta essa imagem como os pixels exatos da decisão bem-sucedida. Novas recuperações preservam o preflight real lossless para evitar essa lacuna. Resultado, controles e escopo estão em `evaluations/v3/fixtures/exit-obstacle/wall-stall.json`.
 '''
 (ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md').write_text(text,encoding='utf-8')
 print(json.dumps({'report':str(ROOT/'docs/V3_GAMEPLAY_ACCELERATION.md'),'probes':len(probes),'send_ms':measured['input_send_ms']},ensure_ascii=False))
