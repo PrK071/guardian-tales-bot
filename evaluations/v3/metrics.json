@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T01:09:02.189062",
+  "generated_at": "2026-11-09T06:51:30.847919",
   "input_send_ms": {
     "n": 51,
     "mean": 0.11200392128004893,
@@ -4400,6 +4400,43 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_4be82c84996d4411\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Segment preflight lost the controlled character",
+      "seconds": 87.02484130000812,
+      "metrics": {
+        "cycles": 5,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          14533.842599994387,
+          14726.101899999776,
+          15004.403800005093
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 7,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
       "source": "data\\v3\\v3_trial_600cda7447b0465a\\report.json",
       "outcome": "interrupted",
       "reason": "",
@@ -4473,6 +4510,39 @@
         "guide_cache_hits": 1
       },
       "cursor": 8,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
+      "source": "data\\v3\\v3_trial_6a933031abef4d9c\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No registered stone side has observed static floor clearance",
+      "seconds": 98.07049519999418,
+      "metrics": {
+        "cycles": 2,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
       "initial_spawn_verified": false,
       "objectives_per_minute": 0.0
     },
@@ -4700,6 +4770,39 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_997f3524ca464399\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: Final encounter absent at the observed southern chamber; no unrelated frontier explored",
+      "seconds": 47.537794500007294,
+      "metrics": {
+        "cycles": 2,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 7,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
       "source": "data\\v3\\v3_trial_9f7548786a5d4316\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Room checkpoint did not improve across the bounded visual sequence",
@@ -4731,6 +4834,39 @@
         "guide_cache_hits": 1
       },
       "cursor": 8,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
+      "source": "data\\v3\\v3_trial_a0c41cef618c410b\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No direct local segment with observed player clearance",
+      "seconds": 137.96099069999764,
+      "metrics": {
+        "cycles": 2,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
       "initial_spawn_verified": false,
       "objectives_per_minute": 0.0
     },
@@ -4918,6 +5054,78 @@
       "objectives_per_minute": 0.0
     },
     {
+      "source": "data\\v3\\v3_trial_c7dbfee65dd047ef\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No direct local segment with observed player clearance",
+      "seconds": 46.85479239998676,
+      "metrics": {
+        "cycles": 2,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 0,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
+      "source": "data\\v3\\v3_trial_cd2e605096d84348\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No confirmed current encounter to handle",
+      "seconds": 124.59662170000956,
+      "metrics": {
+        "cycles": 7,
+        "replans": 2,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          17229.718200003845,
+          42047.34469999676,
+          15560.287700005574,
+          14509.886200001347,
+          9535.508700006176
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 0,
+        "segments": 5,
+        "combats": 0,
+        "guide_cache_hits": 1
+      },
+      "cursor": 7,
+      "initial_spawn_verified": false,
+      "objectives_per_minute": 0.0
+    },
+    {
       "source": "data\\v3\\v3_trial_d6d0100a530c4109\\report.json",
       "outcome": "blocked",
       "reason": "RuntimeError: Room checkpoint route did not progress",
@@ -4949,6 +5157,51 @@
       "cursor": 6,
       "initial_spawn_verified": false,
       "objectives_per_minute": 0.0
+    },
+    {
+      "source": "data\\v3\\v3_trial_ebd17a2d61694c04\\report.json",
+      "outcome": "blocked",
+      "reason": "RuntimeError: No visible approach to the object within player clearance",
+      "seconds": 373.5310664999997,
+      "metrics": {
+        "cycles": 14,
+        "replans": 3,
+        "recoveries": 0,
+        "frontier_deferrals": 0,
+        "no_progress": 0,
+        "perception_failures": 0,
+        "perception_gaps": 0,
+        "navigation_failures": 0,
+        "verification_failures": 0,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "decision_ms": [],
+        "cycle_ms": [
+          8895.464699991862,
+          8536.247300013201,
+          11446.549200001755,
+          26298.60939999344,
+          14946.673899990856,
+          13251.87600000936,
+          12205.839200003538,
+          14947.515200008638,
+          4971.239600010449,
+          4325.469199990039,
+          19056.94899999071
+        ],
+        "timing_scope": "isolated_local_planning_ms",
+        "puzzle_attempts": 0,
+        "puzzle_verified": 0,
+        "completed": false,
+        "high_level_completed": 6,
+        "segments": 7,
+        "combats": 2,
+        "guide_cache_hits": 1
+      },
+      "cursor": 6,
+      "initial_spawn_verified": true,
+      "objectives_per_minute": 0.9637752580346627
     },
     {
       "source": "data\\v3\\v3_trial_f4c1d291deb74571\\report.json",
@@ -5560,13 +5813,50 @@
       }
     ]
   },
+  "registered_stone_regression": {
+    "source_run": "v3_trial_ebd17a2d61694c04",
+    "source_frame": "0487-v3-glove-access-progress.jpg",
+    "fixture": "evaluations/v3/fixtures/registered-stone-occluded-actor.jpg",
+    "failure": "Occluded actor foot prevented local approach to wall-adjacent stone",
+    "change": "Use independently measured map actor and current registered fixed lamp to navigate to a clear side; require current tool glyph and existing tile-removal verification",
+    "regression_tests": {
+      "module": "evaluations.v3.test_lantern_flow",
+      "passed": 16,
+      "failed": 0
+    },
+    "live_validation": {
+      "run_id": "v3_trial_a0c41cef618c410b",
+      "approach_memory_id": "memory_138a560a269e44c6",
+      "chosen_side": {
+        "face": "right",
+        "standoff_reference": 10,
+        "target": [
+          445.7309126140739,
+          766.1024999175012
+        ]
+      },
+      "before_frame": "data\\v3\\v3_trial_a0c41cef618c410b\\0070-v3-glove-preflight.jpg",
+      "after_frame": "data\\v3\\v3_trial_a0c41cef618c410b\\0072-v3-glove-removal-check.jpg",
+      "rock_pixels_before": 10272,
+      "rock_pixels_remaining": 549,
+      "visible_floor_fraction": 0.8102161605764282,
+      "tile_removal_verified": true,
+      "whole_stage_complete": false
+    },
+    "stage_completion_claim": false,
+    "first_live_refusal": {
+      "run_id": "v3_trial_6a933031abef4d9c",
+      "reason": "Nearest 6-reference-pixel standoff lacked static-map clearance; no unsafe movement issued",
+      "fix": "Choose the closest of multiple standoffs that passes unchanged floor-clearance threshold"
+    }
+  },
   "final_fresh_trial": {
-    "source": "data\\v3\\v3_trial_b09c6691d29a412e\\report.json",
+    "source": "data\\v3\\v3_trial_ebd17a2d61694c04\\report.json",
     "outcome": "blocked",
-    "reason": "RuntimeError: Local room target is beyond the bounded observation horizon",
-    "seconds": 202.6240822999971,
+    "reason": "RuntimeError: No visible approach to the object within player clearance",
+    "seconds": 373.5310664999997,
     "metrics": {
-      "cycles": 15,
+      "cycles": 14,
       "replans": 3,
       "recoveries": 0,
       "frontier_deferrals": 0,
@@ -5580,31 +5870,30 @@
       "output_tokens": 0,
       "decision_ms": [],
       "cycle_ms": [
-        8888.775599996734,
-        8037.106900002982,
-        10941.80469999992,
-        26335.742400005984,
-        13973.148700002639,
-        12716.046800000186,
-        14051.561899999797,
-        12047.446600001422,
-        13499.069299999974,
-        4174.0446999974665,
-        3951.5960999997333,
-        19687.371200001508
+        8895.464699991862,
+        8536.247300013201,
+        11446.549200001755,
+        26298.60939999344,
+        14946.673899990856,
+        13251.87600000936,
+        12205.839200003538,
+        14947.515200008638,
+        4971.239600010449,
+        4325.469199990039,
+        19056.94899999071
       ],
       "timing_scope": "isolated_local_planning_ms",
       "puzzle_attempts": 0,
       "puzzle_verified": 0,
       "completed": false,
       "high_level_completed": 6,
-      "segments": 8,
+      "segments": 7,
       "combats": 2,
       "guide_cache_hits": 1
     },
     "cursor": 6,
     "initial_spawn_verified": true,
-    "objectives_per_minute": 1.7766891077981461
+    "objectives_per_minute": 0.9637752580346627
   },
   "tests": {
     "groups": {
@@ -5612,73 +5901,73 @@
         "tests": 11,
         "passed": 11,
         "failures": [],
-        "duration_ms": 2208.264100001543
+        "duration_ms": 2222.913299992797
       },
       "simulated_combat_states": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 12.96320000255946
+        "duration_ms": 13.83959999657236
       },
       "geometry_and_historical_map": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 3089.249699987704
+        "duration_ms": 6328.593499987619
       },
       "persistent_walkthroughs": {
         "tests": 8,
         "passed": 8,
         "failures": [],
-        "duration_ms": 149.51399998972192
+        "duration_ms": 251.2066000053892
       },
       "historical_enemy_detection": {
         "tests": 6,
         "passed": 6,
         "failures": [],
-        "duration_ms": 511.5901999961352
+        "duration_ms": 1139.6554999955697
       },
       "stream_protocol_and_decoder": {
         "tests": 2,
         "passed": 2,
         "failures": [],
-        "duration_ms": 120.11830000847112
+        "duration_ms": 213.9115000027232
       },
       "high_level_execution": {
-        "tests": 8,
-        "passed": 8,
+        "tests": 11,
+        "passed": 11,
         "failures": [],
-        "duration_ms": 43.24889999406878
+        "duration_ms": 89.68550000281539
       },
       "visible_frontier_horizons": {
         "tests": 4,
         "passed": 4,
         "failures": [],
-        "duration_ms": 24.76349999778904
+        "duration_ms": 34.7263000003295
       },
       "distant_threat_confirmation": {
         "tests": 10,
         "passed": 10,
         "failures": [],
-        "duration_ms": 124.43899999198038
+        "duration_ms": 243.92329998954665
       },
       "real_held_object_tracking": {
         "tests": 13,
         "passed": 13,
         "failures": [],
-        "duration_ms": 4048.590799997328
+        "duration_ms": 8728.175700001884
       },
       "real_lantern_tool_and_gate_evidence": {
-        "tests": 12,
-        "passed": 12,
+        "tests": 15,
+        "passed": 15,
         "failures": [],
-        "duration_ms": 1609.0566000057152
+        "duration_ms": 7129.195200002869
       },
       "current_entry_exit_completion_guards": {
         "tests": 7,
         "passed": 7,
         "failures": [],
-        "duration_ms": 1056.5695999976015
+        "duration_ms": 3332.59459999681
       }
     },
     "all_passed": true,

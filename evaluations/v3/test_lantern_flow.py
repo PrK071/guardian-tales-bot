@@ -11,6 +11,20 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_room_uses_one_verified_removed_tile_escape_before_retrying_local_route(self):
+        from cognitive.v3.room_navigation import goto_room_checkpoint
+        session=SimpleNamespace(navigate_to=lambda *a,**kw:{'verified':False,'progress_verified':False})
+        error=RuntimeError('No direct local segment with observed player clearance')
+        with patch('cognitive.v3.room_navigation.navigate_room',side_effect=[error,{'verified':True}]) as route,patch('cognitive.v3.rock_glove.escape_cleared_tile',return_value={'verified':True}) as escape:
+            self.assertTrue(goto_room_checkpoint(session,[426,713])['verified']);self.assertEqual(route.call_count,2);escape.assert_called_once()
+        with patch('cognitive.v3.room_navigation.navigate_room',side_effect=error) as route,patch('cognitive.v3.rock_glove.escape_cleared_tile',return_value={'verified':True}) as escape:
+            with self.assertRaisesRegex(RuntimeError,'No direct local segment'):goto_room_checkpoint(session,[426,713])
+            self.assertEqual(route.call_count,2);escape.assert_called_once()
+    def test_burning_ground_brazier_left_of_camera_centre_remains_visible_outside_minimap(self):
+        frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/ground-brazier-left-viewport.jpg'));vision=LanternVision(ROOT);features=SpatialVision().entities(frame)
+        objects=[o for o in vision.detect(frame,features['player'],False) if o['kind']=='portable_brazier']
+        self.assertEqual(len(objects),1);self.assertEqual(objects[0]['bbox'],[311,396,110,106]);self.assertGreater(objects[0]['confidence'],.95)
+        self.assertGreater(objects[0]['bbox'][1],230)
     def registered_stone_fixture(self):
         frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/registered-stone-occluded-actor.jpg'))
         features=SpatialVision().entities(frame);features['frame']='fixture:ebd17a2d61694c04/0487';features['puzzle_objects']=LanternVision(ROOT).detect(frame,features['player'],False)

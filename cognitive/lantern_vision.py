@@ -33,7 +33,9 @@ class LanternVision:
             mask=None
             if kind=='portable_brazier' and template is not None:
                 th,tw=template.shape[:2];mask=np.zeros((th,tw),np.uint8);cv2.ellipse(mask,(tw//2,th//2),(round(tw*.455),round(th*.453)),0,0,360,255,-1)
-            for match in self.matches(frame,template,.84 if kind=='standing_lantern_unlit' else .88,region=[320,50,1080,770],mask=mask):
+            regions=[[320,50,1080,770]]+([[0,230,430,590]] if kind=='portable_brazier' else [])
+            matches=[match for region in regions for match in self.matches(frame,template,.84 if kind=='standing_lantern_unlit' else .88,region=region,mask=mask)]
+            for match in matches:
                 x,y,w,h=match['bbox']
                 if x+w/2>1090 and y>400:continue
                 if kind=='standing_lantern_unlit' and player and abs(x+w/2-player[0])<60 and abs(y+h-player[1])<80:continue
@@ -43,11 +45,11 @@ class LanternVision:
                     # The account's stone rim occupies only 12.5% of the
                     # template; its dark socket and floor are saturated.
                     if np.mean((color[:,:,1]<65)&(color[:,:,2]>70))<.10:continue
-                objects.append({'kind':kind,**match})
+                if not any(o['kind']==kind and abs(o['bbox'][0]-x)<40 and abs(o['bbox'][1]-y)<40 for o in objects):objects.append({'kind':kind,**match})
         if self.burning is not None:
             th,tw=self.burning.shape[:2];rim=np.zeros((th,tw),np.uint8)
             cv2.ellipse(rim,(tw//2,th//2),(round(tw*.455),round(th*.453)),0,0,360,255,-1);cv2.ellipse(rim,(tw//2,th//2),(round(tw*.31),round(th*.292)),0,0,360,0,-1);rim[:th//4]=0;rim[int(th*.8):]=0
-            for match in self.matches(frame,self.burning,.86,region=[320,50,1080,770],mask=rim):
+            for match in [match for region in ([320,50,1080,770],[0,230,430,590]) for match in self.matches(frame,self.burning,.86,region=region,mask=rim)]:
                 x,y,w,h=match['bbox']
                 if holding and player and abs(x+w/2-player[0])<85 and player[1]-280<y+h<player[1]-35:continue
                 if not any(o['kind']=='portable_brazier' and abs(o['bbox'][0]-x)<40 and abs(o['bbox'][1]-y)<40 for o in objects):objects.append({'kind':'portable_brazier',**match,'method':'verified_burning_brazier_side_rim'})

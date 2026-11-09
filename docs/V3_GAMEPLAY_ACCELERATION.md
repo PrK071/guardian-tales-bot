@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 102/102. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 108/108. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -99,7 +99,7 @@ Preparações sem inimigo confirmado e leituras OCR sem identidade suficiente n�
 | Trial integrado | Cursor | Ciclos | Chamadas Qwen | Resultado |
 | --- | --- | --- | --- | --- |
 | v3_trial_042e8212b28a46f5 | 6 | 18 | 0 | blocked: RuntimeError: Lantern approach stalled twice; no repeated blind movement |
-| v3_trial_b09c6691d29a412e | 6 | 15 | 0 | blocked: RuntimeError: Local room target is beyond the bounded observation horizon |
+| v3_trial_ebd17a2d61694c04 | 6 | 14 | 0 | blocked: RuntimeError: No visible approach to the object within player clearance |
 
 
 ## Latência, decisões e limites da medição
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T01:09:02. Conclusões reais de saída reconciliadas: 1. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T06:51:32. Conclusões reais de saída reconciliadas: 1. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -147,11 +147,17 @@ O Orc foi observado antes do arremesso e ausente em três capturas posteriores, 
 
 A casa branca no corredor sul exige INTERAÇÃO. O bot observa casa+glyph antes de um único toque e exige duas observações reais de resultado. Estrela preenchida isolada não comprova a partida atual: o caminho alternativo pelo mapa exige entrada, puzzle/encontro, casa e ação emitida; estrela vazia é regressão negativa. O guia em vídeo P8Kob7UhlNs foi observado na saída1:55 e retorno ao mapa1:58. Guias ficam como relato e checkpoints atuais decidem a execução. O compilador permanece específico de Passagem1 normal; outras fases/modos não recebem rota inventada.
 
+## Aproximação de pedra com personagem encoberto
+
+No ensaio fresco `ebd17a2d61694c04`, a NPC encobriu o cavaleiro e a leitura local do pé ficou abaixo do piso. A alternativa usa uma lanterna fixa atualmente reconhecida, sua referência verificada e a posição independente do mapa. Escolhe a lateral com piso livre, mantém o limiar de folga, exige chegada medida e o ícone atual da luva. A primeira tentativa `6a933031abef4d9c` recusou um ponto próximo demais da borda; a escolha adaptativa de afastamento corrigiu essa recusa sem reduzir a folga exigida.
+
+Na retomada `a0c41cef618c410b`, a remoção foi confirmada:10272→549pixels de pedra,81,02% de piso visível. Não é medição de aceleração nem prova de conclusão integral. `evaluations/v3/registered-stone-regression.json` preserva a geometria e as evidências. A próxima falha foi a busca de uma tocha cortada pelo limite esquerdo da visão; a busca agora inclui a região abaixo do minimapa, mantendo os limiares de correspondência e eliminando duplicatas. Replays das duas situações estão versionados em `evaluations/v3/fixtures/`.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
 
-Ensaio integrado final `data\v3\v3_trial_b09c6691d29a412e\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 202.624s, 1.777 objetivos/min; 15 ciclos. Motivo: RuntimeError: Local room target is beyond the bounded observation horizon.
+Ensaio integrado final `data\v3\v3_trial_ebd17a2d61694c04\report.json`: resultado `blocked`, cursor 6/9, nascimento verificado True, 6 objetivos em 373.531s, 0.964 objetivos/min; 14 ciclos. Motivo: RuntimeError: No visible approach to the object within player clearance.
 
 Comparação de combate selecionada: `v3_combat_benchmark_f7859decec7c4428`. Não misturar séries antigas com código diferente. Tempos de falha não contam como conclusão. Os JSONs preservam entradas iniciais, raw final, ações e erros.
 
@@ -161,6 +167,6 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 102/102; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 108/108; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.

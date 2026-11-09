@@ -5,14 +5,25 @@ from ..puzzle_control import BombRockController
 
 def goto_room_checkpoint(s,target,tolerance=7):
     """Reuse long mapped segments, falling back only at the tight room edge."""
+    def local():
+        try:return navigate_room(s,target,tolerance)
+        except RuntimeError as exc:
+            if str(exc)!='No direct local segment with observed player clearance':raise
+            from .rock_glove import escape_cleared_tile
+            # A glove lunge can leave the actor at a sprite-occluded corner.
+            # Existing escape requires alignment to a verified removed tile,
+            # the actor inside it and no current rock/hazard at the endpoint.
+            result=escape_cleared_tile(s)
+            if not result['verified']:raise RuntimeError('Removed-tile room escape did not move')
+            return navigate_room(s,target,tolerance)
     for _ in range(5):
         try:
             result=s.navigate_to(target,tolerance=tolerance,allow_npc_bypass=True)
         except ValueError:
-            return navigate_room(s,target,tolerance)
+            return local()
         if result.get('verified'):return result
         if result.get('reason')=='enemy_detected':raise RuntimeError('Combat interrupts room checkpoint')
-        if not result.get('progress_verified'):return navigate_room(s,target,tolerance)
+        if not result.get('progress_verified'):return local()
     raise RuntimeError('Room checkpoint segment budget exhausted')
 
 def navigate_room(s,target,tolerance=7,max_actions=16):

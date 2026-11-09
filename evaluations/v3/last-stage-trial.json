@@ -1,7 +1,7 @@
 {
-  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_6a933031abef4d9c",
+  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_c7dbfee65dd047ef",
   "outcome": "blocked",
-  "reason": "RuntimeError: No registered stone side has observed static floor clearance",
+  "reason": "RuntimeError: No direct local segment with observed player clearance",
   "metrics": {
     "cycles": 2,
     "replans": 2,
@@ -32,7 +32,7 @@
     "mode": "normal",
     "plan_id": "a000d25a6d0af23adb5c",
     "resumed": true,
-    "run_id": "v3_trial_6a933031abef4d9c",
+    "run_id": "v3_trial_c7dbfee65dd047ef",
     "scope": "world:1:passage:1",
     "states": {
       "first_encounter": {
@@ -713,7 +713,7 @@
       },
       "lantern_puzzle": {
         "state": "replan_needed",
-        "frame": "data\\v3\\v3_trial_6a933031abef4d9c\\0085-v3-registered-stone-map.jpg",
+        "frame": "data\\v3\\v3_trial_c7dbfee65dd047ef\\0022-v3-room-visual-plan.jpg",
         "result": {
           "plan_id": "a000d25a6d0af23adb5c",
           "step_id": "lantern_puzzle",
@@ -722,12 +722,12 @@
             "memory_2a35ada996cb4e6d",
             "memory_7ebff3419ae9448c"
           ],
-          "reason": "No registered stone side has observed static floor clearance",
-          "frame": "data\\v3\\v3_trial_6a933031abef4d9c\\0085-v3-registered-stone-map.jpg",
+          "reason": "No direct local segment with observed player clearance",
+          "frame": "data\\v3\\v3_trial_c7dbfee65dd047ef\\0022-v3-room-visual-plan.jpg",
           "details": null,
           "scope": "current observation differs from this plan assumption; source is not globally contradicted"
         },
-        "at": 1794217334.8896568
+        "at": 1794217739.7709854
       },
       "north_corridor": {
         "at": 1794214949.319913,

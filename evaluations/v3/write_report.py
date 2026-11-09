@@ -68,6 +68,7 @@ for path in (ROOT/'data/v3').glob('v3_trial_*/report.json'):
     data=json.loads(path.read_text());seconds=data.get('seconds_total',data.get('seconds'));metrics=data.get('metrics') or {};trials.append({'source':str(path.relative_to(ROOT)),'outcome':data.get('outcome'),'reason':data.get('reason'),'seconds':seconds,'metrics':metrics,'cursor':(data.get('active_plan') or {}).get('cursor'),'initial_spawn_verified':data.get('initial_spawn_verified'),'objectives_per_minute':metrics.get('high_level_completed',0)*60/seconds if seconds else None})
 measured['integrated_trials']=trials
 measured['actor_perception_replay']=json.loads((ROOT/'evaluations/v3/actor-perception-benchmark.json').read_text())
+measured['registered_stone_regression']=json.loads((ROOT/'evaluations/v3/registered-stone-regression.json').read_text())
 measured['stage_completion_claim']=bool(measured['stage_completion_claim'] or any(t['outcome']=='stage_complete' for t in trials))
 measured['final_fresh_trial']=next((t for t in trials if args.stage_trial and args.stage_trial in t['source']),None)
 measured['tests']=json.loads((ROOT/'evaluations/v3/tests.json').read_text())
@@ -225,6 +226,12 @@ Ignição: `v3_lantern_probe_186284eed6494f66`, duas observações afastadas526,
 O Orc foi observado antes do arremesso e ausente em três capturas posteriores, incluindo uma bruta, sem comando de personagem entre essas confirmações (`v3_trial_7be9bd0f5cb64779/final-encounter-reconciliation.json`). Isso não é uma medição de duração/DPS. Combate com item reconcilia a pose antes da detecção, solta o objeto com prova e usa presença fresca anterior se o inimigo morrer durante a soltura; ainda exige as três ausências e raw independente.
 
 A casa branca no corredor sul exige INTERAÇÃO. O bot observa casa+glyph antes de um único toque e exige duas observações reais de resultado. Estrela preenchida isolada não comprova a partida atual: o caminho alternativo pelo mapa exige entrada, puzzle/encontro, casa e ação emitida; estrela vazia é regressão negativa. O guia em vídeo P8Kob7UhlNs foi observado na saída1:55 e retorno ao mapa1:58. Guias ficam como relato e checkpoints atuais decidem a execução. O compilador permanece específico de Passagem1 normal; outras fases/modos não recebem rota inventada.
+
+## Aproximação de pedra com personagem encoberto
+
+No ensaio fresco `ebd17a2d61694c04`, a NPC encobriu o cavaleiro e a leitura local do pé ficou abaixo do piso. A alternativa usa uma lanterna fixa atualmente reconhecida, sua referência verificada e a posição independente do mapa. Escolhe a lateral com piso livre, mantém o limiar de folga, exige chegada medida e o ícone atual da luva. A primeira tentativa `6a933031abef4d9c` recusou um ponto próximo demais da borda; a escolha adaptativa de afastamento corrigiu essa recusa sem reduzir a folga exigida.
+
+Na retomada `a0c41cef618c410b`, a remoção foi confirmada:10272→549pixels de pedra,81,02% de piso visível. Não é medição de aceleração nem prova de conclusão integral. `evaluations/v3/registered-stone-regression.json` preserva a geometria e as evidências. A próxima falha foi a busca de uma tocha cortada pelo limite esquerdo da visão; a busca agora inclui a região abaixo do minimapa, mantendo os limiares de correspondência e eliminando duplicatas. Replays das duas situações estão versionados em `evaluations/v3/fixtures/`.
 
 ## Métricas de aceitação e limites
 
