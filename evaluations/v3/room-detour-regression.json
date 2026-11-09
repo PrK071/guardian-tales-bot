@@ -1,0 +1,29 @@
+{
+  "source_run": "v3_trial_ee5dd3bad6204536",
+  "fixture": "evaluations/v3/fixtures/room-detour/replay.json",
+  "before_reference": [
+    379.549295774648,
+    756.0422535211267
+  ],
+  "after_reference": [
+    378.14084507042264,
+    740.5492957746478
+  ],
+  "goal_errors_reference_pixels": [
+    50.17035055277539,
+    58.96905741315514
+  ],
+  "old_guard_rejects_this_observed_detour": true,
+  "new_guard_replay": "accepted new map pose; no goal-completion claim",
+  "negative_revisit_replay": "rejected despite apparent visual motion",
+  "directed_tests": {
+    "module": "evaluations.v3.test_lantern_flow",
+    "passed": 23,
+    "failed": 0
+  },
+  "room_navigation_sha256": "4bb19be5e05f1658c6a1015dde130dde497415f92f18ea2f16afe50810672ef1",
+  "live_validation": {
+    "run_id": "v3_trial_5278d4ac31b048bc",
+    "status": "in_progress"
+  }
+}

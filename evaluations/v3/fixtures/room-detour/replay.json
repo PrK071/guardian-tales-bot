@@ -1,0 +1,739 @@
+{
+  "source_run": "v3_trial_ee5dd3bad6204536",
+  "target_reference": [
+    426,
+    775
+  ],
+  "anchor": {
+    "derived_after_trial": true,
+    "identity": "bde52d502e873032794e805d93eb1ece6bcc04c7003588536d2bc90a175bef99",
+    "method": "observed_spawn_room_silhouette",
+    "origin": [
+      838.0,
+      449.0
+    ],
+    "path": "evaluations/v3/fixtures/room-detour/anchor.png",
+    "scope": "world:1:passage:1",
+    "source_frame": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_5aa90fc7327340cf\\0000-initial.jpg",
+    "source_report": "E:\\GuardianTalesBot\\data\\v2\\v2_trial_5aa90fc7327340cf\\report.json",
+    "spawn_point": [
+      918.0,
+      647.0
+    ]
+  },
+  "maps": [
+    "0587-v3-room-before-map.jpg",
+    "0597-v3-room-progress-map.jpg"
+  ],
+  "actions": [
+    {
+      "at": 1794220649.3297935,
+      "action": {
+        "op": "move",
+        "args": {
+          "direction": "left",
+          "ms": 80
+        },
+        "rationale": "Follow the currently visible floor toward the room checkpoint"
+      },
+      "before": {
+        "entities": [
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1398,
+              341,
+              202,
+              228
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              836,
+              341,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.28874375,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              745,
+              380,
+              69,
+              175
+            ],
+            "fire_center": [
+              784.162658070915,
+              425.02206793949915
+            ],
+            "pedestal_bbox": [
+              745,
+              500,
+              69,
+              55
+            ],
+            "confidence": 0.9768533110618591,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 87.70370000274852,
+          "puzzle_ms": 1056.164900001022,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0590-v3-room-visual-plan.jpg",
+        "capture_ms": 584.66,
+        "at": 1794220647.3397493
+      },
+      "after": {
+        "entities": [
+          {
+            "kind": "player",
+            "bbox": [
+              775,
+              392,
+              47,
+              95
+            ],
+            "confidence": 0.82,
+            "method": "silver_helmet_top_plus_observed_95px_height"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1436,
+              341,
+              164,
+              228
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              873,
+              341,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.2765,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              380,
+              69,
+              175
+            ],
+            "fire_center": [
+              816.9542990884454,
+              438.4315102241932
+            ],
+            "pedestal_bbox": [
+              783,
+              500,
+              69,
+              55
+            ],
+            "confidence": 0.9760417938232422,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 77.8374000074109,
+          "puzzle_ms": 838.2734000042547,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0591-v3-after-move.jpg",
+        "capture_ms": 542.55,
+        "at": 1794220649.2568781
+      },
+      "metrics": {
+        "reused_preinput_observation": true,
+        "verified": true,
+        "motion": {
+          "background_dx": 37.51,
+          "background_dy": -0.09,
+          "inliers": 0,
+          "confidence": 0.711,
+          "player_dx": 0.0,
+          "player_dy": 0.0,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": -37.51,
+          "effective_dy": 0.09,
+          "moved": true
+        },
+        "controller_ms": 1698.4415000042645,
+        "continuous_control": {
+          "kind": "move_hold",
+          "requested_ms": 80,
+          "at_start": 1794220647.6146917,
+          "start_monotonic": 89010.4463973,
+          "direction": "left",
+          "run": false,
+          "end_monotonic": 89010.5301056,
+          "actual_ms": 83.69980000134092,
+          "wall_ms": 83.70830000785645,
+          "outcome": "duration_elapsed",
+          "error": null,
+          "release_errors": [],
+          "fingers_remaining": [],
+          "observed_effect_verified": false,
+          "operation_id": "operation_ad0ffffbf512435a"
+        },
+        "operation_id": "operation_ad0ffffbf512435a"
+      },
+      "local_position": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "at": 1794220653.217073,
+      "action": {
+        "op": "move",
+        "args": {
+          "direction": "up",
+          "ms": 272
+        },
+        "rationale": "Follow the currently visible floor toward the room checkpoint"
+      },
+      "before": {
+        "entities": [
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1436,
+              341,
+              164,
+              228
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              873,
+              341,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.2753763888888889,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              380,
+              69,
+              175
+            ],
+            "fire_center": [
+              817.2913205072147,
+              430.7663970266725
+            ],
+            "pedestal_bbox": [
+              783,
+              500,
+              69,
+              55
+            ],
+            "confidence": 0.9719873666763306,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 64.6231999999145,
+          "puzzle_ms": 892.7753000025405,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0592-v3-room-visual-plan.jpg",
+        "capture_ms": 510.12,
+        "at": 1794220650.9138038
+      },
+      "after": {
+        "entities": [
+          {
+            "kind": "player",
+            "bbox": [
+              767,
+              368,
+              66,
+              95
+            ],
+            "confidence": 0.82,
+            "method": "silver_helmet_top_plus_observed_95px_height"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1436,
+              461,
+              164,
+              228
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              873,
+              461,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.30788333333333334,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              50,
+              69,
+              62
+            ],
+            "fire_center": [
+              816.5908771929825,
+              61.82526315789474
+            ],
+            "pedestal_bbox": [
+              783,
+              57,
+              69,
+              55
+            ],
+            "confidence": 0.9880884289741516,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          },
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              500,
+              69,
+              175
+            ],
+            "fire_center": [
+              819.1884502720045,
+              577.591853815037
+            ],
+            "pedestal_bbox": [
+              783,
+              620,
+              69,
+              55
+            ],
+            "confidence": 0.9757141470909119,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 86.30690000427421,
+          "puzzle_ms": 902.7816000016173,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0593-v3-after-move.jpg",
+        "capture_ms": 609.37,
+        "at": 1794220653.1559184
+      },
+      "metrics": {
+        "reused_preinput_observation": true,
+        "verified": true,
+        "motion": {
+          "background_dx": 0.02,
+          "background_dy": 120.01,
+          "inliers": 0,
+          "confidence": 0.639,
+          "player_dx": 0.0,
+          "player_dy": 0.0,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": -0.02,
+          "effective_dy": -120.01,
+          "moved": true
+        },
+        "controller_ms": 2066.6215999954147,
+        "continuous_control": {
+          "kind": "move_hold",
+          "requested_ms": 272,
+          "at_start": 1794220651.1438453,
+          "start_monotonic": 89013.9762157,
+          "direction": "up",
+          "run": false,
+          "end_monotonic": 89014.2531544,
+          "actual_ms": 276.930000007269,
+          "wall_ms": 276.9387000007555,
+          "outcome": "duration_elapsed",
+          "error": null,
+          "release_errors": [],
+          "fingers_remaining": [],
+          "observed_effect_verified": false,
+          "operation_id": "operation_5bfaf267e80c4460"
+        },
+        "operation_id": "operation_5bfaf267e80c4460"
+      },
+      "local_position": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "at": 1794220657.0251527,
+      "action": {
+        "op": "move",
+        "args": {
+          "direction": "right",
+          "ms": 81
+        },
+        "rationale": "Follow the currently visible floor toward the room checkpoint"
+      },
+      "before": {
+        "entities": [
+          {
+            "kind": "player",
+            "bbox": [
+              767,
+              368,
+              66,
+              95
+            ],
+            "confidence": 0.82,
+            "method": "silver_helmet_top_plus_observed_95px_height"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1436,
+              461,
+              164,
+              228
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              873,
+              461,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.3064701388888889,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              50,
+              69,
+              62
+            ],
+            "fire_center": [
+              815.179104477612,
+              61.698350353495684
+            ],
+            "pedestal_bbox": [
+              783,
+              57,
+              69,
+              55
+            ],
+            "confidence": 0.9872581958770752,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          },
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              783,
+              500,
+              69,
+              175
+            ],
+            "fire_center": [
+              824.8892237222758,
+              571.8308823529412
+            ],
+            "pedestal_bbox": [
+              783,
+              620,
+              69,
+              55
+            ],
+            "confidence": 0.9702262282371521,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 101.40600000158884,
+          "puzzle_ms": 979.0715999988606,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0594-v3-room-visual-plan.jpg",
+        "capture_ms": 535.39,
+        "at": 1794220654.9381683
+      },
+      "after": {
+        "entities": [
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              1406,
+              461,
+              194,
+              203
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          },
+          {
+            "kind": "rock_obstacle_candidate",
+            "bbox": [
+              843,
+              461,
+              111,
+              130
+            ],
+            "confidence": 0.7,
+            "method": "passage1_observed_color_shape_hypothesis"
+          }
+        ],
+        "player": [
+          800.5,
+          445.0
+        ],
+        "enemy_count": 0,
+        "hazard_count": 0,
+        "scene": "jogo",
+        "health": 0.724,
+        "enemy_bars": [],
+        "enemy_red_area": 0,
+        "floor_fraction": 0.31980555555555557,
+        "focused_enemy_hp": null,
+        "combat_present": false,
+        "actor_pose_source": "calibrated_carried_brazier_offset",
+        "held_object_bbox": [
+          746,
+          277,
+          110,
+          106
+        ],
+        "puzzle_objects": [
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              753,
+              50,
+              69,
+              62
+            ],
+            "fire_center": [
+              785.589519650655,
+              61.651382823871906
+            ],
+            "pedestal_bbox": [
+              753,
+              57,
+              69,
+              55
+            ],
+            "confidence": 0.9883927702903748,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          },
+          {
+            "kind": "standing_lantern_lit",
+            "bbox": [
+              753,
+              500,
+              69,
+              175
+            ],
+            "fire_center": [
+              789.7892810766143,
+              568.0790933774052
+            ],
+            "pedestal_bbox": [
+              753,
+              620,
+              69,
+              55
+            ],
+            "confidence": 0.9747945070266724,
+            "method": "floor_lantern_pedestal_with_current_fire"
+          }
+        ],
+        "perception_timing": {
+          "spatial_ms": 81.83689998986665,
+          "puzzle_ms": 908.0460999975912,
+          "puzzle_detection_enabled": true
+        },
+        "frame": "evaluations/v3/fixtures/room-detour/0595-v3-after-move.jpg",
+        "capture_ms": 533.85,
+        "at": 1794220656.9592113
+      },
+      "metrics": {
+        "reused_preinput_observation": true,
+        "verified": true,
+        "motion": {
+          "background_dx": -29.96,
+          "background_dy": -0.02,
+          "inliers": 0,
+          "confidence": 0.831,
+          "player_dx": 0.0,
+          "player_dy": 0.0,
+          "method": "two_flank_phase_consensus",
+          "effective_dx": 29.96,
+          "effective_dy": 0.02,
+          "moved": true
+        },
+        "controller_ms": 1785.7777000026545,
+        "continuous_control": {
+          "kind": "move_hold",
+          "requested_ms": 81,
+          "at_start": 1794220655.2350156,
+          "start_monotonic": 89018.0670812,
+          "direction": "right",
+          "run": false,
+          "end_monotonic": 89018.1489693,
+          "actual_ms": 81.8786000018008,
+          "wall_ms": 81.88810000137892,
+          "outcome": "duration_elapsed",
+          "error": null,
+          "release_errors": [],
+          "fingers_remaining": [],
+          "observed_effect_verified": false,
+          "operation_id": "operation_389e1b5cea5d45bb"
+        },
+        "operation_id": "operation_389e1b5cea5d45bb"
+      },
+      "local_position": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "scope": "Recorded frames and geometry replay; no gameplay input is sent"
+}

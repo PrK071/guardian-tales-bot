@@ -11,6 +11,33 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def room_detour_replay(self,revisit=False):
+        import json
+        from cognitive.map_anchor import SpawnMapAnchor
+        from cognitive.map_navigation import PauseMap
+        folder=ROOT/'evaluations/v3/fixtures/room-detour';data=json.loads((folder/'replay.json').read_text());a=data['anchor'];anchor=SpawnMapAnchor(cv2.imread(str(ROOT/a['path']),0),a['origin'],a['spawn_point']);checkpoints=[]
+        for name in data['maps']:
+            state=PauseMap().parse(cv2.imread(str(folder/name)));alignment=anchor.locate(state);self.assertGreater(alignment['score'],.98);checkpoints.append((state,alignment,anchor.project(state['player'],alignment),{'frame':str((folder/name).relative_to(ROOT))}))
+        if revisit:checkpoints[1]=checkpoints[0]
+        actions=data['actions'];index=[0];records=[];issued=[];maps=iter(checkpoints)
+        def check():
+            if index[0]==len(actions):raise InterruptedError('replay stopped after first map checkpoint')
+        def capture(label):
+            row=actions[index[0]];return cv2.imread(str(ROOT/row['before']['frame'])),row['before']
+        def pulse(action):
+            row=actions[index[0]];issued.append(action);index[0]+=1;session.last_features=row['after'];return row
+        session=SimpleNamespace(scope='world:1:passage:1',run_id='fixture:room-detour',speeds={'move':.059537465550086245},map_state=lambda *a:next(maps),check_cancel=check,transition=lambda *a:None,capture=capture,preflight_enemy=lambda f:False,pulse=pulse,memory=SimpleNamespace(remember=lambda *a,**kw:records.append(a)),last_features=actions[0]['before'])
+        return session,data,records,issued,checkpoints
+    def test_real_floor_detour_may_temporarily_increase_goal_distance_without_completing_goal(self):
+        from cognitive.v3.room_navigation import navigate_room
+        session,data,records,issued,points=self.room_detour_replay()
+        with self.assertRaisesRegex(InterruptedError,'first map checkpoint'):navigate_room(session,data['target_reference'])
+        self.assertEqual([a.args['direction'] for a in issued],['left','up','right']);self.assertEqual(len(records),1);self.assertEqual(records[0][1],'v3_room_detour');proof=records[0][3];self.assertGreater(proof['goal_error_after'],proof['goal_error_before']);self.assertFalse(proof['goal_reached'])
+    def test_room_detour_still_rejects_revisited_map_pose_despite_apparent_visual_motion(self):
+        from cognitive.v3.room_navigation import navigate_room
+        session,data,records,issued,points=self.room_detour_replay(revisit=True)
+        with self.assertRaisesRegex(RuntimeError,'did not improve'):navigate_room(session,data['target_reference'])
+        self.assertFalse(records);self.assertEqual(len(issued),3)
     def test_glove_mask_tracks_the_removed_right_column_without_the_intact_left_neighbour(self):
         before=cv2.imread(str(ROOT/'evaluations/v3/fixtures/stone-column-before.jpg'));after=cv2.imread(str(ROOT/'evaluations/v3/fixtures/stone-column-after.jpg'));index=[0]
         def capture(label):

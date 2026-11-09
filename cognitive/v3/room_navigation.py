@@ -29,11 +29,11 @@ def goto_room_checkpoint(s,target,tolerance=7):
 def navigate_room(s,target,tolerance=7,max_actions=16):
     began=time.perf_counter();_,_,position,initial=s.map_state('v3-room-before-map');ratio=.44/s.speeds['move'];initial_error=math.dist(position,target)
     if initial_error>140:raise RuntimeError('Local room target is beyond the bounded observation horizon')
-    last_error=initial_error;controls=[];goal_pixel=None
+    last_error=initial_error;controls=[];goal_pixel=None;visited=[list(position)];detours=[]
     for index in range(max_actions+1):
         s.check_cancel()
         if math.dist(position,target)<=tolerance:
-            result={'verified':True,'before_frame':initial['frame'],'after_frame':s.last_features['frame'],'after':position,'target':target,'goal_error_reference_pixels':math.dist(position,target),'seconds':time.perf_counter()-began,'actions':controls,'model_calls':0}
+            result={'verified':True,'before_frame':initial['frame'],'after_frame':s.last_features['frame'],'after':position,'target':target,'goal_error_reference_pixels':math.dist(position,target),'seconds':time.perf_counter()-began,'actions':controls,'observed_detours':detours,'model_calls':0}
             s.memory.remember('episodic','v3_room_navigation',s.scope,{'run_id':s.run_id,**result},Provenance(s.last_features['frame'],method='visible_gameplay_floor_and_independent_aligned_map_checkpoints'),.95,'verified');return result
         if index==max_actions:break
         s.transition('jogo');frame,f=s.capture('v3-room-visual-plan')
@@ -45,7 +45,16 @@ def navigate_room(s,target,tolerance=7,max_actions=16):
         motion=row['metrics']['motion'];goal_pixel=[goal_pixel[0]+motion['background_dx'],goal_pixel[1]+motion['background_dy']]
         if not s.last_features.get('player'):raise RuntimeError('Actor tracking lost after room movement')
         if (index+1)%3==0 or motion['confidence']<.25 or math.dist(s.last_features['player'],goal_pixel)<40:
-            _,_,position,_=s.map_state('v3-room-progress-map');error=math.dist(position,target)
-            if error>tolerance and error>=last_error-2:raise RuntimeError('Room checkpoint did not improve across the bounded visual sequence')
+            _,_,position,checkpoint=s.map_state('v3-room-progress-map');error=math.dist(position,target)
+            if error>tolerance and any(math.dist(position,old)<=4 for old in visited):raise RuntimeError('Room checkpoint did not improve across the bounded visual sequence')
+            if error>tolerance and error>=last_error-2:
+                # A valid floor route may first move away from the goal to
+                # round a stone. Independent map displacement to a new pose
+                # proves the detour; revisits and the action budget still stop
+                # cycles, and only the measured endpoint completes the route.
+                detour={'before_reference':visited[-1],'after_reference':list(position),'target_reference':target,'goal_error_before':last_error,'goal_error_after':error,'frame':checkpoint['frame'],'goal_reached':False}
+                detours.append(detour)
+                s.memory.remember('episodic','v3_room_detour',s.scope,{'run_id':s.run_id,**detour},Provenance(checkpoint['frame'],method='observed_floor_route_then_new_independent_map_pose_despite_temporary_euclidean_distance_increase'),.9,'verified')
+            visited.append(list(position))
             last_error=error;goal_pixel=None
     raise RuntimeError('Local room navigation action budget exhausted')
