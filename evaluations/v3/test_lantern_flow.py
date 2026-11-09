@@ -11,6 +11,21 @@ from cognitive.v3.puzzle import LanternSegment
 ROOT=Path(__file__).resolve().parents[2]
 
 class LanternFlowTests(unittest.TestCase):
+    def test_adjacent_wall_torch_gets_one_facing_pulse_and_still_needs_pickup_glyph(self):
+        frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/adjacent-torch-wall-facing.jpg'));vision=LanternVision(ROOT);features=SpatialVision().entities(frame);features.update(frame='fixture:wall-torch',puzzle_objects=vision.detect(frame,features['player'],False));actions=[]
+        motion={'confidence':1,'background_dx':0,'background_dy':0,'effective_dx':0,'effective_dy':0}
+        session=SimpleNamespace(root=ROOT,scope='world:1:passage:1',lantern_vision=vision,transition=lambda *a:None,check_cancel=lambda:None,pulse=lambda a:(actions.append(a) or {'metrics':{'motion':motion}}))
+        c=LanternController(session);c.observe=lambda label:(frame,features);c.event=lambda *a,**kw:None
+        with patch('cognitive.lantern_control.BombRockController.local_approach',side_effect=RuntimeError('No direct local segment with observed player clearance')):
+            with self.assertRaisesRegex(RuntimeError,'No direct local segment'):c.approach('portable_brazier')
+        self.assertEqual(len(actions),1);self.assertEqual(actions[0].op,'move');self.assertEqual(actions[0].args,{'direction':'left','ms':80})
+    def test_puzzle_restores_planned_view_after_glove_lunge_before_searching_for_torch(self):
+        routes=[];observations=[];obj={'kind':'standing_lantern_unlit','bbox':[1200,400,67,91]};features={'frame':'fixture:room','puzzle_objects':[obj]}
+        session=SimpleNamespace(transition=lambda *a:None,capture=lambda *a:(None,features),scope='world:1:passage:1',held_object_kind=None,memory=SimpleNamespace(retrieve=lambda *a,**kw:[]))
+        controller=SimpleNamespace(observe=lambda label:(observations.append(label) or (None,features)),objects=LanternController.objects,pickup=lambda:(_ for _ in ()).throw(RuntimeError('pickup reached after restored view')))
+        with patch('cognitive.v3.puzzle.LanternController',return_value=controller),patch('cognitive.v3.puzzle.arrow_visible',return_value=False),patch('cognitive.v3.puzzle.goto_room_checkpoint',side_effect=lambda s,p:routes.append(p)),patch('cognitive.v3.puzzle.ensure_lantern_access',return_value={'verified':True,'tiles':[{'verified':True}]}):
+            with self.assertRaisesRegex(RuntimeError,'pickup reached'):LanternSegment(session).run()
+        self.assertEqual(routes,[[426,713],[426,713]]);self.assertEqual(observations[-1],'v3-lantern-return-after-glove')
     def test_room_uses_one_verified_removed_tile_escape_before_retrying_local_route(self):
         from cognitive.v3.room_navigation import goto_room_checkpoint
         session=SimpleNamespace(navigate_to=lambda *a,**kw:{'verified':False,'progress_verified':False})

@@ -44,7 +44,7 @@ def completed_passage_card(frame,root):
     if score<.90:return {'verified':False,'reason':'passage_card_not_identified','card_score':score}
     x1=round(cx-30*scale);x2=round(cx+30*scale);y1=round(cy+38*scale);y2=round(cy+78*scale);roi=frame[y1:y2,x1:x2]
     if not roi.size:return {'verified':False,'reason':'star_label_outside_frame'}
-    hsv=cv2.cvtColor(roi,cv2.COLOR_BGR2HSV);gold=cv2.inRange(hsv,(16,110,205),(43,255,255));dark=float(np.mean(np.max(roi,axis=2)<100));contours,_=cv2.findContours(gold,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    hsv=cv2.cvtColor(roi,cv2.COLOR_BGR2HSV);gold=cv2.inRange(hsv,(16,110,205),(43,255,255));bright_core=cv2.inRange(hsv,(0,0,220),(180,110,255));lit=gold|bright_core;dark=float(np.mean(np.max(roi,axis=2)<100));contours,_=cv2.findContours(lit,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     stars=[]
     for contour in contours:
         x,y,w,h=cv2.boundingRect(contour)
@@ -52,6 +52,8 @@ def completed_passage_card(frame,root):
         if abs(x+w/2-gold.shape[1]/2)>10*scale:continue
         filled=np.zeros_like(gold);cv2.drawContours(filled,[contour],-1,255,-1);inside=filled>0
         fraction=float(np.mean(gold[inside]>0)) if np.any(inside) else 0
+        lit_fraction=float(np.mean(lit[inside]>0)) if np.any(inside) else 0
+        gold_pixels=int(np.count_nonzero(gold[inside]))
         moments=cv2.moments(contour)
         if not moments['m00']:continue
         sx=round(moments['m10']/moments['m00']);sy=round(moments['m01']/moments['m00'])
@@ -59,15 +61,19 @@ def completed_passage_card(frame,root):
         center_bright=float(np.mean(center[:,:,2]>180)) if center.size else 0
         # An uncompleted star has the same outer silhouette. Its dark hollow
         # centre and sparse gold rim must never count as a filled star.
-        if fraction>=.55 and center_bright>=.70:stars.append({'bbox':[x,y,w,h],'gold_fill_fraction':fraction,'bright_center_fraction':center_bright})
+        # The completed star has a white core in raw pixels. JPEG blending
+        # can hide that split, so contour gold plus its bright core while
+        # requiring a filled silhouette, real gold and a bright centre.
+        if lit_fraction>=.85 and gold_pixels>=70 and center_bright>=.70:stars.append({'bbox':[x,y,w,h],'gold_fill_fraction':fraction,'lit_fill_fraction':lit_fraction,'gold_pixels':gold_pixels,'bright_center_fraction':center_bright})
     return {'verified':bool(stars and dark>.30),'card_score':float(score),'card_center':[cx,cy],'star_roi':[x1,y1,x2-x1,y2-y1],'bright_gold_pixels':int(np.count_nonzero(gold)),'dark_label_fraction':dark,'star_shapes':stars}
 
-def verify_exit_result(s,runtime,bot,house,context,seconds=10):
-    deadline=time.monotonic()+seconds;observations=[];kind=None
+def verify_exit_result(s,runtime,bot,house,context,seconds=45):
+    began=time.monotonic();deadline=began+seconds;observations=[];kind=None;scenes=[]
     house_path=(s.root/house['frame']).resolve() if house else None
     valid_transition=bool(context and context.get('current_entry_verified') and context.get('controls_issued') and house_path and house_path.is_relative_to(s.folder.resolve()) and house_path.exists())
     while time.monotonic()<deadline:
         s.check_cancel();ob=runtime.environment.observe();runtime.evidence(ob);frame=runtime.environment.last_frame
+        if not scenes or scenes[-1]['frame']!=ob.frame_path:scenes.append({'scene':ob.scene,'frame':ob.frame_path,'elapsed_seconds':time.monotonic()-began})
         if completion_evidence(bot.snapshot):proof={'verified':True,'kind':'stage_result_text'}
         elif valid_transition and ob.scene=='mapa' and not ob.blocked:
             from ..perception import normalize
@@ -79,7 +85,7 @@ def verify_exit_result(s,runtime,bot,house,context,seconds=10):
             kind=proof['kind']
             if not any(row['observation_id']==ob.id or row['frame']==ob.frame_path for row in observations):observations.append({'observation_id':ob.id,'frame':ob.frame_path,'proof':proof})
             if len(observations)>=2:
-                result={'stage_complete':True,'verified':True,'result_evidence':[r['observation_id'] for r in observations],'result_observations':observations,'exit_landmark':house,'exit_context':context,'model_calls':0}
+                result={'stage_complete':True,'verified':True,'result_evidence':[r['observation_id'] for r in observations],'result_observations':observations,'exit_landmark':house,'exit_context':context,'verification_seconds':time.monotonic()-began,'observed_scenes':scenes,'model_calls':0}
                 s.memory.remember('episodic','v3_stage_exit_verified',s.scope,{'run_id':s.run_id,**result},Provenance(ob.frame_path,method='observed_final_corridor_exit_then_two_independent_stage_result_or_identified_filled_star_observations'),.98,'verified');return result
         else:observations=[];kind=None
     return None

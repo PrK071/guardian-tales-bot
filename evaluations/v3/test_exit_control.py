@@ -10,6 +10,20 @@ from cognitive.stage_v2 import completion_evidence
 ROOT=Path(__file__).resolve().parents[2]
 
 class ExitTests(unittest.TestCase):
+    def test_completed_raw_star_white_core_is_not_split_into_two_small_gold_fragments(self):
+        proof=completed_passage_card(cv2.imread(str(ROOT/'evaluations/v3/fixtures/completed-stage-map-raw.png')),ROOT)
+        self.assertTrue(proof['verified']);star=proof['star_shapes'][0];self.assertLess(star['gold_fill_fraction'],.55);self.assertEqual(star['lit_fill_fraction'],1);self.assertGreaterEqual(star['gold_pixels'],70)
+    def test_known_exit_waits_through_observed_loading_before_two_real_map_checks(self):
+        now=[0.];seen=[];frame=cv2.imread(str(ROOT/'evaluations/v3/fixtures/completed-stage-map.jpg'));scenes=iter(['carregando']*6+['desconhecida','mapa','mapa'])
+        def observe():
+            scene=next(scenes);now[0]+=2;ob=SimpleNamespace(id=str(len(seen)),scene=scene,blocked=None,text='Mapa Mundo 1 Floresta Kanterbury' if scene=='mapa' else 'Carregando',frame_path='synthetic:loading'+str(len(seen)));seen.append(ob);return ob
+        runtime=SimpleNamespace(environment=SimpleNamespace(observe=observe,last_frame=frame),evidence=lambda ob:None);bot=SimpleNamespace(snapshot={'scene':'mapa','words':[]})
+        with tempfile.TemporaryDirectory(dir=ROOT/'data/v3') as folder:
+            marker=Path(folder)/'marker.jpg';marker.write_bytes(b'synthetic marker path; map check uses real fixture')
+            session=SimpleNamespace(root=ROOT,folder=Path(folder),scope='world:1:passage:1',run_id='synthetic:loading',check_cancel=lambda:None,memory=SimpleNamespace(remember=lambda *a:None))
+            with patch('cognitive.v3.exit_control.time.monotonic',side_effect=lambda:now[0]):
+                result=verify_exit_result(session,runtime,bot,{'frame':str(marker.relative_to(ROOT))},{'current_entry_verified':True,'controls_issued':True})
+        self.assertTrue(result['stage_complete']);self.assertEqual(len(result['result_evidence']),2);self.assertEqual(result['verification_seconds'],18);self.assertEqual([r['scene'] for r in result['observed_scenes']],['carregando']*6+['desconhecida','mapa','mapa'])
     def test_real_reward_ocr_without_spaces_is_recognized_and_requires_result_scene(self):
         from bot import Bot
         data=json.loads((ROOT/'data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json').read_text())
@@ -43,7 +57,7 @@ class ExitTests(unittest.TestCase):
         s=SimpleNamespace(scope='world:1:passage:1',memory=SimpleNamespace(retrieve=lambda *a,**kw:[]))
         with self.assertRaisesRegex(RuntimeError,'No active stage entry'):verified_exit_context(s,[425,938],'fixture:map')
     def test_filled_map_star_without_actual_house_and_movement_is_insufficient(self):
-        ob=SimpleNamespace(id='synthetic:map',frame='synthetic:map',scene='mapa',blocked=None,text='Mapa Mundo 1 Floresta Kanterbury')
+        ob=SimpleNamespace(id='synthetic:map',frame_path='synthetic:map',scene='mapa',blocked=None,text='Mapa Mundo 1 Floresta Kanterbury')
         runtime=SimpleNamespace(environment=SimpleNamespace(observe=lambda:ob,last_frame=None),evidence=lambda ob:None)
         bot=SimpleNamespace(snapshot={'scene':'mapa','words':[]})
         with tempfile.TemporaryDirectory(dir=ROOT/'data/v3') as folder:

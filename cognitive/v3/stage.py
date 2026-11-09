@@ -27,7 +27,8 @@ class StageV3Runner(StageRunner):
         from types import SimpleNamespace
         from ..stage_v2 import completion_evidence
         from .exit_control import verify_exit_result
-        if initial.scene!='resultado' or not completion_evidence(getattr(self.bot,'snapshot',{})):return None
+        if initial.scene not in ('resultado','mapa'):return None
+        if initial.scene=='resultado' and not completion_evidence(getattr(self.bot,'snapshot',{})):return None
         scope='world:1:passage:1'
         pending=self.memory.retrieve(scope,kind='v3_exit_attempt',include_global=False,limit=1)
         saved=self.memory.retrieve(scope,kind='v3_active_plan',include_global=False,limit=1)

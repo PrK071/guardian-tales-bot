@@ -89,7 +89,7 @@ class LanternController:
         self.s.transition('jogo');frame,f=self.observe('lantern-find-object')
         if kind=='portable_brazier' and (candidate:=self.pickup_candidate(frame,f)):return frame,f,candidate
         if not self.objects(f,kind):frame,f=self.go_to_vantage(kind)
-        unchanged=0;tracked=None
+        unchanged=0;tracked=None;faced=False
         for _ in range(max_steps):
             self.check()
             if kind=='portable_brazier' and (candidate:=self.pickup_candidate(frame,f,tracked)):return frame,f,candidate
@@ -108,12 +108,19 @@ class LanternController:
                 if neutral is not None and not InteractionVision(self.s.root).affordance(frame):
                     change=float(np.mean(InteractionVision.mask(frame)!=InteractionVision.mask(neutral)))
                     if change>.12 and self.pickup_hand(frame) and not InteractionVision.dialogue(frame):return frame,f,obj
-            heading,ms=BombRockController.local_approach(frame,f,target)
+            facing_only=False
+            try:heading,ms=BombRockController.local_approach(frame,f,target)
+            except RuntimeError as exc:
+                if kind!='portable_brazier' or distance>=reach or faced or str(exc)!='No direct local segment with observed player clearance':raise
+                # At a wall, the feet can be visually occluded although the
+                # adjacent bowl is seen. Face it once; pickup still requires
+                # a new hand/bubble observation and the transfer verifier.
+                heading,ms=direction(target[0]-f['player'][0],target[1]-f['player'][1]),80;faced=True;facing_only=True
             row=self.s.pulse(Action('move',{'direction':heading,'ms':ms},'Approach observed '+kind));motion=row['metrics']['motion'];vx,vy=DIRECTIONS[heading]
             if kind=='portable_brazier':
                 x,y,w,h=obj['bbox'];tracked={'bbox':[x+motion['background_dx'],y+motion['background_dy'],w,h],'source_frame':f['frame'],'motion_confidence':motion['confidence'],'at':time.time()}
             progress=motion['effective_dx']*vx+motion['effective_dy']*vy;verified=motion['confidence']>=.25 and progress>8
-            self.event('approach_'+kind,verified=verified,direction=heading,progress=progress,distance_before=distance)
+            self.event('approach_'+kind,verified=verified,direction=heading,progress=progress,distance_before=distance,facing_only=facing_only)
             unchanged=0 if verified else unchanged+1
             if unchanged>=2:raise RuntimeError('Lantern approach stalled twice; no repeated blind movement')
             frame,f=self.observe('lantern-approach-result')

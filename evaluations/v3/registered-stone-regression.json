@@ -26,7 +26,11 @@
     "rock_pixels_remaining": 549,
     "visible_floor_fraction": 0.8102161605764282,
     "tile_removal_verified": true,
-    "whole_stage_complete": false
+    "whole_stage_complete": false,
+    "versioned_evidence": {
+      "before": "evaluations/v3/evidence/registered-stone-before.jpg",
+      "after": "evaluations/v3/evidence/registered-stone-after.jpg"
+    }
   },
   "stage_completion_claim": false,
   "first_live_refusal": {

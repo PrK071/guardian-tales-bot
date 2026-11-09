@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 108/108. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 115/115. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T06:51:32. Conclusões reais de saída reconciliadas: 1. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T07:12:10. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -153,6 +153,14 @@ No ensaio fresco `ebd17a2d61694c04`, a NPC encobriu o cavaleiro e a leitura loca
 
 Na retomada `a0c41cef618c410b`, a remoção foi confirmada:10272→549pixels de pedra,81,02% de piso visível. Não é medição de aceleração nem prova de conclusão integral. `evaluations/v3/registered-stone-regression.json` preserva a geometria e as evidências. A próxima falha foi a busca de uma tocha cortada pelo limite esquerdo da visão; a busca agora inclui a região abaixo do minimapa, mantendo os limiares de correspondência e eliminando duplicatas. Replays das duas situações estão versionados em `evaluations/v3/fixtures/`.
 
+A navegação da sala pode usar uma única recuperação para dentro de um tile removido e visualmente alinhado. Ela não repete indefinidamente a recuperação e não ignora pedras atuais. Depois da luva, o fluxo retorna ao ponto de observação planejado antes de procurar a tocha: a investida pode colocá-la sob o joystick virtual, onde a aparência fica encoberta. As falhas originais de reaproximação permanecem nos trials; esses ajustes não recebem ganho de velocidade por extrapolação.
+
+Na retomada `ec1f806d32c44455`, a tocha ficou adjacente ao personagem junto à parede, mas o planejamento local recusou a máscara do pé encoberto. Esse caso permite uma única virada de80ms somente com o objeto atualmente reconhecido dentro do alcance. Ela não emite pickup: uma nova observação ainda precisa comprovar mão/bubble e a transferência subsequente. O replay negativo confirma que a ausência persistente do ícone não causa viradas ou interações repetidas.
+
+Na retomada `1b64afbd353d4625`, pickup, permanência do item após deslocamento, última lanterna, travessia e encontro final foram confirmados. A saída entrou em carregamento por mais de10s; a primeira observação válida do mapa foi registrada23,97s após a interação, fora do antigo prazo. A verificação agora espera até45s, sem novos comandos. A estrela completa tem núcleo branco nos pixels brutos: a antiga máscara só dourada dividia sua silhueta em duas regiões pequenas, embora o JPEG parecesse reconhecível. A nova máscara une dourado e núcleo claro, exige85% de preenchimento, pelo menos70pixels dourados e centro claro; a estrela vazia continua sendo rejeitada.
+
+A reconciliação dessa entrada confirmou duas imagens independentes do mapa em12,313s e enviou zero comandos. Cursor9/9, com o report bloqueado original preservado em `v3_trial_1b64afbd353d4625/exit-reconciliation.json`. Isso é uma execução concluída por retomadas e correções; não demonstra uma partida integral autônoma com a versão final, nem um ganho de tempo integral.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
@@ -167,6 +175,6 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 108/108; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 115/115; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.

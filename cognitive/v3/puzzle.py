@@ -28,6 +28,11 @@ class LanternSegment:
                 unlit=c.objects(f,'standing_lantern_unlit')
                 if not unlit:break
                 access=ensure_lantern_access(s,c,unlit[0]);self.events.append({'phase':'mole_glove_prerequisite','result':access})
+                if access.get('tiles'):
+                    # The glove lunges toward the tile and can push the floor
+                    # torch beneath the on-screen joystick. Recover the room
+                    # view before searching; do not select a stale object pose.
+                    goto_room_checkpoint(s,viewpoint);s.transition('jogo');frame,f=c.observe('v3-lantern-return-after-glove')
                 if not s.held_object_kind:
                     c.pickup();frame,f=c.observe('v3-lantern-fire-check')
                 if s.lantern_vision.held_fire_pixels(s.last_frame,s.last_features['player'])<450:
