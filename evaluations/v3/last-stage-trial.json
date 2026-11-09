@@ -1,10 +1,10 @@
 {
-  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_096f3ffd83134625",
-  "outcome": "blocked",
-  "reason": "RuntimeError: No observed forward floor or house exit; backward exploration withheld",
+  "folder": "E:\\GuardianTalesBot\\data\\v3\\v3_trial_eb06cc2428364ab6",
+  "outcome": "stage_complete",
+  "reason": "",
   "metrics": {
-    "cycles": 3,
-    "replans": 2,
+    "cycles": 1,
+    "replans": 0,
     "recoveries": 0,
     "frontier_deferrals": 0,
     "no_progress": 0,
@@ -17,43 +17,1638 @@
     "output_tokens": 0,
     "decision_ms": [],
     "cycle_ms": [
-      12488.54589999246
+      76603.3543000085
     ],
     "timing_scope": "isolated_local_planning_ms",
     "puzzle_attempts": 0,
     "puzzle_verified": 0,
-    "completed": false,
-    "high_level_completed": 0,
-    "segments": 1,
+    "completed": true,
+    "high_level_completed": 1,
+    "segments": 0,
     "combats": 0,
     "guide_cache_hits": 1
   },
   "active_plan": {
-    "cursor": 8,
+    "cursor": 9,
     "entry_token": "1794220100.6041",
     "mode": "normal",
     "plan_id": "a000d25a6d0af23adb5c",
     "resumed": true,
-    "run_id": "v3_trial_096f3ffd83134625",
+    "run_id": "v3_trial_eb06cc2428364ab6",
     "scope": "world:1:passage:1",
     "states": {
       "exit": {
-        "state": "replan_needed",
-        "frame": "data\\v3\\v3_trial_096f3ffd83134625\\0102-v3-exit-forward-observe.jpg",
+        "state": "completed",
+        "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0050-v3-after-interact.jpg",
         "result": {
-          "plan_id": "a000d25a6d0af23adb5c",
-          "step_id": "exit",
-          "source_memory_ids": [
-            "memory_b8b83229088d44f6",
-            "memory_2a35ada996cb4e6d",
-            "memory_7ebff3419ae9448c"
+          "stage_complete": true,
+          "verified": true,
+          "result_evidence": [
+            "observation_815ecd309a3f4e7c",
+            "observation_00dfc4f867f144f4"
           ],
-          "reason": "No observed forward floor or house exit; backward exploration withheld",
-          "frame": "data\\v3\\v3_trial_096f3ffd83134625\\0102-v3-exit-forward-observe.jpg",
-          "details": null,
-          "scope": "current observation differs from this plan assumption; source is not globally contradicted"
+          "result_observations": [
+            {
+              "observation_id": "observation_815ecd309a3f4e7c",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233554-405781.jpg",
+              "proof": {
+                "verified": true,
+                "card_score": 0.9114841222763062,
+                "card_center": [
+                  541.5,
+                  444.5
+                ],
+                "star_roi": [
+                  507,
+                  488,
+                  69,
+                  45
+                ],
+                "bright_gold_pixels": 145,
+                "dark_label_fraction": 0.442512077294686,
+                "star_shapes": [
+                  {
+                    "bbox": [
+                      21,
+                      8,
+                      21,
+                      26
+                    ],
+                    "gold_fill_fraction": 0.48494983277591974,
+                    "lit_fill_fraction": 1.0,
+                    "gold_pixels": 145,
+                    "bright_center_fraction": 1.0
+                  }
+                ],
+                "kind": "identified_passage_card_with_filled_star_after_observed_exit"
+              }
+            },
+            {
+              "observation_id": "observation_00dfc4f867f144f4",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233565-2645638.jpg",
+              "proof": {
+                "verified": true,
+                "card_score": 0.9114826917648315,
+                "card_center": [
+                  541.5,
+                  444.5
+                ],
+                "star_roi": [
+                  507,
+                  488,
+                  69,
+                  45
+                ],
+                "bright_gold_pixels": 145,
+                "dark_label_fraction": 0.442512077294686,
+                "star_shapes": [
+                  {
+                    "bbox": [
+                      21,
+                      8,
+                      21,
+                      26
+                    ],
+                    "gold_fill_fraction": 0.48494983277591974,
+                    "lit_fill_fraction": 1.0,
+                    "gold_pixels": 145,
+                    "bright_center_fraction": 1.0
+                  }
+                ],
+                "kind": "identified_passage_card_with_filled_star_after_observed_exit"
+              }
+            }
+          ],
+          "exit_landmark": {
+            "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0049-v3-exit-forward-observe.jpg",
+            "bbox": [
+              856,
+              556,
+              51,
+              64
+            ],
+            "point": [
+              881.5,
+              588.0
+            ],
+            "dark_fraction": 0.48834385624089366,
+            "method": "white_house_in_dark_floor_marker_in_final_corridor"
+          },
+          "exit_context": {
+            "entry_token": "1794220100.6041",
+            "plan_id": "a000d25a6d0af23adb5c",
+            "arrival_reference": [
+              417.5774647887325,
+              974.3521126760562
+            ],
+            "arrival_map_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0005-v3-exit-route-map.jpg",
+            "gate_objective_frame": "data\\v3\\v3_trial_d8bdd49625824311\\0098-v3-lantern-gate-crossing-map.jpg",
+            "combat_objective_frame": "data\\v3\\v3_trial_d8bdd49625824311\\0209-v3-combat-checkpoint.jpg",
+            "current_entry_verified": true,
+            "controls_issued": true,
+            "movement_trace": [
+              {
+                "control": {
+                  "kind": "move_hold",
+                  "requested_ms": 80,
+                  "at_start": 1794233502.130128,
+                  "start_monotonic": 101864.9621412,
+                  "direction": [
+                    -0.7071067811865476,
+                    0.7071067811865476
+                  ],
+                  "run": false,
+                  "end_monotonic": 101865.0690589,
+                  "actual_ms": 106.90520000935066,
+                  "wall_ms": 106.91770000266843,
+                  "outcome": "duration_elapsed",
+                  "error": null,
+                  "release_errors": [],
+                  "fingers_remaining": [],
+                  "observed_effect_verified": false,
+                  "operation_id": "operation_d8f78c3b9056406d"
+                },
+                "observations": {
+                  "captures": [
+                    {
+                      "sequence": 1,
+                      "capture_wall_ms": 144.7780999878887,
+                      "acquisition_ms": 2.11,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0009-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    }
+                  ],
+                  "error": null,
+                  "seconds": 0.1476299000059953
+                },
+                "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+                "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0010-v3-exit-forward-after.jpg",
+                "exit_landmark": null,
+                "visible_detour": {
+                  "direction": [
+                    -0.7071067811865476,
+                    0.7071067811865476
+                  ],
+                  "duration_ms": 80,
+                  "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+                  "forward_target": [
+                    794.5,
+                    757
+                  ],
+                  "predicted_endpoint": [
+                    769.6098413022336,
+                    461.8901586977665
+                  ],
+                  "clearance_pixels": 28,
+                  "observed_obstacles": [
+                    {
+                      "kind": "portable_brazier",
+                      "bbox": [
+                        819,
+                        538,
+                        110,
+                        106
+                      ],
+                      "confidence": 0.9778438806533813,
+                      "method": "verified_burning_brazier_side_rim"
+                    }
+                  ],
+                  "plan": {
+                    "segments": [
+                      {
+                        "start": [
+                          794.5,
+                          437.0
+                        ],
+                        "end": [
+                          791.0,
+                          440.5
+                        ],
+                        "direction": [
+                          -0.7071067811865476,
+                          0.7071067811865476
+                        ],
+                        "duration_ms": 40,
+                        "reference_distance": 4.949747468305833,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      },
+                      {
+                        "start": [
+                          791.0,
+                          440.5
+                        ],
+                        "end": [
+                          791.0,
+                          743.0
+                        ],
+                        "direction": [
+                          0.0,
+                          1.0
+                        ],
+                        "duration_ms": 687.5,
+                        "reference_distance": 302.5,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      },
+                      {
+                        "start": [
+                          791.0,
+                          743.0
+                        ],
+                        "end": [
+                          795.0,
+                          743.0
+                        ],
+                        "direction": [
+                          1.0,
+                          0.0
+                        ],
+                        "duration_ms": 40,
+                        "reference_distance": 4.0,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      }
+                    ],
+                    "original_grid_points": 161,
+                    "checkpoints": [
+                      [
+                        794.5,
+                        437
+                      ],
+                      [
+                        791.0,
+                        440.5
+                      ],
+                      [
+                        791.0,
+                        743.0
+                      ],
+                      [
+                        795.0,
+                        743.0
+                      ]
+                    ],
+                    "target": [
+                      794.5,
+                      757
+                    ],
+                    "calibrated_reference_pixels_per_ms": 0.44,
+                    "unobserved_space_crossed": false
+                  },
+                  "scope": "one visible flank segment; forward continuation requires a new observation"
+                },
+                "detour_check": {
+                  "verified": true,
+                  "before_reference": [
+                    417.5774647887325,
+                    974.3521126760562
+                  ],
+                  "after_reference": [
+                    414.7605633802818,
+                    977.1690140845069
+                  ],
+                  "directional_progress_reference_pixels": 3.9837001756988792,
+                  "map_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0012-v3-exit-detour-after-map.jpg",
+                  "goal_reached": false,
+                  "route": {
+                    "direction": [
+                      -0.7071067811865476,
+                      0.7071067811865476
+                    ],
+                    "duration_ms": 80,
+                    "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+                    "forward_target": [
+                      794.5,
+                      757
+                    ],
+                    "predicted_endpoint": [
+                      769.6098413022336,
+                      461.8901586977665
+                    ],
+                    "clearance_pixels": 28,
+                    "observed_obstacles": [
+                      {
+                        "kind": "portable_brazier",
+                        "bbox": [
+                          819,
+                          538,
+                          110,
+                          106
+                        ],
+                        "confidence": 0.9778438806533813,
+                        "method": "verified_burning_brazier_side_rim"
+                      }
+                    ],
+                    "plan": {
+                      "segments": [
+                        {
+                          "start": [
+                            794.5,
+                            437.0
+                          ],
+                          "end": [
+                            791.0,
+                            440.5
+                          ],
+                          "direction": [
+                            -0.7071067811865476,
+                            0.7071067811865476
+                          ],
+                          "duration_ms": 40,
+                          "reference_distance": 4.949747468305833,
+                          "evidence": "line entirely inside observed floor with wall clearance"
+                        },
+                        {
+                          "start": [
+                            791.0,
+                            440.5
+                          ],
+                          "end": [
+                            791.0,
+                            743.0
+                          ],
+                          "direction": [
+                            0.0,
+                            1.0
+                          ],
+                          "duration_ms": 687.5,
+                          "reference_distance": 302.5,
+                          "evidence": "line entirely inside observed floor with wall clearance"
+                        },
+                        {
+                          "start": [
+                            791.0,
+                            743.0
+                          ],
+                          "end": [
+                            795.0,
+                            743.0
+                          ],
+                          "direction": [
+                            1.0,
+                            0.0
+                          ],
+                          "duration_ms": 40,
+                          "reference_distance": 4.0,
+                          "evidence": "line entirely inside observed floor with wall clearance"
+                        }
+                      ],
+                      "original_grid_points": 161,
+                      "checkpoints": [
+                        [
+                          794.5,
+                          437
+                        ],
+                        [
+                          791.0,
+                          440.5
+                        ],
+                        [
+                          791.0,
+                          743.0
+                        ],
+                        [
+                          795.0,
+                          743.0
+                        ]
+                      ],
+                      "target": [
+                        794.5,
+                        757
+                      ],
+                      "calibrated_reference_pixels_per_ms": 0.44,
+                      "unobserved_space_crossed": false
+                    },
+                    "scope": "one visible flank segment; forward continuation requires a new observation"
+                  }
+                }
+              },
+              {
+                "control": {
+                  "kind": "move_hold",
+                  "requested_ms": 682,
+                  "at_start": 1794233519.0402575,
+                  "start_monotonic": 101881.8721879,
+                  "direction": [
+                    0.0,
+                    1.0
+                  ],
+                  "run": false,
+                  "end_monotonic": 101882.5578431,
+                  "actual_ms": 685.6404000136536,
+                  "wall_ms": 685.6552000099327,
+                  "outcome": "duration_elapsed",
+                  "error": null,
+                  "release_errors": [],
+                  "fingers_remaining": [],
+                  "observed_effect_verified": false,
+                  "operation_id": "operation_1d7d0a0c814647ac"
+                },
+                "observations": {
+                  "captures": [
+                    {
+                      "sequence": 1,
+                      "capture_wall_ms": 101.73260000010487,
+                      "acquisition_ms": 2.33,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0022-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 2,
+                      "capture_wall_ms": 113.58540000219364,
+                      "acquisition_ms": 3.38,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0023-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 3,
+                      "capture_wall_ms": 96.98020000359975,
+                      "acquisition_ms": 1.85,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0024-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 4,
+                      "capture_wall_ms": 120.53580000065267,
+                      "acquisition_ms": 2.2,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0025-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 5,
+                      "capture_wall_ms": 226.63360000296962,
+                      "acquisition_ms": 2.06,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0026-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 6,
+                      "capture_wall_ms": 102.49920000205748,
+                      "acquisition_ms": 1.96,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0027-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    }
+                  ],
+                  "error": null,
+                  "seconds": 0.7669447999942349
+                },
+                "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+                "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0028-v3-exit-forward-after.jpg",
+                "exit_landmark": null,
+                "visible_detour": {
+                  "direction": [
+                    0.0,
+                    1.0
+                  ],
+                  "duration_ms": 682,
+                  "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+                  "forward_target": [
+                    794.0,
+                    765
+                  ],
+                  "predicted_endpoint": [
+                    794.0,
+                    745.0799999999999
+                  ],
+                  "clearance_pixels": 28,
+                  "observed_obstacles": [
+                    {
+                      "kind": "portable_brazier",
+                      "bbox": [
+                        840,
+                        517,
+                        110,
+                        106
+                      ],
+                      "confidence": 0.969990074634552,
+                      "method": "verified_burning_brazier_side_rim"
+                    }
+                  ],
+                  "plan": {
+                    "segments": [
+                      {
+                        "start": [
+                          794.0,
+                          445.0
+                        ],
+                        "end": [
+                          794.0,
+                          745.0
+                        ],
+                        "direction": [
+                          0.0,
+                          1.0
+                        ],
+                        "duration_ms": 681.8181818181819,
+                        "reference_distance": 300.0,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      }
+                    ],
+                    "original_grid_points": 151,
+                    "checkpoints": [
+                      [
+                        794.0,
+                        445
+                      ],
+                      [
+                        794.0,
+                        745.0
+                      ]
+                    ],
+                    "target": [
+                      794.0,
+                      765
+                    ],
+                    "calibrated_reference_pixels_per_ms": 0.44,
+                    "unobserved_space_crossed": false
+                  },
+                  "scope": "one visible flank segment; forward continuation requires a new observation"
+                },
+                "detour_check": {
+                  "verified": true,
+                  "before_reference": [
+                    414.7605633802818,
+                    977.1690140845069
+                  ],
+                  "after_reference": [
+                    418.28169014084517,
+                    1012.3802816901407
+                  ],
+                  "directional_progress_reference_pixels": 35.21126760563379,
+                  "map_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0030-v3-exit-detour-after-map.jpg",
+                  "goal_reached": false,
+                  "route": {
+                    "direction": [
+                      0.0,
+                      1.0
+                    ],
+                    "duration_ms": 682,
+                    "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+                    "forward_target": [
+                      794.0,
+                      765
+                    ],
+                    "predicted_endpoint": [
+                      794.0,
+                      745.0799999999999
+                    ],
+                    "clearance_pixels": 28,
+                    "observed_obstacles": [
+                      {
+                        "kind": "portable_brazier",
+                        "bbox": [
+                          840,
+                          517,
+                          110,
+                          106
+                        ],
+                        "confidence": 0.969990074634552,
+                        "method": "verified_burning_brazier_side_rim"
+                      }
+                    ],
+                    "plan": {
+                      "segments": [
+                        {
+                          "start": [
+                            794.0,
+                            445.0
+                          ],
+                          "end": [
+                            794.0,
+                            745.0
+                          ],
+                          "direction": [
+                            0.0,
+                            1.0
+                          ],
+                          "duration_ms": 681.8181818181819,
+                          "reference_distance": 300.0,
+                          "evidence": "line entirely inside observed floor with wall clearance"
+                        }
+                      ],
+                      "original_grid_points": 151,
+                      "checkpoints": [
+                        [
+                          794.0,
+                          445
+                        ],
+                        [
+                          794.0,
+                          745.0
+                        ]
+                      ],
+                      "target": [
+                        794.0,
+                        765
+                      ],
+                      "calibrated_reference_pixels_per_ms": 0.44,
+                      "unobserved_space_crossed": false
+                    },
+                    "scope": "one visible flank segment; forward continuation requires a new observation"
+                  }
+                }
+              },
+              {
+                "control": {
+                  "kind": "move_hold",
+                  "requested_ms": 522.7272727272727,
+                  "at_start": 1794233527.0862029,
+                  "start_monotonic": 101889.9185203,
+                  "direction": "down",
+                  "run": false,
+                  "end_monotonic": 101890.4419711,
+                  "actual_ms": 523.4418000036385,
+                  "wall_ms": 523.4507999994094,
+                  "outcome": "duration_elapsed",
+                  "error": null,
+                  "release_errors": [],
+                  "fingers_remaining": [],
+                  "observed_effect_verified": false,
+                  "operation_id": "operation_4522c62ea2f144e9"
+                },
+                "observations": {
+                  "captures": [
+                    {
+                      "sequence": 1,
+                      "capture_wall_ms": 123.08749998919666,
+                      "acquisition_ms": 1.77,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0034-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 2,
+                      "capture_wall_ms": 106.16480000317097,
+                      "acquisition_ms": 2.56,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0035-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 3,
+                      "capture_wall_ms": 167.09290001017507,
+                      "acquisition_ms": 8.14,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0036-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 4,
+                      "capture_wall_ms": 110.29640000197105,
+                      "acquisition_ms": 1.51,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0037-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 5,
+                      "capture_wall_ms": 123.46419999084901,
+                      "acquisition_ms": 2.46,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0038-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    }
+                  ],
+                  "error": null,
+                  "seconds": 0.6346018000040203
+                },
+                "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0033-v3-exit-forward-observe.jpg",
+                "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0039-v3-exit-forward-after.jpg",
+                "exit_landmark": null,
+                "visible_detour": null,
+                "motion": {
+                  "background_dx": 0.0,
+                  "background_dy": -209.89,
+                  "inliers": 0,
+                  "confidence": 0.489,
+                  "player_dx": 4.5,
+                  "player_dy": -12,
+                  "method": "two_flank_phase_consensus",
+                  "effective_dx": 4.5,
+                  "effective_dy": 197.89,
+                  "moved": true
+                }
+              },
+              {
+                "control": {
+                  "kind": "move_hold",
+                  "requested_ms": 929.5454545454545,
+                  "at_start": 1794233528.1038773,
+                  "start_monotonic": 101890.9358468,
+                  "direction": "down",
+                  "run": false,
+                  "end_monotonic": 101891.8683601,
+                  "actual_ms": 932.5048000027891,
+                  "wall_ms": 932.5132999947527,
+                  "outcome": "duration_elapsed",
+                  "error": null,
+                  "release_errors": [],
+                  "fingers_remaining": [],
+                  "observed_effect_verified": false,
+                  "operation_id": "operation_a8e13d7cc9944be9"
+                },
+                "observations": {
+                  "captures": [
+                    {
+                      "sequence": 1,
+                      "capture_wall_ms": 118.86469999444671,
+                      "acquisition_ms": 2.18,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0041-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 2,
+                      "capture_wall_ms": 97.42959999130107,
+                      "acquisition_ms": 2.16,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0042-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 3,
+                      "capture_wall_ms": 147.65759999863803,
+                      "acquisition_ms": 1.54,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0043-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 4,
+                      "capture_wall_ms": 179.51349999930244,
+                      "acquisition_ms": 1.32,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0044-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 5,
+                      "capture_wall_ms": 153.16850000817794,
+                      "acquisition_ms": 2.09,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0045-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 6,
+                      "capture_wall_ms": 144.74279999558348,
+                      "acquisition_ms": 2.09,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0046-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    },
+                    {
+                      "sequence": 7,
+                      "capture_wall_ms": 100.64509999938309,
+                      "acquisition_ms": 2.79,
+                      "capture_source": "scrcpy_h264",
+                      "raw_capture_ms": null,
+                      "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0047-v3-live-observation.jpg",
+                      "scene": "jogo"
+                    }
+                  ],
+                  "error": null,
+                  "seconds": 0.9458306000015
+                },
+                "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0040-v3-exit-forward-observe.jpg",
+                "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0048-v3-exit-forward-after.jpg",
+                "exit_landmark": {
+                  "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0046-v3-live-observation.jpg",
+                  "bbox": [
+                    856,
+                    556,
+                    51,
+                    64
+                  ],
+                  "point": [
+                    881.5,
+                    588.0
+                  ],
+                  "dark_fraction": 0.48834385624089366,
+                  "method": "white_house_in_dark_floor_marker_in_final_corridor"
+                },
+                "visible_detour": null,
+                "motion": {
+                  "background_dx": 0.0,
+                  "background_dy": 0.0,
+                  "inliers": 0,
+                  "confidence": 0.0,
+                  "player_dx": 0.0,
+                  "player_dy": -10,
+                  "effective_dx": 0.0,
+                  "effective_dy": -10.0,
+                  "moved": true
+                }
+              }
+            ],
+            "exit_interaction_issued": true,
+            "interaction_pre_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0049-v3-exit-forward-observe.jpg",
+            "interaction_after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0050-v3-after-interact.jpg",
+            "exit_interaction": {
+              "reused_preinput_observation": true,
+              "verified": false,
+              "motion": {
+                "background_dx": -0.0,
+                "background_dy": -0.01,
+                "inliers": 0,
+                "confidence": 0.998,
+                "player_dx": 0.0,
+                "player_dy": 14,
+                "method": "two_flank_phase_consensus",
+                "effective_dx": 0.0,
+                "effective_dy": 14.01,
+                "moved": true
+              },
+              "controller_ms": 1292.869900004007,
+              "continuous_control": {
+                "kind": "interact",
+                "requested_ms": 100
+              },
+              "operation_id": "operation_60536e04b941463a"
+            }
+          },
+          "verification_seconds": 34.57799999999406,
+          "observed_scenes": [
+            {
+              "scene": "carregando",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233533-8630977.jpg",
+              "elapsed_seconds": 2.077999999994063
+            },
+            {
+              "scene": "carregando",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233535-8693297.jpg",
+              "elapsed_seconds": 4.062000000005355
+            },
+            {
+              "scene": "carregando",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233537-7007673.jpg",
+              "elapsed_seconds": 5.9060000000026776
+            },
+            {
+              "scene": "carregando",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233539-9167721.jpg",
+              "elapsed_seconds": 8.125
+            },
+            {
+              "scene": "desconhecida",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233544-3304143.jpg",
+              "elapsed_seconds": 12.562000000005355
+            },
+            {
+              "scene": "mapa",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233554-405781.jpg",
+              "elapsed_seconds": 22.702999999994063
+            },
+            {
+              "scene": "mapa",
+              "frame": "E:\\GuardianTalesBot\\data\\evidence\\ob-1794233565-2645638.jpg",
+              "elapsed_seconds": 33.5
+            }
+          ],
+          "model_calls": 0,
+          "exit_actions": [
+            {
+              "control": {
+                "kind": "move_hold",
+                "requested_ms": 80,
+                "at_start": 1794233502.130128,
+                "start_monotonic": 101864.9621412,
+                "direction": [
+                  -0.7071067811865476,
+                  0.7071067811865476
+                ],
+                "run": false,
+                "end_monotonic": 101865.0690589,
+                "actual_ms": 106.90520000935066,
+                "wall_ms": 106.91770000266843,
+                "outcome": "duration_elapsed",
+                "error": null,
+                "release_errors": [],
+                "fingers_remaining": [],
+                "observed_effect_verified": false,
+                "operation_id": "operation_d8f78c3b9056406d"
+              },
+              "observations": {
+                "captures": [
+                  {
+                    "sequence": 1,
+                    "capture_wall_ms": 144.7780999878887,
+                    "acquisition_ms": 2.11,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0009-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  }
+                ],
+                "error": null,
+                "seconds": 0.1476299000059953
+              },
+              "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+              "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0010-v3-exit-forward-after.jpg",
+              "exit_landmark": null,
+              "visible_detour": {
+                "direction": [
+                  -0.7071067811865476,
+                  0.7071067811865476
+                ],
+                "duration_ms": 80,
+                "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+                "forward_target": [
+                  794.5,
+                  757
+                ],
+                "predicted_endpoint": [
+                  769.6098413022336,
+                  461.8901586977665
+                ],
+                "clearance_pixels": 28,
+                "observed_obstacles": [
+                  {
+                    "kind": "portable_brazier",
+                    "bbox": [
+                      819,
+                      538,
+                      110,
+                      106
+                    ],
+                    "confidence": 0.9778438806533813,
+                    "method": "verified_burning_brazier_side_rim"
+                  }
+                ],
+                "plan": {
+                  "segments": [
+                    {
+                      "start": [
+                        794.5,
+                        437.0
+                      ],
+                      "end": [
+                        791.0,
+                        440.5
+                      ],
+                      "direction": [
+                        -0.7071067811865476,
+                        0.7071067811865476
+                      ],
+                      "duration_ms": 40,
+                      "reference_distance": 4.949747468305833,
+                      "evidence": "line entirely inside observed floor with wall clearance"
+                    },
+                    {
+                      "start": [
+                        791.0,
+                        440.5
+                      ],
+                      "end": [
+                        791.0,
+                        743.0
+                      ],
+                      "direction": [
+                        0.0,
+                        1.0
+                      ],
+                      "duration_ms": 687.5,
+                      "reference_distance": 302.5,
+                      "evidence": "line entirely inside observed floor with wall clearance"
+                    },
+                    {
+                      "start": [
+                        791.0,
+                        743.0
+                      ],
+                      "end": [
+                        795.0,
+                        743.0
+                      ],
+                      "direction": [
+                        1.0,
+                        0.0
+                      ],
+                      "duration_ms": 40,
+                      "reference_distance": 4.0,
+                      "evidence": "line entirely inside observed floor with wall clearance"
+                    }
+                  ],
+                  "original_grid_points": 161,
+                  "checkpoints": [
+                    [
+                      794.5,
+                      437
+                    ],
+                    [
+                      791.0,
+                      440.5
+                    ],
+                    [
+                      791.0,
+                      743.0
+                    ],
+                    [
+                      795.0,
+                      743.0
+                    ]
+                  ],
+                  "target": [
+                    794.5,
+                    757
+                  ],
+                  "calibrated_reference_pixels_per_ms": 0.44,
+                  "unobserved_space_crossed": false
+                },
+                "scope": "one visible flank segment; forward continuation requires a new observation"
+              },
+              "detour_check": {
+                "verified": true,
+                "before_reference": [
+                  417.5774647887325,
+                  974.3521126760562
+                ],
+                "after_reference": [
+                  414.7605633802818,
+                  977.1690140845069
+                ],
+                "directional_progress_reference_pixels": 3.9837001756988792,
+                "map_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0012-v3-exit-detour-after-map.jpg",
+                "goal_reached": false,
+                "route": {
+                  "direction": [
+                    -0.7071067811865476,
+                    0.7071067811865476
+                  ],
+                  "duration_ms": 80,
+                  "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0008-v3-exit-forward-observe.jpg",
+                  "forward_target": [
+                    794.5,
+                    757
+                  ],
+                  "predicted_endpoint": [
+                    769.6098413022336,
+                    461.8901586977665
+                  ],
+                  "clearance_pixels": 28,
+                  "observed_obstacles": [
+                    {
+                      "kind": "portable_brazier",
+                      "bbox": [
+                        819,
+                        538,
+                        110,
+                        106
+                      ],
+                      "confidence": 0.9778438806533813,
+                      "method": "verified_burning_brazier_side_rim"
+                    }
+                  ],
+                  "plan": {
+                    "segments": [
+                      {
+                        "start": [
+                          794.5,
+                          437.0
+                        ],
+                        "end": [
+                          791.0,
+                          440.5
+                        ],
+                        "direction": [
+                          -0.7071067811865476,
+                          0.7071067811865476
+                        ],
+                        "duration_ms": 40,
+                        "reference_distance": 4.949747468305833,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      },
+                      {
+                        "start": [
+                          791.0,
+                          440.5
+                        ],
+                        "end": [
+                          791.0,
+                          743.0
+                        ],
+                        "direction": [
+                          0.0,
+                          1.0
+                        ],
+                        "duration_ms": 687.5,
+                        "reference_distance": 302.5,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      },
+                      {
+                        "start": [
+                          791.0,
+                          743.0
+                        ],
+                        "end": [
+                          795.0,
+                          743.0
+                        ],
+                        "direction": [
+                          1.0,
+                          0.0
+                        ],
+                        "duration_ms": 40,
+                        "reference_distance": 4.0,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      }
+                    ],
+                    "original_grid_points": 161,
+                    "checkpoints": [
+                      [
+                        794.5,
+                        437
+                      ],
+                      [
+                        791.0,
+                        440.5
+                      ],
+                      [
+                        791.0,
+                        743.0
+                      ],
+                      [
+                        795.0,
+                        743.0
+                      ]
+                    ],
+                    "target": [
+                      794.5,
+                      757
+                    ],
+                    "calibrated_reference_pixels_per_ms": 0.44,
+                    "unobserved_space_crossed": false
+                  },
+                  "scope": "one visible flank segment; forward continuation requires a new observation"
+                }
+              }
+            },
+            {
+              "control": {
+                "kind": "move_hold",
+                "requested_ms": 682,
+                "at_start": 1794233519.0402575,
+                "start_monotonic": 101881.8721879,
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "run": false,
+                "end_monotonic": 101882.5578431,
+                "actual_ms": 685.6404000136536,
+                "wall_ms": 685.6552000099327,
+                "outcome": "duration_elapsed",
+                "error": null,
+                "release_errors": [],
+                "fingers_remaining": [],
+                "observed_effect_verified": false,
+                "operation_id": "operation_1d7d0a0c814647ac"
+              },
+              "observations": {
+                "captures": [
+                  {
+                    "sequence": 1,
+                    "capture_wall_ms": 101.73260000010487,
+                    "acquisition_ms": 2.33,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0022-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 2,
+                    "capture_wall_ms": 113.58540000219364,
+                    "acquisition_ms": 3.38,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0023-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 3,
+                    "capture_wall_ms": 96.98020000359975,
+                    "acquisition_ms": 1.85,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0024-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 4,
+                    "capture_wall_ms": 120.53580000065267,
+                    "acquisition_ms": 2.2,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0025-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 5,
+                    "capture_wall_ms": 226.63360000296962,
+                    "acquisition_ms": 2.06,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0026-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 6,
+                    "capture_wall_ms": 102.49920000205748,
+                    "acquisition_ms": 1.96,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0027-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  }
+                ],
+                "error": null,
+                "seconds": 0.7669447999942349
+              },
+              "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+              "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0028-v3-exit-forward-after.jpg",
+              "exit_landmark": null,
+              "visible_detour": {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "duration_ms": 682,
+                "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+                "forward_target": [
+                  794.0,
+                  765
+                ],
+                "predicted_endpoint": [
+                  794.0,
+                  745.0799999999999
+                ],
+                "clearance_pixels": 28,
+                "observed_obstacles": [
+                  {
+                    "kind": "portable_brazier",
+                    "bbox": [
+                      840,
+                      517,
+                      110,
+                      106
+                    ],
+                    "confidence": 0.969990074634552,
+                    "method": "verified_burning_brazier_side_rim"
+                  }
+                ],
+                "plan": {
+                  "segments": [
+                    {
+                      "start": [
+                        794.0,
+                        445.0
+                      ],
+                      "end": [
+                        794.0,
+                        745.0
+                      ],
+                      "direction": [
+                        0.0,
+                        1.0
+                      ],
+                      "duration_ms": 681.8181818181819,
+                      "reference_distance": 300.0,
+                      "evidence": "line entirely inside observed floor with wall clearance"
+                    }
+                  ],
+                  "original_grid_points": 151,
+                  "checkpoints": [
+                    [
+                      794.0,
+                      445
+                    ],
+                    [
+                      794.0,
+                      745.0
+                    ]
+                  ],
+                  "target": [
+                    794.0,
+                    765
+                  ],
+                  "calibrated_reference_pixels_per_ms": 0.44,
+                  "unobserved_space_crossed": false
+                },
+                "scope": "one visible flank segment; forward continuation requires a new observation"
+              },
+              "detour_check": {
+                "verified": true,
+                "before_reference": [
+                  414.7605633802818,
+                  977.1690140845069
+                ],
+                "after_reference": [
+                  418.28169014084517,
+                  1012.3802816901407
+                ],
+                "directional_progress_reference_pixels": 35.21126760563379,
+                "map_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0030-v3-exit-detour-after-map.jpg",
+                "goal_reached": false,
+                "route": {
+                  "direction": [
+                    0.0,
+                    1.0
+                  ],
+                  "duration_ms": 682,
+                  "source_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0021-v3-exit-detour-preflight.jpg",
+                  "forward_target": [
+                    794.0,
+                    765
+                  ],
+                  "predicted_endpoint": [
+                    794.0,
+                    745.0799999999999
+                  ],
+                  "clearance_pixels": 28,
+                  "observed_obstacles": [
+                    {
+                      "kind": "portable_brazier",
+                      "bbox": [
+                        840,
+                        517,
+                        110,
+                        106
+                      ],
+                      "confidence": 0.969990074634552,
+                      "method": "verified_burning_brazier_side_rim"
+                    }
+                  ],
+                  "plan": {
+                    "segments": [
+                      {
+                        "start": [
+                          794.0,
+                          445.0
+                        ],
+                        "end": [
+                          794.0,
+                          745.0
+                        ],
+                        "direction": [
+                          0.0,
+                          1.0
+                        ],
+                        "duration_ms": 681.8181818181819,
+                        "reference_distance": 300.0,
+                        "evidence": "line entirely inside observed floor with wall clearance"
+                      }
+                    ],
+                    "original_grid_points": 151,
+                    "checkpoints": [
+                      [
+                        794.0,
+                        445
+                      ],
+                      [
+                        794.0,
+                        745.0
+                      ]
+                    ],
+                    "target": [
+                      794.0,
+                      765
+                    ],
+                    "calibrated_reference_pixels_per_ms": 0.44,
+                    "unobserved_space_crossed": false
+                  },
+                  "scope": "one visible flank segment; forward continuation requires a new observation"
+                }
+              }
+            },
+            {
+              "control": {
+                "kind": "move_hold",
+                "requested_ms": 522.7272727272727,
+                "at_start": 1794233527.0862029,
+                "start_monotonic": 101889.9185203,
+                "direction": "down",
+                "run": false,
+                "end_monotonic": 101890.4419711,
+                "actual_ms": 523.4418000036385,
+                "wall_ms": 523.4507999994094,
+                "outcome": "duration_elapsed",
+                "error": null,
+                "release_errors": [],
+                "fingers_remaining": [],
+                "observed_effect_verified": false,
+                "operation_id": "operation_4522c62ea2f144e9"
+              },
+              "observations": {
+                "captures": [
+                  {
+                    "sequence": 1,
+                    "capture_wall_ms": 123.08749998919666,
+                    "acquisition_ms": 1.77,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0034-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 2,
+                    "capture_wall_ms": 106.16480000317097,
+                    "acquisition_ms": 2.56,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0035-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 3,
+                    "capture_wall_ms": 167.09290001017507,
+                    "acquisition_ms": 8.14,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0036-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 4,
+                    "capture_wall_ms": 110.29640000197105,
+                    "acquisition_ms": 1.51,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0037-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 5,
+                    "capture_wall_ms": 123.46419999084901,
+                    "acquisition_ms": 2.46,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0038-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  }
+                ],
+                "error": null,
+                "seconds": 0.6346018000040203
+              },
+              "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0033-v3-exit-forward-observe.jpg",
+              "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0039-v3-exit-forward-after.jpg",
+              "exit_landmark": null,
+              "visible_detour": null,
+              "motion": {
+                "background_dx": 0.0,
+                "background_dy": -209.89,
+                "inliers": 0,
+                "confidence": 0.489,
+                "player_dx": 4.5,
+                "player_dy": -12,
+                "method": "two_flank_phase_consensus",
+                "effective_dx": 4.5,
+                "effective_dy": 197.89,
+                "moved": true
+              }
+            },
+            {
+              "control": {
+                "kind": "move_hold",
+                "requested_ms": 929.5454545454545,
+                "at_start": 1794233528.1038773,
+                "start_monotonic": 101890.9358468,
+                "direction": "down",
+                "run": false,
+                "end_monotonic": 101891.8683601,
+                "actual_ms": 932.5048000027891,
+                "wall_ms": 932.5132999947527,
+                "outcome": "duration_elapsed",
+                "error": null,
+                "release_errors": [],
+                "fingers_remaining": [],
+                "observed_effect_verified": false,
+                "operation_id": "operation_a8e13d7cc9944be9"
+              },
+              "observations": {
+                "captures": [
+                  {
+                    "sequence": 1,
+                    "capture_wall_ms": 118.86469999444671,
+                    "acquisition_ms": 2.18,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0041-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 2,
+                    "capture_wall_ms": 97.42959999130107,
+                    "acquisition_ms": 2.16,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0042-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 3,
+                    "capture_wall_ms": 147.65759999863803,
+                    "acquisition_ms": 1.54,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0043-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 4,
+                    "capture_wall_ms": 179.51349999930244,
+                    "acquisition_ms": 1.32,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0044-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 5,
+                    "capture_wall_ms": 153.16850000817794,
+                    "acquisition_ms": 2.09,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0045-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 6,
+                    "capture_wall_ms": 144.74279999558348,
+                    "acquisition_ms": 2.09,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0046-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  },
+                  {
+                    "sequence": 7,
+                    "capture_wall_ms": 100.64509999938309,
+                    "acquisition_ms": 2.79,
+                    "capture_source": "scrcpy_h264",
+                    "raw_capture_ms": null,
+                    "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0047-v3-live-observation.jpg",
+                    "scene": "jogo"
+                  }
+                ],
+                "error": null,
+                "seconds": 0.9458306000015
+              },
+              "before_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0040-v3-exit-forward-observe.jpg",
+              "after_frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0048-v3-exit-forward-after.jpg",
+              "exit_landmark": {
+                "frame": "data\\v3\\v3_trial_eb06cc2428364ab6\\0046-v3-live-observation.jpg",
+                "bbox": [
+                  856,
+                  556,
+                  51,
+                  64
+                ],
+                "point": [
+                  881.5,
+                  588.0
+                ],
+                "dark_fraction": 0.48834385624089366,
+                "method": "white_house_in_dark_floor_marker_in_final_corridor"
+              },
+              "visible_detour": null,
+              "motion": {
+                "background_dx": 0.0,
+                "background_dy": 0.0,
+                "inliers": 0,
+                "confidence": 0.0,
+                "player_dx": 0.0,
+                "player_dy": -10,
+                "effective_dx": 0.0,
+                "effective_dy": -10.0,
+                "moved": true
+              }
+            }
+          ]
         },
-        "at": 1794223387.2998497
+        "at": 1794233566.4207087
       },
       "final_encounter": {
         "at": 1794222686.131158,

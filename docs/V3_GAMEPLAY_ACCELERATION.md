@@ -72,7 +72,7 @@ Nenhuma chamada ao modelo ocorre nos controladores contínuos. A V2 já tinha es
 
 ## Testes, falhas e limitações remanescentes
 
-Testes V3: 119/119. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
+Testes V3: 127/127. Cobrem protocolo, dedos distintos, liberação em exceção/cancelamento/prazo durante captura lenta, guarda da corrida, sequências, FSM de combate, três ausências distintas, recuperação, geometrias com parede e mapa histórico do nascimento. Não são prova de combate real. Resultados e logs: `evaluations/v3/tests.json`.
 
 O jogo apresentou conexão perdida antes de um teste; comandos foram retidos e a reconexão observada devolveu a tela pausada. O backend não tenta contornar telas desconhecidas. Se a conexão com Android cair, envio de UP não equivale a confirmação recebida; o relatório preserva a incerteza.
 
@@ -122,7 +122,7 @@ Em2026-11-08 foi conferida a [política operacional oficial](https://guardiantal
 
 ## Validação final e correções integradas
 
-Atualização: 2026-11-09T10:53:51. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
+Atualização: 2026-11-09T11:21:17. Conclusões reais de saída reconciliadas: 2. Em `data/v3/v3_trial_9284f3ddf8044ce2/exit-reconciliation.json`, duas capturas brutas independentes mostram a recompensa de 50 gemas e “Etapa Completada!”. O cursor e as tarefas SQLite foram concluídos com essa prova, sem reenviar interação. O OCR sem espaços e `Observation.frame_path` agora são tratados corretamente. A primeira conclusão teve calibrações, correções e retomadas pelo agente; não representa um ensaio único autônomo desde o nascimento.
 
 O corredor norte real foi atravessado em um hold de 3.471,97ms, com 205,319 pixels de referência, erro final3,84px e tempo total9,361s (`v3_trial_042e8212b28a46f5`). Os trechos agora usam apenas eixos e diagonais45° suportados: o jogo mostrou que vetores rasos podiam mover somente um eixo. Linha de visão e margem são verificadas para cada perna. O horizonte curto permanece para região desconhecida, sem limitar artificialmente corredores conhecidos.
 
@@ -171,6 +171,8 @@ O pickup seguinte expôs outra diferença: o JPEG diagnóstico mudava7615pixels 
 
 A entrada de `ee5dd3bad6204536` chegou a8/9 na retomada `d8bdd49625824311`: puzzle e encontro final confirmados. A tocha solta bloqueou a linha central da saída. O primeiro desvio real (`096f3ffd83134625`) avançou7,04pixels de referência lateralmente, mas a leitura de piso ignorou parte da borda do objeto e repetiu avanços sem chegar. Agora a checagem frontal inclui a caixa observada da tocha, a rota lateral mantém28pixels de folga e ausência de movimento visual exige confirmação pelo mapa antes de repetir comandos. A região inicial da saída admite o desvio lateral legítimo; continuam obrigatórios os objetivos desta entrada, o marco da casa, a interação e as duas observações de conclusão. Uma correção lateral posterior conserva a altura atual e não reinicia a rota ao norte. Os replays lossless e testes negativos estão em `evaluations/v3/fixtures/exit-obstacle/`; a nova verificação integral ao vivo permanece pendente.
 
+A passagem lateral também exige reconstruir somente as linhas do próprio sprite com piso visível dos dois lados; a seguidora abaixo dos pés continua sendo contornada. A persistência de uma verificação expôs um booleano NumPy não serializável; a conversão explícita para tipos JSON foi incluída e testada. Na retomada `eb06cc2428364ab6`, o último objetivo foi concluído em80,181s, incluindo34,578s de espera e verificação final. A interação da casa foi registrada e duas observações independentes do mapa confirmaram a conclusão; controles liberados e zero erros de fechamento. Cursor9/9 dessa entrada por retomadas, sem atribuir80,181s à fase inteira. Provas e escopo: `evaluations/v3/exit-detour-completion.json`. O reconhecimento de estrela preenchida exige agora explicitamente a interação de saída emitida; uma estrela antiga sem essa ação continua insuficiente.
+
 ## Métricas de aceitação e limites
 
 Chamadas Qwen/min =0 antes e depois nos loops medidos. Ações/LLM =N/A com denominador0, sem alegar redução adicional. Objetivos da rota =9/9; falhas de chegada =0/9 (erro<=6px), sem perda de vida observada. Isso é proxy definido, não medição física universal de colisões. A colisão com NPC limitou dois ensaios específicos de2s; em regiões complexas, falhas/recusas ficam preservadas nos reports.
@@ -185,6 +187,6 @@ Falha de combate v2, repetição2: RuntimeError: Controlled character absent in 
 
 Taxa integral de conclusão não é extrapolada de uma fase. Habilidade pronta, esquiva e retirada ainda carecem de ensaio real apropriado; starter tem botões inativos. Nenhum novo modelo, agente ou framework foi introduzido. Preservados hierarquia, SQLite, lease, STOP e fila V1/V2. Telas desconhecidas ou perda de conexão interrompem o executor; não há compra, root ou hook.
 
-Verificação final: V3 119/119; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
+Verificação final: V3 127/127; legado 45/45; V2 59/59. JSONs e logs guardam falhas completas; fixtures não provam gameplay novo.
 
 Duração real dos holds de movimento no ensaio de rota, incluindo retornos entre amostras: {'n': 15, 'mean': 1274.7026133331626, 'p95': 1397.289799999271} (ms). Preparações da série final sem tempo de combate medido: 2; não entram na média de conclusão. Falha de ação é reportada pelo endpoint fora da tolerância ou combate sem prova bruta, não por cada interrupção preventiva de segurança.

@@ -10,6 +10,18 @@ from cognitive.stage_v2 import completion_evidence
 ROOT=Path(__file__).resolve().parents[2]
 
 class ExitTests(unittest.TestCase):
+    def test_confirmed_exit_detour_is_json_serializable_and_does_not_claim_completion(self):
+        from cognitive.v3.exit_control import exit_forward
+        from cognitive.lantern_vision import LanternVision
+        r=json.loads((ROOT/'evaluations/v3/fixtures/exit-obstacle/replay.json').read_text());frame=cv2.imread(str(ROOT/r['lossless_frame']));f=r['features'];issued=[];records=[]
+        def check():
+            if issued:raise InterruptedError('stop after confirmed detour')
+        def remember(*args,**kw):json.dumps(args[3],allow_nan=False);records.append(args)
+        s=SimpleNamespace(root=ROOT,scope='world:1:passage:1',run_id='synthetic:exit-detour',held_object_kind=None,check_cancel=check,transition=lambda *a:None,capture_live=lambda *a:(frame,f),preflight_enemy=lambda f:False,lantern_vision=LanternVision(ROOT),prepare_continuous=lambda *a:None,verify_continuous=lambda *a:None,backend=SimpleNamespace(release_all=lambda:None),controls=SimpleNamespace(move_hold=lambda *a,**kw:(issued.append(a) or {'outcome':'duration_elapsed'})),map_state=lambda *a:({},None,[435.5,975],{'frame':'synthetic:independent-map'}),memory=SimpleNamespace(remember=remember))
+        observer=SimpleNamespace(start=lambda:observer,close=lambda:{})
+        with patch('cognitive.v3.exit_control.verified_exit_context',return_value={'current_entry_verified':True}),patch('cognitive.v3.exit_control.LiveObserver',return_value=observer):
+            with self.assertRaisesRegex(InterruptedError,'confirmed detour'):exit_forward(s,None,None,[425.5,975],'synthetic:arrival')
+        self.assertEqual(records[0][1],'v3_exit_detour');self.assertIs(records[0][3]['verified'],True);self.assertIs(records[0][3]['goal_reached'],False)
     def test_actor_and_follower_occlusion_can_be_bypassed_without_painting_the_follower_as_floor(self):
         from cognitive.v3.exit_control import visible_exit_detour
         from cognitive.v3.exploration import visible_floor_horizon
@@ -65,7 +77,7 @@ class ExitTests(unittest.TestCase):
             marker=Path(folder)/'marker.jpg';marker.write_bytes(b'synthetic marker path; map check uses real fixture')
             session=SimpleNamespace(root=ROOT,folder=Path(folder),scope='world:1:passage:1',run_id='synthetic:loading',check_cancel=lambda:None,memory=SimpleNamespace(remember=lambda *a:None))
             with patch('cognitive.v3.exit_control.time.monotonic',side_effect=lambda:now[0]):
-                result=verify_exit_result(session,runtime,bot,{'frame':str(marker.relative_to(ROOT))},{'current_entry_verified':True,'controls_issued':True})
+                result=verify_exit_result(session,runtime,bot,{'frame':str(marker.relative_to(ROOT))},{'current_entry_verified':True,'controls_issued':True,'exit_interaction_issued':True})
         self.assertTrue(result['stage_complete']);self.assertEqual(len(result['result_evidence']),2);self.assertEqual(result['verification_seconds'],18);self.assertEqual([r['scene'] for r in result['observed_scenes']],['carregando']*6+['desconhecida','mapa','mapa'])
     def test_real_reward_ocr_without_spaces_is_recognized_and_requires_result_scene(self):
         from bot import Bot
@@ -110,3 +122,4 @@ class ExitTests(unittest.TestCase):
                 marker=Path(folder)/'marker.jpg';marker.write_bytes(b'synthetic test file, not gameplay evidence')
                 house={'frame':str(marker.relative_to(ROOT))}
                 self.assertIsNone(verify_exit_result(s,runtime,bot,house,{'current_entry_verified':True,'controls_issued':False},seconds=.005))
+                self.assertIsNone(verify_exit_result(s,runtime,bot,house,{'current_entry_verified':True,'controls_issued':True},seconds=.005))

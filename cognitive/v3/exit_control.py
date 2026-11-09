@@ -70,7 +70,7 @@ def completed_passage_card(frame,root):
 def verify_exit_result(s,runtime,bot,house,context,seconds=45):
     began=time.monotonic();deadline=began+seconds;observations=[];kind=None;scenes=[]
     house_path=(s.root/house['frame']).resolve() if house else None
-    valid_transition=bool(context and context.get('current_entry_verified') and context.get('controls_issued') and house_path and house_path.is_relative_to(s.folder.resolve()) and house_path.exists())
+    valid_transition=bool(context and context.get('current_entry_verified') and context.get('controls_issued') and context.get('exit_interaction_issued') and house_path and house_path.is_relative_to(s.folder.resolve()) and house_path.exists())
     while time.monotonic()<deadline:
         s.check_cancel();ob=runtime.environment.observe();runtime.evidence(ob);frame=runtime.environment.last_frame
         if not scenes or scenes[-1]['frame']!=ob.frame_path:scenes.append({'scene':ob.scene,'frame':ob.frame_path,'elapsed_seconds':time.monotonic()-began})
@@ -185,8 +185,8 @@ def exit_forward(s,runtime,bot,arrival,map_frame,max_actions=10):
         if control['outcome'] in ('low_health','perception_stale','perception_unavailable'):raise RuntimeError('Exit forward interrupted: '+control['outcome'])
         if control['outcome']=='enemy_detected':continue
         if detour and after['scene']=='jogo':
-            _,_,position,checkpoint=s.map_state('v3-exit-detour-after-map');delta=[position[i]-detour_before[i] for i in (0,1)];progress=sum(delta[i]*heading[i] for i in (0,1));revisited=any(math.dist(position,old)<=2 for old in detour_positions)
-            proof={'verified':progress>2 and not revisited,'before_reference':detour_before,'after_reference':position,'directional_progress_reference_pixels':progress,'map_frame':checkpoint['frame'],'goal_reached':False,'route':detour};row['detour_check']=proof
+            _,_,position,checkpoint=s.map_state('v3-exit-detour-after-map');delta=[position[i]-detour_before[i] for i in (0,1)];progress=float(sum(delta[i]*heading[i] for i in (0,1)));revisited=any(math.dist(position,old)<=2 for old in detour_positions)
+            proof={'verified':bool(progress>2 and not revisited),'before_reference':detour_before,'after_reference':position,'directional_progress_reference_pixels':progress,'map_frame':checkpoint['frame'],'goal_reached':False,'route':detour};row['detour_check']=proof
             s.memory.remember('episodic','v3_exit_detour',s.scope,{'run_id':s.run_id,**proof},Provenance(checkpoint['frame'],method='visible_floor_flank_with_unchanged_clearance_then_independent_map_displacement'),.9,'verified' if proof['verified'] else 'uncertain')
             if not proof['verified']:raise RuntimeError('Exit detour did not reach a new map position in the planned direction')
             detour_positions.append(list(position));last_map_position=list(position);s.transition('jogo')
